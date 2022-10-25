@@ -1,0 +1,18 @@
+<p-dialog
+  id="error-dialog"
+  header="შეცდომა"
+  [(visible)]="errorHelper.occurredError"
+  [dismissableMask]="true"
+  [modal]="true"
+  [minY]="70"
+  [maximizable]="true"
+  (onHide)="onHide()"
+  [baseZIndex]="10000"
+>
+  <div *ngFor="let msg of errorHelper.errors">
+    <p class="styleError">{{ msg }}</p>
+  </div>
+  <div class="error-button">
+    <p-button id="error-hide-button" type="button" (click)="onHide()" label="Ok"></p-button>
+  </div>
+</p-dialog>

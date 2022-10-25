@@ -1,0 +1,65 @@
+<div *ngIf="!isLoaded; else imagesBlock">
+  <div class="RFGzLM0dYfPknxoHIVaq">
+    <h2 class="n3VjEYZ90eGAL7bL007A SnUm_1TfMxXpCYasofoO">Photos</h2>
+  </div>
+  <div class="">
+    <div class="grid formgrid">
+      <div class="field col-12 md:col-6">
+        <div class="flex align-items-end">
+          <p-skeleton size="5rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton size="5rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton size="5rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton size="5rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton size="5rem" styleClass="mr-2"></p-skeleton>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #imagesBlock>
+  <section id="photos">
+    <div class="jrcT3a6EUMAeQMnLMYq6" data-test="restaurant-photos" data-testid="restaurant-photos">
+      <div>
+        <header data-test="section-header" class="yTP15dQeBCtN8gZPWtKV">
+          <div *ngIf="isLoaded" class="RFGzLM0dYfPknxoHIVaq">
+            <h2 class="n3VjEYZ90eGAL7bL007A SnUm_1TfMxXpCYasofoO">{{photoesCount}} Photos</h2>
+          </div>
+        </header>
+        <div class="R21jFV1K5ZiGWedErzsd">
+          <nav class="hfirgUQGzqWl0dCy8bYq">
+            <ol class="">
+              <li [ngClass]="{'Z9HRng5eGfjegBBDhgvy' : loadedImageType === 1}">
+                <button type="button" class="npZYLDMKBFyRcK4ZoU3Y" (click)="loadImage(1)">All</button>
+              </li>
+              <li [ngClass]="{'Z9HRng5eGfjegBBDhgvy' : loadedImageType === 2}">
+                <button type="button" class="npZYLDMKBFyRcK4ZoU3Y" (click)="loadImage(2)">Food</button>
+              </li>
+              <li [ngClass]="{'Z9HRng5eGfjegBBDhgvy' : loadedImageType === 3}">
+                <button type="button" class="npZYLDMKBFyRcK4ZoU3Y" (click)="loadImage(3)">Interior</button>
+              </li>
+              <li [ngClass]="{'Z9HRng5eGfjegBBDhgvy' : loadedImageType === 4}">
+                <button type="button" class="npZYLDMKBFyRcK4ZoU3Y" (click)="loadImage(4)">Exterior</button>
+              </li>
+              <li [ngClass]="{'Z9HRng5eGfjegBBDhgvy' : loadedImageType === 5}">
+                <button type="button" class="npZYLDMKBFyRcK4ZoU3Y" (click)="loadImage(5)">Drinks</button>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div class="qu89xJJz9OOoHWqpGHyg">
+          <button *ngFor="let item of imageWhichIsShowList last as isLast" type="button"
+            class="HYk6owxTOkbNdJ2ceukN m_b2Wnj4pHFOVObBMBuM">
+            <img src="{{item.src}}" alt="{{item.alt}}">
+            <div *ngIf="isLast && isCountGreatherThan5" class="rGVGrRyvcN_qm88blf4P">
+
+              <a href="" class="wTKOIa6eU31MUX0259EH YQ2SmR3lcmrtTcxuktZA">+{{modeLoadedCount}} More</a>
+
+            </div>
+          </button>
+          <!-- <p-progressSpinner [style]="{width: '100px', height: '100px'}" styleClass="custom-spinner" strokeWidth="8"
+            animationDuration="1s"></p-progressSpinner> -->
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>

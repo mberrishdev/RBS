@@ -1,0 +1,30 @@
+<header class="Oj76ErEFOVeUogX4APEA">
+  <div class="qepGmHr0hdEyB0yzzEJ9">
+    <h2 class="msKqTVTyiZsPFMCcq6xB">Make a free reservation</h2><span class="ID0EKURx9p1AyRfRBS0K">
+      <div class="CFqCKTFwM7VhmpXKh2AD" data-test="block-dtp">
+        <div class="hkYkQl42VoWamVdkPGXR">
+          <div class="gJ_gxUjoKU5vQV1fZbjx">
+            <p-calendar [(ngModel)]="date" [showIcon]="true" dateFormat="mm-dd-yy" placeholder="{{today}}"
+              inputId="dateformat" [minDate]="minDate"></p-calendar>
+            <p-calendar [(ngModel)]="time" icon="pi pi-clock" [showIcon]="true" placeholder="{{timeNow}}"
+              [timeOnly]="true" hourFormat="12" inputId="timeonly"></p-calendar>
+          </div>
+          <p-inputNumber [(ngModel)]="personCount" mode="decimal" placeholder="Person Count" [showButtons]="true"
+            inputId="minmax-buttons" [min]="0" [max]="500">
+          </p-inputNumber>
+        </div>
+        <div class="SCy_3RJAYrQ6fPOgbFi8">
+            <input type="text" pInputText [(ngModel)]="location" placeholder="Location/Restaurant">
+          <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-info"></button>
+        </div>
+      </div>
+    </span>
+  </div>
+  <div class="W6vHyceRJFazcg3yqAe6" data-test="location-landing-quick-link-container"><span
+      class="MXzf3SALo58QgaOER0fc">Quick Search: </span>
+    <div class="o8ipeatPe1D3IXeX60PH v5f1LbbwhOSPiQorc7vh" role="button" tabindex="0"
+      data-test="quick-link-experiences">Book an experience</div>
+    <div class="o8ipeatPe1D3IXeX60PH JcOfsqgSIdmvTOpG7skL" role="button" tabindex="0" data-test="quick-link-all">All
+      restaurants near me</div>
+  </div>
+</header>

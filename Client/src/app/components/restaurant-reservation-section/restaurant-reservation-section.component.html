@@ -1,0 +1,28 @@
+<div class="hBNE0g9NxqM222PB6mKC">
+  <article data-test="bookable-cta-container" class="lUgYxPBzyhAPIZtOkRIg">
+    <h2 class="aegHzpcCdt0DNWjSNAhK GZhTyrXPrMeIQFlLZvOA">Make a reservation</h2>
+    <div class="NDx_n1hkYbSGVsv_noW5">
+      <div class="UZ_e0x4iWqdD2wWEBas0">
+        <section class="kNEybOHj3PW8oo8e2ajc">
+          <p-button label="Book Now" icon="pi pi-search" iconPos="left" (onClick)="book()"></p-button>
+        </section>
+      </div>
+    </div>
+  </article>
+  <section data-test="restaurant-details" class="kS2kgQfnKbbEbghSQU6P">
+    <div class="IFi4OhmkMqN3xblTfatl">
+      <section data-test="restaurant-google-map" class="nELT5kx9JBZNrb3zeMmG">
+        <div class="EnmGZ9bboGl0IB7mJOVb">
+          <span class="EnmGZ9bboGl0IB7mJOVb MD5GwFAdWcezgcAHkYk9">
+            <google-map [center]="center" height="130px" width="260px" [zoom]="zoom" (mapClick)="moveMap($event)"
+              (mapMousemove)="move($event)">
+            </google-map>
+          </span>
+          <p class="aAmRZnL9EescJ80holSh">{{address.country}}, {{address.city}}, {{address.street}}, {{address.number}}
+          </p>
+        </div>
+      </section>
+      <app-restaurant-additional-information [restaurantId]="restaurantId"></app-restaurant-additional-information>
+    </div>
+  </section>
+</div>

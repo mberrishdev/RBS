@@ -1,0 +1,103 @@
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container pt-lg-md">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-white pb-5">
+              <div class="text-muted text-center mb-3">
+                <small>{{'auth.login.loginwith' | translate }}</small>
+              </div>
+              <div class="btn-wrapper text-center">
+                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon">
+                    <img src="./assets/img/icons/common/github.svg">
+                  </span>
+                  <span class="btn-inner--text">Github</span>
+                </a>
+                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon">
+                    <img src="./assets/img/icons/common/google.svg">
+                  </span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>{{'auth.login.orloginwithcredentials' | translate }}</small>
+              </div>
+              <form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" formControlName="username" placeholder="{{'user.Name' | translate }}"
+                      type="text">
+                  </div>
+                  <small>
+                    <span class="text-danger"
+                      *ngIf="(loginFormControl.username.touched || submitted) && loginFormControl.username.errors?.required">
+                      {{'user.Name.is.requred' | translate }}
+                    </span>
+                    <span class="text-danger"
+                      *ngIf="loginFormControl.username.touched && loginFormControl.username.errors?.userNameNotAvailable">
+                      {{'user.Name.is.requred' | translate }}
+                    </span>
+                  </small>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" formControlName="password" placeholder="{{'password' | translate }}"
+                      type="password">
+                  </div>
+                  <small>
+                    <span class="text-danger"
+                      *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+                      {{'password.is.requred' | translate }}ssss
+                    </span>
+                  </small>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                  <label class="custom-control-label" for=" customCheckLogin">
+                    <span>{{'remember.me' | translate }}</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">{{'sign.in' | translate }}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="javascript:void(0)" class="text-light">
+                <small>{{'forgot.password' | translate }}?</small>
+              </a>
+            </div>
+            <div class="col-6 text-right">
+              <a routerLink="/auth/signup" class="text-light">
+                <small>{{'create.account' | translate }}</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,139 @@
+<div *ngIf="!isLoaded; else reviewSection">
+  <header data-test="section-header" class="yTP15dQeBCtN8gZPWtKV">
+    <div class="RFGzLM0dYfPknxoHIVaq">
+      <h2 class="n3VjEYZ90eGAL7bL007A SnUm_1TfMxXpCYasofoO">Reviews</h2>
+    </div>
+  </header>
+  <div>
+    <div>
+      <ul>
+        <li class="mb-3">
+          <div class="flex">
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+            <div style="flex: 1">
+              <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+              <p-skeleton width="75%"></p-skeleton>
+            </div>
+          </div>
+        </li>
+        <li class="mb-3">
+          <div class="flex">
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+            <div style="flex: 1">
+              <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+              <p-skeleton width="75%"></p-skeleton>
+            </div>
+          </div>
+        </li>
+        <li class="mb-3">
+          <div class="flex">
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+            <div style="flex: 1">
+              <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+              <p-skeleton width="75%"></p-skeleton>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="flex">
+            <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+            <div style="flex: 1">
+              <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+              <p-skeleton width="75%"></p-skeleton>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<ng-template #reviewSection>
+  <section class="nXQl30a4qw1osTKbT3IO" id="reviews">
+    <section class="JGUh4CK2UC7xyZKgbGjj">
+      <header data-test="section-header" class="yTP15dQeBCtN8gZPWtKV">
+        <div class="RFGzLM0dYfPknxoHIVaq">
+          <h2 class="n3VjEYZ90eGAL7bL007A SnUm_1TfMxXpCYasofoO">What people are saying</h2>
+        </div>
+      </header>
+      <div class="R21jFV1K5ZiGWedErzsd">
+        <nav class="hfirgUQGzqWl0dCy8bYq">
+          <ol class="">
+            <li>
+              <button type="button" class="npZYLDMKBFyRcK4ZoU3Y">Our Reviews</button>
+            </li>
+            <li>
+              <button type="button" class="npZYLDMKBFyRcK4ZoU3Y">Google Reviews</button>
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <section class="mOlk7vMUc00ZG8NnvPLa" data-test="reviews-summary">
+        <h3 class="Vc9u58FC1f6EP9KfYKmh TmrbsoKTQg9UWXLSXbm0">Overall ratings and reviews</h3>
+        <article class="A2NWQVijKsSMmE7ef4JI Ti64w3n01MDTYZb59n6Q">
+          <p class="C_QXTXl0smNI7roKf8ny">Reviews can only be made by diners who have eaten at this restaurant</p>
+          <section class="jJfc5fB1lj7nz9KsUxQT mnvRsuAUHkGrXs3xjRoy">
+            <p-rating [ngModel]="reviewFullModel.overallRate" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+          </section>
+          <ul class="I25ZNFNW5cnwERHCpQSR" data-test="reviews-ratings-list">
+            <li class="P9YupgFvkVLpaYPIVuVH"><span data-testid="rating-value"
+                class="q5KV_STbBbfMbIeljXUO YQ2SmR3lcmrtTcxuktZA">{{reviewFullModel.overallFoodRate}}</span><span
+                data-testid="rating-name" class="cXSUKj_jxryRvMqA0RRe niooln7MFOLVFQI73iBW">Food</span></li>
+            <li class="P9YupgFvkVLpaYPIVuVH"><span data-testid="rating-value"
+                class="q5KV_STbBbfMbIeljXUO YQ2SmR3lcmrtTcxuktZA">{{reviewFullModel.overallServiceRate}}</span><span
+                data-testid="rating-name" class="cXSUKj_jxryRvMqA0RRe niooln7MFOLVFQI73iBW">Service</span></li>
+            <li class="P9YupgFvkVLpaYPIVuVH"><span data-testid="rating-value"
+                class="q5KV_STbBbfMbIeljXUO YQ2SmR3lcmrtTcxuktZA">{{reviewFullModel.overallAmbienceRate}}</span><span
+                data-testid="rating-name" class="cXSUKj_jxryRvMqA0RRe niooln7MFOLVFQI73iBW">Ambience</span></li>
+          </ul>
+        </article>
+        <article class="mp8qvmObI3NC_5qMEVQx">
+          <h1>rate ebi zustad</h1>
+        </article>
+      </section>
+      <ol aria-label="Reviews List" id="restProfileReviewsContent" class="dxLeFbidu7bvjN_7QEC2"
+        data-test="reviews-list">
+        <li *ngFor="let review of reviewFullModel.reviews" class="mbK0eco4h3AaJgKLBhb9">
+          <section class="Dy9dg_fThB5zI1c7xOg4">
+            <!-- AaZgEuPY0yG2V1TNhOzt -->
+            <div class="fay3YS5td0q6mbuTy24Y d4zoVquaOLr9tIIuTyfa">
+              {{review.reviewerName?.charAt(0).toUpperCase()}}{{review.reviewerSurName?.charAt(0).toUpperCase()}}</div>
+            <p class="V0gqMM0V5nr33Ha56k83 mnvRsuAUHkGrXs3xjRoy">{{review.reviewerName}}</p>
+            <p class="UGzxfqPCuflxNBXSUvL_ mnvRsuAUHkGrXs3xjRoy">{{review.reviewerSurName}}</p>
+          </section>
+          <section class="ADHOnxYxENUUfweaCdW6">
+            <section class="c3G0xjzKlnaEr6jJr29v mnvRsuAUHkGrXs3xjRoy">
+              <p class="Xfrgl6cRPxn4vwFrFgk1">Reviewed on {{GetDate(review.reviewedDate)}}</p>
+            </section>
+            <span class="ntw1CLrK8o6PhYhcRux1">overall</span>
+            <span class="Q2DbumELlxH4s85dk8Mj">{{review.overallRate}}</span>
+            <span class="ntw1CLrK8o6PhYhcRux1">food</span>
+            <span class="Q2DbumELlxH4s85dk8Mj">{{review.foodRate}}</span>
+            <span class="ntw1CLrK8o6PhYhcRux1">service</span>
+            <span class="Q2DbumELlxH4s85dk8Mj">{{review.serviceRate}}</span>
+            <span class="ntw1CLrK8o6PhYhcRux1">ambience</span>
+            <span class="Q2DbumELlxH4s85dk8Mj">{{review.ambienceRate}}</span>
+
+            <div class="f3cNr0xDcwvMaBkpjQj5">
+              <span data-test="wrapper-tag" class="t9JcvSL3Bsj1lxMSi3pz h_kb2PFOoyZe1skyGiz9 Ti64w3n01MDTYZb59n6Q"
+                style="line-height:24px;max-height:72px;overflow:hidden;-webkit-line-clamp:3">{{review.text}}</span>
+            </div>
+
+            <div class="HL583KqLswHVweEv7sYa">
+              <button type="button" class="NtIWYBPGFDnJpCfd0NEh niooln7MFOLVFQI73iBW">
+                <span class="pBCjKaMJcpEY4UICo9ol lrrzQPafT4s88j_9IyJO" data-test="icReport" data-testid="icReport">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                    <g fill="none" fill-rule="evenodd">
+                      <path
+                        d="M16,8 L19.55,3.9 C19.7765448,3.64479903 19.9317661,3.33435639 20,3 C20,2.44771525 19.5522847,2 19,2 L6,2 C4.8954305,2 4,2.8954305 4,4 L4,21 C4,21.5522847 4.44771525,22 5,22 C5.55228475,22 6,21.5522847 6,21 L6,14 L19,14 C19.5522847,14 20,13.5522847 20,13 C19.9688341,12.6188683 19.7978781,12.2627099 19.52,12 L16,8 Z M6,12 L6,4 L16.82,4 L14.49,6.69 L13.34,8 L14.5,9.32 L16.86,12 L6,12 Z"
+                        fill="#2D333F" fill-rule="nonzero"></path>
+                    </g>
+                  </svg>
+                </span>Report
+              </button>
+            </div>
+          </section>
+        </li>
+      </ol>
+    </section>
+  </section>
+</ng-template>

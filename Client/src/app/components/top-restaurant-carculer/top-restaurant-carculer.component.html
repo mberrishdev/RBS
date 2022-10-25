@@ -1,0 +1,22 @@
+<p-carousel [value]="restaurants" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true"
+  [autoplayInterval]="5000" [responsiveOptions]="responsiveOptions">
+  <ng-template pTemplate="header">
+    <h5>Top Restaurants</h5>
+  </ng-template>
+  <ng-template let-restaurant pTemplate="item">
+    <div class="product-item">
+      <div class="product-item-content">
+        <div class="mb-3">
+          <img src="{{restaurant.imageAddress}}" [alt]="restaurant.name" class="product-image" />
+        </div>
+        <div>
+          <h4 class="p-mb-1">{{ restaurant.name }}</h4>
+          <div class="car-buttons p-mt-5">
+            <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
+            <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

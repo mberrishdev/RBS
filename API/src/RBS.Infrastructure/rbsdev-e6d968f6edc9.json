@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "rbsdev",
+  "private_key_id": "e6d968f6edc90ad40364726ca1ba38315ac71ce6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCjdonnfjacyqU7\nhCshgdjbxXEiDVARm8vryQkt7nxl6U7DLxY8eOCx7u9A504aOvCe/DkOa+wq/5jx\njH4Ib3C7tmf3FyJ6k4jbWqE29oWqeNfbpctm9GTm2Mgqw7UMrHBAoa03UHs/iPYE\nd3YBiKdCn9s5DXY/18C/bFIzM39pU7fLKnJhtAouGPn9QXXP9Ej0kHDi12GB3joa\nf1Pdh3mMvqpwZf/ksLp2xM30u37PgMywjt6rNa/fwGYu/h338CfOiRBHZ2pzmcxh\nRCebvAeBoaQOr2Qdp+9+0e3ErLQujO3GnLGFanh4rTayG/z/unj4DdYQku1yHFF1\nQckyyyJXAgMBAAECggEARriIXXFLq3Y5GpDKIEsPSbYYhkUAOT4QccieghLGG0lf\nXC7JDgy2GgVn2cq5DbwmUoKJJOYoXUoMH6VK+ddNDMmUHWES97lQ4qZJTYBGwERc\nD5mhcL+X0BBGOcpGUF9iiXPpfx8A07Irzi7pDSzUQIzsybg7Ss/LgoYY4jILk8OE\nhoE1DIFLQr1mGZl2NsrHlaDHa5LuzTxzeZS5pCzlILfUl0Y35FSCMsxHY/s4IM/q\nYX1tWW4Vc4iiOfDYxo+bY/TcKupJK8hPmXt+ZWWir1+SlDgfOafuNjeuEdShvs31\npJEmvZdJIctXaL3CTSkvahXflX2bd3FGruCFmssQsQKBgQDk5EQP5C+Qe9QScYyi\n0WPkW0zIo7FbiIDYBeKfEnt5i1aZdVohGb3Em9MB6yLAtuihclOyCjPnH1DqDyc+\niH3TKwZv5rELtaSOKbt2MjPnEsxKOoh72zn8tI/cm64bJymJOowS/UIHcGdTT702\njJwRANQ0yT4Xdsn6fn91dVlqDQKBgQC20o04osRPelJCZtGp4BeafxPnaIhu0Fz2\nHWwe6JDfbvPDxnSzfHMpy23LrIqRBkQHVQ61mtGCPa5Tq6qSTKWBeq4gLBInuG/l\nA+E/aGAzdNN9zQyRBq9jwYTuWZAJOYSvxQLGhbhRBlrJsBQrq9d9TFFuwn2CtaGg\n8ZoSoZNY8wKBgB3mV6G/zBrSoixamuV19teQuaIICBYN6c7OTgE7l9eTxRc8xi5G\nv4xcUp8QiTSlcBQO7DH4tTj+1UIOArFfgRhBqZCakQwXiUxs1Skme7M2uGsF5GhR\nheyl5ZkK2R6A6iMb+8pLPQHdxBGU/AGRMp3h/tZ6Z1sHUHEhbyL31ltNAoGAQSVL\n70eIvm1vDHxI78iLgKERvZ7xJtOWnJilY2op3YRS1otMIH0TKGx15mLISZ869IXp\npOrTBx7llKkSMemf/EBz9cDeg0rkjG3SgN63kP5rMmOzu6XvL5PQw4IkojTdxChm\nsckKgczK4x2cQmeMdPiR9+7T/JSuUIRnC4aJ0+MCgYBoqbu8sLUW+UfmzFmvfVIx\nOl9rmxN1cgyOy3i8TmzrXXN3ppOeWXPeGAe6ojkDAKuMuT4w9/3+xShAxOFwKAYL\nAAp1VezGMPbl66AD5CV9mDoBJ1bpCLDntaaGtURkivoEKqHao3UqkfuXw8hWGKVb\n4VukXU050YqDBCjusMSmbA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "rbsservice@rbsdev.iam.gserviceaccount.com",
+  "client_id": "111644081801741932831",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rbsservice%40rbsdev.iam.gserviceaccount.com"
+}

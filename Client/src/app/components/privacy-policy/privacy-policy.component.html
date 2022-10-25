@@ -1,0 +1,7 @@
+<div id="content">
+  <p-accordion id="content">
+    <p-accordionTab *ngFor="let privacyPolicy of privacyPolicies" header="{{privacyPolicy.title}}">
+      <p>{{privacyPolicy.body}}</p>
+    </p-accordionTab>
+  </p-accordion>
+</div>

@@ -1,0 +1,10 @@
+@media (max-width: 992px) {
+  #progressBar {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: 3px;
+    z-index: 90000;
+    right: 0;
+  }
+}

@@ -1,0 +1,13 @@
+﻿using RBS.Domain.Tables;
+
+namespace RBS.Domain.TableImages
+{
+    public class TableImage : EntityBase
+    {
+        public string? Src { get; private set; }
+        public string? Alt { get; private set; }
+
+        public int TableId { get; private set; }
+        public Table Table { get; private set; }
+    }
+}

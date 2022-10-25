@@ -1,0 +1,35 @@
+<section>
+  <div *ngIf="!isAdditionalInformationLoaded; else additionlInformationSection">
+    <h4 class="b0VrPVenhe9jJVYrbINK YQ2SmR3lcmrtTcxuktZA">Additional information</h4>
+    <div>
+      <div class="grid formgrid">
+        <div class="field col-12 md:col-6">
+          <p-skeleton width="100%" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+          <p-skeleton width="90%" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+          <p-skeleton width="80%" styleClass="mb-2" borderRadius="16px"></p-skeleton>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #additionlInformationSection>
+    <h2 class="b0VrPVenhe9jJVYrbINK YQ2SmR3lcmrtTcxuktZA">Additional information</h2>
+    <div class="oEq0FbNRsdySEbkz88DS">
+      <ul class="ZyMjoKRZyYgHEI3nRlzv">
+        <li *ngFor="let adInformation of additionalInformations" class="sLBJlww5dQUKh9NaUejA">
+          <div class="ZQUIHOcNUeU7wqraxFtp">
+            <span class="pBCjKaMJcpEY4UICo9ol" data-test="icNeighborhood" data-testid="icNeighborhood">
+              <i class="pi {{adInformation.icon}}"></i>
+            </span>
+            <div class="ewHk9X7lpnWXq9W10wr5">
+              <span class="tLGQNTUZlM7f0xfO_o73 " data-test="restaurant-detail-title">{{adInformation.key}}</span>
+              <p *ngIf="adInformation.isUrl" class="c_qirB1mFl5VRKHYJqTz"><a class="dVuwbDkxZsqrGYVW7Rt4"
+                  href="{{adInformation.value}}" target="_blank" rel="noopener noreferrer">{{adInformation.value}}</a>
+              </p>
+              <p *ngIf="!adInformation.isUrl" class="c_qirB1mFl5VRKHYJqTz">{{adInformation.value}}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+</section>

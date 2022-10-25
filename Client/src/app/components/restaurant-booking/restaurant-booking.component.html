@@ -1,0 +1,168 @@
+<!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+
+<main id="mainContent" class="WttPn9hgB8QhLhQxEMDI" tabindex="-1">
+  <p-dialog header="Reservation QrCode" [(visible)]="displayModal" [focusOnShow]="true" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+    [resizable]="false">
+    <img id="qrImg"
+      src="data:image/png;base64,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qJvOqJTSVnXTGWq68TfUo6qUtiqlbaWUtqqbzlDddMaJuumMSiltVTedoaYbf0M9qkppq1LaVkppq7rpDNVNZ5yom86olNJWddMZarrxN9SjqpS2KqVtpZS2qpvOUN10xom66YxKKW1VN52hpht/Qz2qSmmrUtpWSmmruukM1U1nnKibzqiU0lZ10xlquvE31KOqlLYqpW2llLaqm85Q3XTGibrpjEopbVU3naGmG39DPapKaatS2lZKaau66QzVTWecqJvOqJTSVnXTGWq68TfUo06qm85QKW1VN51RqZvOUCltVUrbSiltVUpbNd34G+pRJ9VNZ6iUtqqbzqjUTWeolLYqpW2llLYqpa2abvwN9aiT6qYzVEpb1U1nVOqmM1RKW5XStlJKW5XSVk03/oZ61El10xkqpa3qpjMqddMZKqWtSmlbKaWtSmmrpht/Qz3qpLrpDJXSVnXTGZW66QyV0laltK2U0laltFXTjb+hHnVS3XSGSmmruumMSt10hkppq1LaVkppq1LaqunG31CPOqluOkOltFXddEalbjpDpbRVKW0rpbRVKW3VdONvqEedVDedoVLaqm46o1I3naFS2qqUtpVS2qqUtmq68TfUo06qm85QKW1VN51RqZvOUCltVUrbSiltVUpbNd34G+pRJ9VNZ6iUtqqbzqjUTWeolLYqpW2llLYqpa2abv4NV4n+KNV0urPqpjMqpbRVKW1VN52hppt/w1WiP0o1ne6suumMSiltVUpb1U1nqOnm33CV6I9STac7q246o1JKW5XSVnXTGWq6+TdcJfqjVNPpzqqbzqiU0laltFXddIaabv4NV4n+KNV0urPqpjMqpbRVKW1VN52hppt/w1WiP0o1ne6suumMSiltVUpb1U1nqOnm33CV6I9STac7q246o1JKW5XSVnXTGWq6+TdcJfqjVNPpzqqbzqiU0laltFXddIaabv4NV4n+KNV0urPqpjMqpbRVKW1VN52hppt/w1WiP0o1ne6suumMSiltVUpb1U1nqOnG31CPWimlbaWUtiqlrUppq1LaVppOd1bT6c6Vpht/Qz1qpZS2lVLaqpS2KqWtSmlbaTrdWU2nO1eabvwN9aiVUtpWSmmrUtqqlLYqpW2l6XRnNZ3uXGm68TfUo1ZKaVsppa1KaatS2qqUtpWm053VdLpzpenG31CPWimlbaWU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">
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-download" (click)="downloadQRImage()" label="Download" styleClass="p-button-text">
+      </p-button>
+    </ng-template>
+  </p-dialog>
+  <div class="VxBff8P_lcHKKH4jWqJm">
+    <div class="y__isdaGDaNBwmqkVi64">
+      <div class="bTBbrPKOKYKCWre1S7MI">
+        <section class="rdenXhHVEvAdzD_ETpVe">
+          <h2 class="ipv4TXoOgsxp4yybN5sD">You’re almost done!</h2>
+          <div class="J722GEyEBV877AlSBIdw">
+            <div class="UShzBEW2GbLC8NqG03rc">
+              <!-- <img class="JZlGUG1LJ9cdISp50fAG" src="{{image.src}}" alt="{{image.alt}}"> -->
+            </div>
+            <div class="SGAjAi0UiRbrorCIEywx">
+              <a class="UUoCAUL0Mqi7hJSG8Wy7" routerLink="restaurant/{{restaurantId}}" target="_blank"
+                rel="noopener noreferrer">
+                <h2 data-test="restaurantName" class="i4QPbbN2sH064gWbmQyf">{{restaurantName}}</h2>
+              </a>
+              <div class="aZfErLEmW7ax6Cy5dhNj">
+                <div class="goxtG0fDZpzG_UaK9gqG" data-test="icCalendar-wrapper"><span
+                    class="pBCjKaMJcpEY4UICo9ol XIMphSkcnDwf488lCq6w" data-test="icCalendar"
+                    data-testid="icCalendar"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                      focusable="false">
+                      <g fill="none" fill-rule="evenodd">
+                        <path
+                          d="M17,5 L19,5 C20.1045695,5 21,5.8954305 21,7 L21,19 C21,20.1045695 20.1045695,21 19,21 L5,21 C3.8954305,21 3,20.1045695 3,19 L3,7 C3,5.8954305 3.8954305,5 5,5 L7,5 L7,4 C7,3.44771525 7.44771525,3 8,3 C8.55228475,3 9,3.44771525 9,4 L9,5 L15,5 L15,4 C15,3.44771525 15.4477153,3 16,3 C16.5522847,3 17,3.44771525 17,4 L17,5 Z M19,9 L19,7 L5,7 L5,9 L19,9 Z M19,11 L5,11 L5,19 L19,19 L19,11 Z"
+                          fill="#2D333F"></path>
+                      </g>
+                    </svg></span>
+                  <p class="pttH0B8iTYpUiZsb2eEk">Thu, Sep 29</p>
+                </div>
+                <div class="goxtG0fDZpzG_UaK9gqG" data-test="icClock-wrapper"><span
+                    class="pBCjKaMJcpEY4UICo9ol XIMphSkcnDwf488lCq6w" data-test="icClock" data-testid="icClock"><svg
+                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                      <g fill="none" fill-rule="evenodd">
+                        <path
+                          d="M13,11 L14.5,11 C14.7761424,11 15,11.2238576 15,11.5 L15,12.5 C15,12.7761424 14.7761424,13 14.5,13 L12.5,13 L11.5,13 C11.2238576,13 11,12.7761424 11,12.5 L11,7.5 C11,7.22385763 11.2238576,7 11.5,7 L12.5,7 C12.7761424,7 13,7.22385763 13,7.5 L13,11 Z M12,21 C7.02943725,21 3,16.9705627 3,12 C3,7.02943725 7.02943725,3 12,3 C16.9705627,3 21,7.02943725 21,12 C21,16.9705627 16.9705627,21 12,21 Z M12,19 C15.8659932,19 19,15.8659932 19,12 C19,8.13400675 15.8659932,5 12,5 C8.13400675,5 5,8.13400675 5,12 C5,15.8659932 8.13400675,19 12,19 Z"
+                          fill="#2D333F"></path>
+                      </g>
+                    </svg></span>
+                  <p class="pttH0B8iTYpUiZsb2eEk">3:00 PM</p>
+                </div>
+                <div class="goxtG0fDZpzG_UaK9gqG" data-test="icPerson-wrapper"><span
+                    class="pBCjKaMJcpEY4UICo9ol XIMphSkcnDwf488lCq6w" data-test="icPerson" data-testid="icPerson"><svg
+                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                      <g fill="none" fill-rule="evenodd">
+                        <path
+                          d="M14.5734892,12.2877361 C17.0042328,12.8819383 18.7345621,14.3964534 19.7644773,16.8312813 C19.9208947,17.2010684 20.0014914,17.5984917 20.0014914,18 C20.0014914,19.6568477 18.658351,20.9999882 17.0015032,20.9999882 L6.99926923,21 C6.59776067,21 6.2003371,20.9194033 5.83054967,20.7629859 C4.3045986,20.1175199 3.59082441,18.3572386 4.23628386,16.8312848 C5.26612228,14.3966359 6.99627139,12.8821638 9.42673118,12.2878687 C7.97272602,11.4134027 7,9.82029752 7,8 C7,5.23857625 9.23857625,3 12,3 C14.7614237,3 17,5.23857625 17,8 C17,9.82020554 16.0273723,11.4132417 14.5734892,12.2877361 Z M12,5 C10.3431458,5 9,6.34314575 9,8 C9,9.65685425 10.3431458,11 12,11 C13.6568542,11 15,9.65685425 15,8 C15,6.34314575 13.6568542,5 12,5 Z M17.9429826,17.6856919 C17.1294316,15.228564 15.1485327,14 12.000286,14 C8.85208947,14 6.87106303,15.2285248 6.05720667,17.6855743 L6.05721876,17.6855783 C5.88356446,18.2098444 6.16779141,18.7756206 6.69205743,18.9492749 C6.79348438,18.9828708 6.89964014,18.9999945 7.00648636,18.9999945 L16.99371,18.9999469 C17.5459684,18.9999469 17.9936623,18.552253 17.9936623,17.9999945 C17.9936623,17.8931928 17.9765523,17.7870807 17.9429826,17.6856919 Z"
+                          fill="#2D333F"></path>
+                      </g>
+                    </svg></span>
+                  <p class="pttH0B8iTYpUiZsb2eEk">{{this.peopleCount}} people</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="countdown-timer">
+            <div class="QHPmro6xQXWRYurFYAsf" data-test="countdown-timer" aria-hidden="true">
+              <p class="DBWGCCHqJo4CQT4rCd3N">We’re holding this table for you for <span
+                  class="_FCjiwCsCYUa74qZduzD">4:46 minutes</span></p>
+            </div>
+          </div>
+          <div class="_2JdhPVeZcOuhc7sSCZs">
+            <aside data-test="booking-policies-section"></aside>
+          </div>
+          <h2 class="gzGFMaxE0KfdfWi3JMvX">Diner details</h2>
+          <div data-test="user-conversion-cta" class="cJmlTeHPKR2wXzI2FPv6"><button type="button"
+              class="eyj9ppU14WkdeXeKZ8gF eRPr527YvJ5DDdKO5fLi g0lWgM8ntTk6h0qNZTgw NZCtw9t9gpwHL1Aw2HNX Ti64w3n01MDTYZb59n6Q"
+              data-test="login-diner-button">Sign in</button> to collect points for this reservation</div>
+          <div>
+            <div class="zhyaN4aKAnKs4xgYyM14">
+              <div class="nRvV9WFTz32svCwUrOVd">
+                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="First Name" type="text" pInputText
+                  [(ngModel)]="firstName">
+              </div>
+              <div class="nRvV9WFTz32svCwUrOVd">
+                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="Last Name" type="text" pInputText
+                  [(ngModel)]="lastName">
+              </div>
+            </div>
+            <div class="zhyaN4aKAnKs4xgYyM14">
+              <div class="nRvV9WFTz32svCwUrOVd">
+                <div class="AR10DMKfeFTJO8rv1dVQ">
+                  <div class="FKlH9qC7UDMtKI5HPb45">
+                    <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true"
+                      filterBy="name" [showClear]="true" placeholder="Select a Country">
+                      <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value" *ngIf="selectedCountry">
+                          <img src="http://cdn.otstatic.com/cfe/10/images/ge-cea2fd.svg" />
+                          <div>+995</div>
+                        </div>
+                      </ng-template>
+                      <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                          <img src="http://cdn.otstatic.com/cfe/10/images/ge-cea2fd.svg" />
+                          <div>+995</div>
+                        </div>
+                      </ng-template>
+                    </p-dropdown>
+                  </div><input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="Phone Number" type="text" pInputText
+                    [(ngModel)]="phoneNumber">
+                </div>
+              </div>
+              <div class="nRvV9WFTz32svCwUrOVd">
+                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="Email" type="text" pInputText [(ngModel)]="email">
+              </div>
+            </div>
+            <div class="zhyaN4aKAnKs4xgYyM14">
+              <div class="q0uxJuCa3gqSHSXvUp1Q">
+                <p-dropdown [options]="specialOccasions" [(ngModel)]="specialOccasion"
+                  placeholder="Select an occasion (optional)" optionLabel="name"></p-dropdown>
+              </div>
+              <div class="nRvV9WFTz32svCwUrOVd">
+                <textarea class="WMRhIqpXMa5PfIzQ0ZZM" pInputTextarea [autoResize]="false"
+                  placeholder="Add a special request (optional)"></textarea>
+              </div>
+            </div>
+
+            <p-toggleButton (onChange)="handleChange($event)" [(ngModel)]="checked" onLabel="CloseMenu"
+              offLabel="Pick Dishes" [style]="{'width': '10em'}">
+            </p-toggleButton>
+
+            <div *ngIf="checked">
+              <app-restaurant-menu-section [restaurantId]="restaurantId"></app-restaurant-menu-section>
+            </div>
+
+            <div class="field-checkbox">
+              <p-checkbox [(ngModel)]="diningOffers" [binary]="true" inputId="binary"></p-checkbox>
+              <label for="binary">Sign me up to receive dining offers and news from
+                this restaurant by email.</label>
+            </div>
+            <div class="field-checkbox">
+              <p-checkbox [(ngModel)]="singMeUp" [binary]="true" inputId="binary"></p-checkbox>
+              <label for="binary">Sign me up to receive dining offers and news from
+                OpenTable by email.</label>
+            </div>
+            <div class="field-checkbox">
+              <p-checkbox [(ngModel)]="getRemainder" [binary]="true" inputId="binary"></p-checkbox>
+              <label for="binary">Yes, I want to get text updates and reminders about my reservations.</label>
+            </div>
+
+            <button (click)="Book()"
+              class="oj_Zftq0Z_Ts7usxdiLc bv4HGV5KDR1rqXGmy5Em WkATSvkvJnLhgjlINRzg SFn4xAeJ2JUpqEJ_gGjI n0GonOKcEH4mc03kM4Jz pREW2ZkuYncjapZLLnc3">Complete
+              reservation</button>
+          </div>
+          <div class="xyDVfOCgro9yLtlNGsBu" data-test="legal-text-details-page">By clicking “Complete reservation” you
+            agree to the
+            <a class="oWp44A5vBiqLJg6wsqzA dsnvlgfrQbt5qYIw6zEn" routerLink="/terms-and-conditions" target="_blank">
+              Terms of Use
+            </a> and
+            <a class="oWp44A5vBiqLJg6wsqzA dsnvlgfrQbt5qYIw6zEn" routerLink="/privacy-policy" target="_blank">
+              PrivacyPolicy
+            </a>. Standard text message rates may apply. You
+            may opt out of receiving text messages at any time.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

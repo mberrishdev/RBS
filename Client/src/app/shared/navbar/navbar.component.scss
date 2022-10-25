@@ -1,0 +1,44 @@
+img {
+  border-radius: 50%;
+}
+
+#languageButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  background-color: Transparent
+}
+
+:host ::ng-deep .p-chip.selected {
+  background: var(--primary-color);
+  color: var(--primary-color-text);
+}
+
+#parent {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.child {
+  display: inline-block;
+  color: rgb(6, 65, 153);
+}
+
+.topbarMenu {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:host ::ng-deep .p-dropdown {
+  width: 19rem;
+}
+
+.country-item-value {
+  img.flag {
+    width: 17px;
+  }
+}
+
+p-skeleton {
+  width: 100%;
+}
