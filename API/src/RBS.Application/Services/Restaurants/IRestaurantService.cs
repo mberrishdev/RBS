@@ -1,5 +1,4 @@
-﻿using RBS.Application.Models;
-using RBS.Application.Models.RestaurantModels;
+﻿using RBS.Application.Models.RestaurantModels;
 
 namespace RBS.Application.Services.Restaurants
 {

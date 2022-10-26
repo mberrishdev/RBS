@@ -1,5 +1,4 @@
-﻿using RBS.Application.Models;
-using RBS.Application.Models.RestaurantModels;
+﻿using RBS.Application.Models.RestaurantModels;
 using RBS.Data.Repositories;
 using RBS.Data.UnitOfWorks;
 using RBS.Domain.Restaurants;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestaurantApiServiceService } from 'src/app/services/restaurant-api-service.service';
+import { RestaruantService } from 'src/app/services/restaurantServices/restaruant.service';
 import { Restaurant } from '../models/models';
 
 @Component({
@@ -16,7 +16,7 @@ export class RestaurantComponent implements OnInit {
 
   restaurant: Restaurant | any;
 
-  constructor(private _Activatedroute: ActivatedRoute, private restaurantApiService: RestaurantApiServiceService) {
+  constructor(private _Activatedroute: ActivatedRoute, private restaurantApiService: RestaruantService) {
 
   }
   scroll(el: HTMLElement) {
