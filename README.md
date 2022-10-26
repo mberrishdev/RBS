@@ -6,6 +6,7 @@
 # What is this project about?
 
 RBS - Restaurant booking service
+RBS-Admin Admin WebApplication for manage RBS 
 
 
 ## Features
@@ -27,7 +28,9 @@ RBS - Restaurant booking service
 * SwaggerUI
 
 
-## Deployment
+#Deployemnt RoadMap
+
+## Deployment of RBS
 
 **To deploy this project:**
 
@@ -43,6 +46,33 @@ RBS - Restaurant booking service
 ```
 
 5. Navigate to the Client directory (./Client) and run the commands:
+
+```
+> npm install
+```
+
+```
+> npm run serve
+```
+
+6. Open a browser, navigate to http://localhost:4200 and you're all set! 
+
+## Deployment of RBS-Admin
+
+**To deploy this project:**
+
+1. Install .NET 6 SDK
+2. Install the latest NodeJS
+3. Install SQL Server
+4. Clone the [Repo](https://github.com/mberrishdev/RBS)
+5. Navigate to the API directory (./API) and run command:
+
+
+```
+> dotnet run --project ./src/RBS.Admin/API
+```
+
+5. Navigate to the Client directory (./AdminClient) and run the commands:
 
 ```
 > npm install
