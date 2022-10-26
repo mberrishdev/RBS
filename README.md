@@ -39,7 +39,7 @@ RBS - Restaurant booking service
 
 
 ```
-> dotnet run --project ./RBS.API
+> dotnet run --project ./src/RBS.API
 ```
 
 5. Navigate to the Client directory (./Client) and run the commands:
