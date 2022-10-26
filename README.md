@@ -1,4 +1,5 @@
-[![.NET](https://github.com/mberrishdev/RBS/actions/workflows/dotnet.yml/badge.svg)](https://github.com/mberrishdev/RBS/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/mberrishdev/RBS/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/mberrishdev/RBS/actions/workflows/dotnet.yml)
+[![.NET - Admin](https://github.com/mberrishdev/RBS/actions/workflows/dotnet-admin.yml/badge.svg?branch=master)](https://github.com/mberrishdev/RBS/actions/workflows/dotnet-admin.yml)
 ![GitHub stars](https://img.shields.io/github/stars/mberrishdev/RBS)
 
 
