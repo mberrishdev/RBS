@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RBS.API.Filters;
+using RBS.Admin.API.Filters;
 using RBS.Domain.UserInfo;
 
 namespace RBS.Admin.API.Controllers
