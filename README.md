@@ -28,7 +28,7 @@ RBS-Admin Admin WebApplication for manage RBS
 * SwaggerUI
 
 
-#Deployemnt RoadMap
+# Deployemnt RoadMap
 
 ## Deployment of RBS
 
