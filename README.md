@@ -89,5 +89,5 @@ RBS-Admin Admin WebApplication for manage RBS
 If you face any issues or would like to drop a suggestion, [raise an issue](https://github.com/mberrishdev/RBS/issues/new)
 ## Authors
 
-- [@mberrish](https://www.github.com/mberrish)
+- [@mberrish](https://www.github.com/mberrishdev)
 
