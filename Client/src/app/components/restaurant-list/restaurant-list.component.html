@@ -298,312 +298,36 @@
           </svg></span></button>
     </div>
     <div data-test="restaurant-cards" data-testid="restaurant-cards">
-      <div class="BhIFAK4B5RMKaTMhR78N" data-rid="284748" data-marketing="true" data-index="1"
+      <div *ngFor="let restaurant of searchedRestaruants" class="BhIFAK4B5RMKaTMhR78N" data-rid="284748" data-marketing="true" data-index="1"
         data-avt="eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ" data-test="restaurant-card">
-        <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;"><a
-            href="https://www.opentable.com/r/sheesh-taouk-ascot-ascot?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-            tabindex="-1" target="_blank"><img
-              srcset="https://resizer.otstatic.com/v2/photos/legacy/3/49126827.jpg 208w, https://resizer.otstatic.com/v2/photos/xsmall/3/49126827.jpg 105w, https://images.otstatic.com/prod1/49126827/3/small.jpg 160w, https://images.otstatic.com/prod1/49126827/3/medium.jpg 320w"
-              sizes="(min-width: 1056px) 205px, 90px" src="https://resizer.otstatic.com/v2/photos/legacy/3/49126827.jpg"
-              alt="A photo of Sheesh Taouk Ascot restaurant" class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap" title=""
-              data-test=""></a></div>
+        <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;">
+          <a routerLink="/restaurant/{{restaurant.id}}"tabindex="-1" target="_blank">
+            <img src="{{restaurant.imgSrc}}"
+              alt="{{restaurant.imgAlt}}" class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap" >
+            </a>
+          </div>
         <div class="pYlK_x2JGqzty2Q7N1Ug">
           <div class="rFu3mgcO9RuM8r4t7rCX">
-            <div class="rj77IvI83cyWF7lgKIEx"><a
-                href="https://www.opentable.com/r/sheesh-taouk-ascot-ascot?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-                class="CZSRtRus5QKZeZX0z27m" data-test="res-card-name"
-                aria-label="Newly added Sheesh Taouk Ascot restaurant" target="_blank" rel="noopener noreferrer">
-                <h6 class="tfljo0SQq0JS3FOxpvxL">Sheesh Taouk Ascot</h6><span class="kiPBcAunCUn3mtA50wJE">new</span>
-              </a></div>
-            <div class="gz158FobH6p_cwkncQRg">
-              <div class="Ky7CQq2rCwG8t_monZNj">
-                <div class="vJWFYZLiWZbHIB0Hwa83" role="img" aria-label="0 stars">
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                </div>
-              </div><a
-                href="https://www.opentable.com/r/sheesh-taouk-ascot-ascot?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00#reviews"
-                class="z6Naf_ZXDiazhb9aJLoe" aria-label="Preview Sheesh Taouk Ascot restaurant reviews (0)">(0)</a>
+            <div class="rj77IvI83cyWF7lgKIEx">
+              <a routerLink="/restaurant/{{restaurant.id}}">
+                <h6 class="tfljo0SQq0JS3FOxpvxL">{{restaurant.name}}</h6>
+                <span *ngIf="restaurant.isNew" class="kiPBcAunCUn3mtA50wJE">new</span>
+              </a>
             </div>
-            <div class="FQj7BYaqEUKoncCXv7pY"><span class="LFfaIs45Z1IbvWK_HRaH">$$$<span
-                  class="AwKuroa75vy0Y4mLkyMr">$</span></span>
-              <div class="u9ONW2kqbJZxSOxtuBJq" data-test="cuisine-and-location"> • Turkish • Ascot</div>
+            <div class="gz158FobH6p_cwkncQRg">
+              <p-rating [ngModel]="restaurant.review" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+            </div>
+            <div class="FQj7BYaqEUKoncCXv7pY">
+              <i class="pi pi-times"></i>
+              <div class="u9ONW2kqbJZxSOxtuBJq" data-test="cuisine-and-location">{{restaurant.location}}</div>
             </div>
           </div>
           <ul class="Ew8hMXpyzJ0X9tuAwzcG" data-test="time-slots">
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-0"><a
-                href="https://www.opentable.com/book/validate?rid=284748&amp;d=2022-10-27T18%3A30%3A00&amp;sd=2022-10-27T18%3A30%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=1355211112&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO" aria-label="6:30 PM Reserve table at Sheesh Taouk Ascot restaurant">6:30
-                PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-1"><a
-                href="https://www.opentable.com/book/validate?rid=284748&amp;d=2022-10-27T18%3A45%3A00&amp;sd=2022-10-27T18%3A45%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=2671733236&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO" aria-label="6:45 PM Reserve table at Sheesh Taouk Ascot restaurant">6:45
-                PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-2"><a
-                href="https://www.opentable.com/book/validate?rid=284748&amp;d=2022-10-27T19%3A00%3A00&amp;sd=2022-10-27T19%3A00%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=775256910&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO" aria-label="7:00 PM Reserve table at Sheesh Taouk Ascot restaurant">7:00
-                PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-3"><a
-                href="https://www.opentable.com/book/validate?rid=284748&amp;d=2022-10-27T19%3A15%3A00&amp;sd=2022-10-27T19%3A15%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=701181077&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO" aria-label="7:15 PM Reserve table at Sheesh Taouk Ascot restaurant">7:15
-                PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-4"><a
-                href="https://www.opentable.com/book/validate?rid=284748&amp;d=2022-10-27T19%3A30%3A00&amp;sd=2022-10-27T19%3A30%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=567812649&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO" aria-label="7:30 PM Reserve table at Sheesh Taouk Ascot restaurant">7:30
-                PM</a></li>
+            <li *ngFor="let free of restaurant.freeTime" class="rcyV5cZx6cPOnmm9n16p"  data-test="time-slot-0"><a
+                href=""
+                class="bETxFc0PTzBevlzc_TpO" >{{GetTime(free)}}</a></li>
           </ul>
         </div>
       </div>
-      <div class="BhIFAK4B5RMKaTMhR78N" data-rid="284742" data-marketing="true" data-index="2"
-        data-avt="eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ" data-test="restaurant-card">
-        <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;"><a
-            href="https://www.opentable.com/r/al-farooz-by-drinks-and-flair-ascot?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-            tabindex="-1" target="_blank"><img
-              srcset="https://resizer.otstatic.com/v2/photos/legacy/2/49126849.jpg 208w, https://resizer.otstatic.com/v2/photos/xsmall/2/49126849.jpg 105w, https://images.otstatic.com/prod1/49126849/2/small.jpg 160w, https://images.otstatic.com/prod1/49126849/2/medium.jpg 320w"
-              sizes="(min-width: 1056px) 205px, 90px" src="https://resizer.otstatic.com/v2/photos/legacy/2/49126849.jpg"
-              alt="A photo of Al Farooz by Drinks &amp; Flair restaurant"
-              class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap" title="" data-test=""></a></div>
-        <div class="pYlK_x2JGqzty2Q7N1Ug">
-          <div class="rFu3mgcO9RuM8r4t7rCX">
-            <div class="rj77IvI83cyWF7lgKIEx"><a
-                href="https://www.opentable.com/r/al-farooz-by-drinks-and-flair-ascot?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-                class="CZSRtRus5QKZeZX0z27m" data-test="res-card-name"
-                aria-label="Newly added Al Farooz by Drinks &amp; Flair restaurant" target="_blank"
-                rel="noopener noreferrer">
-                <h6 class="tfljo0SQq0JS3FOxpvxL">Al Farooz by Drinks &amp; Flair</h6><span
-                  class="kiPBcAunCUn3mtA50wJE">new</span>
-              </a></div>
-            <div class="gz158FobH6p_cwkncQRg">
-              <div class="Ky7CQq2rCwG8t_monZNj">
-                <div class="vJWFYZLiWZbHIB0Hwa83" role="img" aria-label="0 stars">
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="kdH7Sckp401jTX2tmkUO GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                </div>
-              </div><a
-                href="https://www.opentable.com/r/al-farooz-by-drinks-and-flair-ascot?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00#reviews"
-                class="z6Naf_ZXDiazhb9aJLoe"
-                aria-label="Preview Al Farooz by Drinks &amp; Flair restaurant reviews (0)">(0)</a>
-            </div>
-            <div class="FQj7BYaqEUKoncCXv7pY"><span class="LFfaIs45Z1IbvWK_HRaH">$$$$<span
-                  class="AwKuroa75vy0Y4mLkyMr"></span></span>
-              <div class="u9ONW2kqbJZxSOxtuBJq" data-test="cuisine-and-location"> • Middle Eastern • Ascot</div>
-            </div>
-          </div>
-          <ul class="Ew8hMXpyzJ0X9tuAwzcG" data-test="time-slots">
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-0"><a
-                href="https://www.opentable.com/book/validate?rid=284742&amp;d=2022-10-27T18%3A30%3A00&amp;sd=2022-10-27T18%3A30%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=3645167293&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO"
-                aria-label="6:30 PM Reserve table at Al Farooz by Drinks &amp; Flair restaurant">6:30 PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-1"><a
-                href="https://www.opentable.com/book/validate?rid=284742&amp;d=2022-10-27T18%3A45%3A00&amp;sd=2022-10-27T18%3A45%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=2493060154&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO"
-                aria-label="6:45 PM Reserve table at Al Farooz by Drinks &amp; Flair restaurant">6:45 PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-2"><a
-                href="https://www.opentable.com/book/validate?rid=284742&amp;d=2022-10-27T19%3A00%3A00&amp;sd=2022-10-27T19%3A00%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=4123479257&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO"
-                aria-label="7:00 PM Reserve table at Al Farooz by Drinks &amp; Flair restaurant">7:00 PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-3"><a
-                href="https://www.opentable.com/book/validate?rid=284742&amp;d=2022-10-27T19%3A15%3A00&amp;sd=2022-10-27T19%3A15%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=3974485243&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO"
-                aria-label="7:15 PM Reserve table at Al Farooz by Drinks &amp; Flair restaurant">7:15 PM</a></li>
-            <li class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-4"><a
-                href="https://www.opentable.com/book/validate?rid=284742&amp;d=2022-10-27T19%3A30%3A00&amp;sd=2022-10-27T19%3A30%3A00&amp;p=2&amp;pt=100&amp;pofids=&amp;hash=3423484056&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJjIjo0LCJzIjowLCJuIjowfQ&amp;corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;tc=default&amp;experienceIds=&amp;ra=&amp;isMandatory=false&amp;st=Standard"
-                class="bETxFc0PTzBevlzc_TpO"
-                aria-label="7:30 PM Reserve table at Al Farooz by Drinks &amp; Flair restaurant">7:30 PM</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="BhIFAK4B5RMKaTMhR78N" data-rid="94542" data-marketing="true" data-index="3"
-        data-avt="eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ" data-test="restaurant-card">
-        <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;"><a
-            href="https://www.opentable.com/r/the-barn-berkshire?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-            tabindex="-1" target="_blank"><img
-              srcset="https://resizer.otstatic.com/v2/photos/legacy/3/29669686.jpg 208w, https://resizer.otstatic.com/v2/photos/xsmall/3/29669686.jpg 105w, https://images.otstatic.com/prod1/29669686/3/small.jpg 160w, https://images.otstatic.com/prod1/29669686/3/medium.jpg 320w"
-              sizes="(min-width: 1056px) 205px, 90px" src="https://resizer.otstatic.com/v2/photos/legacy/3/29669686.jpg"
-              alt="A photo of The Barn restaurant" class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap" title=""
-              data-test=""></a></div>
-        <div class="pYlK_x2JGqzty2Q7N1Ug">
-          <div class="rFu3mgcO9RuM8r4t7rCX">
-            <div class="rj77IvI83cyWF7lgKIEx"><a
-                href="https://www.opentable.com/r/the-barn-berkshire?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-                class="CZSRtRus5QKZeZX0z27m" data-test="res-card-name" aria-label="The Barn restaurant" target="_blank"
-                rel="noopener noreferrer">
-                <h6 class="tfljo0SQq0JS3FOxpvxL">The Barn</h6>
-              </a></div>
-            <div class="gz158FobH6p_cwkncQRg">
-              <div class="Ky7CQq2rCwG8t_monZNj">
-                <div class="vJWFYZLiWZbHIB0Hwa83" role="img" aria-label="4.5 stars">
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="uQlc88ceJFQs91ypU7DM GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                </div>
-                <div class="Sssqfi7z0_YZugOpowNY">4.5</div>
-              </div><span class="Era6mmmsk6PDqtEuwrrs">Awesome</span><a
-                href="https://www.opentable.com/r/the-barn-berkshire?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00#reviews"
-                class="z6Naf_ZXDiazhb9aJLoe" aria-label="Preview The Barn restaurant reviews (34)">(34)</a>
-            </div>
-            <div class="FQj7BYaqEUKoncCXv7pY"><span class="LFfaIs45Z1IbvWK_HRaH">$$$<span
-                  class="AwKuroa75vy0Y4mLkyMr">$</span></span>
-              <div class="u9ONW2kqbJZxSOxtuBJq" data-test="cuisine-and-location"> • British • Ascot</div>
-            </div>
-          </div>
-          <div class="yG7Ma7hqhYQGrbZWOISE" data-test="time-slots"><button
-              aria-label="At the moment, there's no online availability. Find next available at multi-day availability modal"
-              class="LVkLYCi4l5uKkiPbevNd" type="button">Find next available</button>
-            <p class="Qc2cmwl8BxFKIEF8kRfj">At the moment, there's no online availability within 2.5 hours of your
-              request. Do you have another time in mind?</p>
-          </div>
-        </div>
-      </div>
-      <div class="BhIFAK4B5RMKaTMhR78N" data-rid="57285" data-marketing="true" data-index="4"
-        data-avt="eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ" data-test="restaurant-card">
-        <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;"><a
-            href="https://www.opentable.com/restaurant-coworth-park?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-            tabindex="-1" target="_blank"><img
-              srcset="https://resizer.otstatic.com/v2/photos/legacy/3/29669685.jpg 208w, https://resizer.otstatic.com/v2/photos/xsmall/3/29669685.jpg 105w, https://images.otstatic.com/prod1/29669685/3/small.jpg 160w, https://images.otstatic.com/prod1/29669685/3/medium.jpg 320w"
-              sizes="(min-width: 1056px) 205px, 90px" src="https://resizer.otstatic.com/v2/photos/legacy/3/29669685.jpg"
-              alt="A photo of Restaurant Coworth Park restaurant" class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap"
-              title="" data-test=""></a></div>
-        <div class="pYlK_x2JGqzty2Q7N1Ug">
-          <div class="rFu3mgcO9RuM8r4t7rCX">
-            <div class="rj77IvI83cyWF7lgKIEx"><a
-                href="https://www.opentable.com/restaurant-coworth-park?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-                class="CZSRtRus5QKZeZX0z27m" data-test="res-card-name" aria-label="Restaurant Coworth Park restaurant"
-                target="_blank" rel="noopener noreferrer">
-                <h6 class="tfljo0SQq0JS3FOxpvxL">Restaurant Coworth Park</h6>
-              </a></div>
-            <div class="gz158FobH6p_cwkncQRg">
-              <div class="Ky7CQq2rCwG8t_monZNj">
-                <div class="vJWFYZLiWZbHIB0Hwa83" role="img" aria-label="4.6 stars">
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="uQlc88ceJFQs91ypU7DM GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                </div>
-                <div class="Sssqfi7z0_YZugOpowNY">4.6</div>
-              </div><span class="Era6mmmsk6PDqtEuwrrs">Exceptional</span><a
-                href="https://www.opentable.com/restaurant-coworth-park?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00#reviews"
-                class="z6Naf_ZXDiazhb9aJLoe"
-                aria-label="Preview Restaurant Coworth Park restaurant reviews (50)">(50)</a>
-            </div>
-            <div class="FQj7BYaqEUKoncCXv7pY"><span class="LFfaIs45Z1IbvWK_HRaH">$$$$<span
-                  class="AwKuroa75vy0Y4mLkyMr"></span></span>
-              <div class="u9ONW2kqbJZxSOxtuBJq" data-test="cuisine-and-location"> • British • Ascot</div>
-            </div>
-          </div>
-          <div class="yG7Ma7hqhYQGrbZWOISE" data-test="time-slots"><button
-              aria-label="At the moment, there's no online availability. Find next available at multi-day availability modal"
-              class="LVkLYCi4l5uKkiPbevNd" type="button">Find next available</button>
-            <p class="Qc2cmwl8BxFKIEF8kRfj">At the moment, there's no online availability within 2.5 hours of your
-              request. Do you have another time in mind?</p>
-          </div>
-        </div>
-      </div>
-      <div class="BhIFAK4B5RMKaTMhR78N" data-rid="94782" data-marketing="true" data-index="5"
-        data-avt="eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ" data-test="restaurant-card">
-        <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;"><a
-            href="https://www.opentable.com/r/afternoon-tea-at-the-drawing-room-at-coworth-park-berkshire?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-            tabindex="-1" target="_blank"><img
-              srcset="https://resizer.otstatic.com/v2/photos/legacy/2/26153338.jpg 208w, https://resizer.otstatic.com/v2/photos/xsmall/2/26153338.jpg 105w, https://images.otstatic.com/prod/26153338/2/small.jpg 160w, https://images.otstatic.com/prod/26153338/2/medium.jpg 320w"
-              sizes="(min-width: 1056px) 205px, 90px" src="https://resizer.otstatic.com/v2/photos/legacy/2/26153338.jpg"
-              alt="A photo of Afternoon Tea at the Drawing Room at Coworth Park restaurant"
-              class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap" title="" data-test=""></a></div>
-        <div class="pYlK_x2JGqzty2Q7N1Ug">
-          <div class="rFu3mgcO9RuM8r4t7rCX">
-            <div class="rj77IvI83cyWF7lgKIEx"><a
-                href="https://www.opentable.com/r/afternoon-tea-at-the-drawing-room-at-coworth-park-berkshire?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00"
-                class="CZSRtRus5QKZeZX0z27m" data-test="res-card-name"
-                aria-label="Afternoon Tea at the Drawing Room at Coworth Park restaurant" target="_blank"
-                rel="noopener noreferrer">
-                <h6 class="tfljo0SQq0JS3FOxpvxL">Afternoon Tea at the Drawing Room at Coworth Park</h6>
-              </a></div>
-            <div class="gz158FobH6p_cwkncQRg">
-              <div class="Ky7CQq2rCwG8t_monZNj">
-                <div class="vJWFYZLiWZbHIB0Hwa83" role="img" aria-label="4.8 stars">
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="K2lMVzSi_oGonnJavy9h GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                  <div class="m94wF25CP7ISJAaF1Kau NnOa6nwqQSjcrOoqoTc_"><i
-                      class="GwA0z8yj2a9xhZKsYF9I GTpsZ8Pv5xc2XYfAkitA" aria-hidden="true" tab-index="-1"
-                      focusable="no"></i></div>
-                </div>
-                <div class="Sssqfi7z0_YZugOpowNY">4.8</div>
-              </div><span class="Era6mmmsk6PDqtEuwrrs">Exceptional</span><a
-                href="https://www.opentable.com/r/afternoon-tea-at-the-drawing-room-at-coworth-park-berkshire?corrid=8862f70b-417d-4185-a184-8488d8fe29e1&amp;avt=eyJ2IjoyLCJtIjoxLCJwIjowLCJzIjowLCJuIjowfQ&amp;p=2&amp;sd=2022-10-27T19%3A00%3A00#reviews"
-                class="z6Naf_ZXDiazhb9aJLoe"
-                aria-label="Preview Afternoon Tea at the Drawing Room at Coworth Park restaurant reviews (7)">(7)</a>
-            </div>
-            <div class="FQj7BYaqEUKoncCXv7pY"><span class="LFfaIs45Z1IbvWK_HRaH">$$$<span
-                  class="AwKuroa75vy0Y4mLkyMr">$</span></span>
-              <div class="u9ONW2kqbJZxSOxtuBJq" data-test="cuisine-and-location"> • British • Ascot</div>
-            </div>
-          </div>
-          <div class="yG7Ma7hqhYQGrbZWOISE" data-test="time-slots"><button
-              aria-label="At the moment, there's no online availability. Find next available at multi-day availability modal"
-              class="LVkLYCi4l5uKkiPbevNd" type="button">Find next available</button>
-            <p class="Qc2cmwl8BxFKIEF8kRfj">At the moment, there's no online availability within 2.5 hours of your
-              request. Do you have another time in mind?</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 ﻿using RBS.Domain.Restaurants;
 
-namespace RBS.Application.Models
+namespace RBS.Application.Models.RestaurantModels
 {
     public class RestaurantMainInformationModel
     {

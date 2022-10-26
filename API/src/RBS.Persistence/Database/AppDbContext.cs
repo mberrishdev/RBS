@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RBS.Domain;
 using RBS.Domain.AdditionalInformations;
 using RBS.Domain.Addresses;
 using RBS.Domain.Countries;
@@ -97,6 +98,23 @@ namespace RBS.Persistence.Database
             builder.Entity<SubMenu>().HasMany(s => s.Items).WithOne(i => i.SubMenu);
 
             builder.Entity<Review>().Property(p => p.OverallRate).HasComputedColumnSql("([FoodRate] + [ServiceRate]+[AmbienceRate])/3");
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var item in ChangeTracker.Entries<EntityBase>().AsEnumerable())
+                if (item.State == EntityState.Added)
+                {
+                    item.Entity.CreateDate = DateTime.Now;
+                    //item.Entity.CreatedBy;
+                }
+                else if (item.State == EntityState.Modified)
+                {
+                    item.Entity.UpdateDate = DateTime.Now;
+                    //item.Entity.ModifiedBy;
+                }
+
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -32,6 +32,9 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseCors();
+
+
     app.UseRouting();
 
     var options = new HealthCheckOptions
@@ -45,16 +48,10 @@ try
         endpoints.MapHealthChecks("/HealthCheck", options);
 
     });
-
-    app.UseCors();
-
-    //    (x => x.AllowAnyOrigin()
-    //.AllowAnyMethod()
-    //.AllowAnyHeader);
+    app.UseHttpsRedirection();
 
     app.UseMiddleware<ErrorHandlerMiddleware>();
 
-    app.UseHttpsRedirection();
 
     app.UseAuthorization();
 

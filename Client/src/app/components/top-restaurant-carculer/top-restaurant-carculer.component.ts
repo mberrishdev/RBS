@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantApiServiceService } from 'src/app/services/restaurant-api-service.service';
+import { RestaruantService } from 'src/app/services/restaurantServices/restaruant.service';
 import { Restaurant } from '../models/models';
 
 @Component({
@@ -11,7 +11,7 @@ export class TopRestaurantCarculerComponent implements OnInit {
   restaurants: Restaurant[] | any;
   responsiveOptions;
 
-  constructor(private rApiService: RestaurantApiServiceService) {
+  constructor(private rApiService: RestaruantService) {
     this.responsiveOptions = [
       {
         breakpoint: '1024px',

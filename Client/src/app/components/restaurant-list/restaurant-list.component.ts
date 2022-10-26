@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaruantService } from 'src/app/services/restaurantServices/restaruant.service';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantListComponent implements OnInit {
 
-  constructor() { }
+  searchedRestaruants : any;
+  constructor(private restaurantService : RestaruantService) { }
 
   ngOnInit(): void {
+    console.log("list is opend");
+
+    this.restaurantService.Search().subscribe(data=>{
+
+      this.searchedRestaruants = data;
+
+      console.log(this.searchedRestaruants);
+
+
+    });
+  }
+
+  GetTime(time:any)
+  {
+    return new Date(time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ImageApiServiceService } from 'src/app/services/imageServices/image-api-service.service';
-import { RestaurantApiServiceService } from 'src/app/services/restaurant-api-service.service';
 import { ImageType } from '../enums/enums';
 import { Image } from '../models/models';
 
