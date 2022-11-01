@@ -9,6 +9,7 @@ import { TermsAndConditionsComponent } from './components/terms-and-conditions/t
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { HomeBodyComponent } from './components/home-body/home-body.component';
 import { SearchListComponent } from './components/search-list/search-list.component';
+import { RestaurantReviewsSectionComponent } from './components/restaurant-reviews-section/restaurant-reviews-section.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
       { path: 'list', component: RestaurantListComponent },
     ]
   },
-  // { path: 'list', component: RestaurantListComponent },
+  { path: 'review/:id', component: RestaurantReviewsSectionComponent },
   { path: 'restaurant/:id', component: RestaurantComponent },
   { path: 'booking', component: RestaurantBookingComponent },
   { path: 'auth/login', component: LoginComponent },

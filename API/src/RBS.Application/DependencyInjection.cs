@@ -60,7 +60,6 @@ namespace RBS.Application
             services.AddScoped<IRestaurantNotificationService, RestaurantNotificationService>();
             services.AddScoped<IPlatformNotificationService, PlatformNotificationService>();
             services.AddScoped<IRestaurantService, RestaurantService>();
-            services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IAdditionalInformationService, AdditionalInformationService>();

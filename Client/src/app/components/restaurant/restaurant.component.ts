@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestaruantService } from 'src/app/services/restaurantServices/restaruant.service';
 import { Restaurant } from '../../models/models';
 
@@ -16,16 +16,17 @@ export class RestaurantComponent implements OnInit {
 
   restaurant: Restaurant | any;
 
-  constructor(private _Activatedroute: ActivatedRoute, private restaurantApiService: RestaruantService) {
+  constructor(private router: Router ,private route: ActivatedRoute, private restaurantApiService: RestaruantService) {
 
   }
   scroll(el: HTMLElement) {
+    this.router.navigate( [ ], { fragment: el.className } )
     el.scrollIntoView({ behavior: 'smooth' });
   }
 
   ngOnInit() {
     this.restaurant = { name: "HB", restaurantRate: 4.3, reviewCount: 123, averagePrice: "$40 and over", restaurantMainType: "Qartulia bicho", description: "SAfasf", address: 'Tbilisi,Georgia' }
-    var id = this._Activatedroute.snapshot.paramMap.get("id");
+    var id = this.route.snapshot.paramMap.get("id");
     if (id != null) {
       this.restaurantId = parseInt(id);
     }

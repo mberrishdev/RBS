@@ -6,6 +6,7 @@ namespace RBS.Application.Models.RestaurantModels
     {
         public int Id { get; set; }
         public bool IsNew { get; set; }
+        public bool IsOpen { get; set; }
         public string Name { get; set; }
         public AddressModel Address { get; set; }
         public string ImgSrc { get; set; }
@@ -29,11 +30,13 @@ namespace RBS.Application.Models.RestaurantModels
             MainType = restaurant.RSTypes?.FirstOrDefault(x => x.IsMain)?.Name;
             GoogleMapUrl = restaurant.GoogleMapUrl;
             IsNew = (DateTime.Now - restaurant.PublishDate).Days < 7;
+            IsOpen = DateTime.Now.Hour > restaurant.OpentTime.Hour && DateTime.Now.Hour < restaurant.CloseTime.Hour;
             FreeTime = new List<DateTime>();
 
-            for (var dt = restaurant.OpentTime; dt <= restaurant.CloseTime; dt = dt.AddMinutes(30))
+            var fromTime = restaurant.OpentTime.TimeOfDay > DateTime.Now.TimeOfDay ? restaurant.OpentTime : DateTime.Now;
+            for (var dt = fromTime.TimeOfDay; dt <= restaurant.CloseTime.TimeOfDay; dt = dt.Add(new TimeSpan(0, 30, 0)))
             {
-                FreeTime.Add(dt);
+                FreeTime.Add(new DateTime(DateTime.Now.Date.Year, DateTime.Now.Date.Month, DateTime.Now.Date.Day, dt.Hours, dt.Minutes, dt.Seconds));
             }
         }
     }

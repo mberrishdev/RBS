@@ -8,7 +8,7 @@ import { ReviewFullModel } from '../../models/models';
   styleUrls: ['./restaurant-reviews-section.component.scss']
 })
 export class RestaurantReviewsSectionComponent implements OnInit {
-  @Input() restaurantId: number = 0;
+  @Input() restaurantId: number = 2;
 
   max = 5;
   restaurantRate = 3.4;

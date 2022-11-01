@@ -1,6 +1,5 @@
 ﻿using RBS.Application.Helper;
 using RBS.Application.Models.RestaurantModels;
-using RBS.Application.Services.Reservations;
 using RBS.Application.Services.Restaurants.Queries;
 using RBS.Data;
 using RBS.Data.Repositories;
@@ -15,13 +14,13 @@ namespace RBS.Application.Services.Restaurants
     {
         private readonly IUnitOfWork<Restaurant> _unitOfWork;
         private readonly IRepository<Restaurant> _repository;
-        private readonly IReservationService _reservationService;
+        //private readonly IReservationService _reservationService;
         //TODO:ADD CONTACT INFO
-        public RestaurantService(IUnitOfWork<Restaurant> unitOfWork, IReservationService reservationService)
+        public RestaurantService(IUnitOfWork<Restaurant> unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.Repository;
-            _reservationService = reservationService;
+            //_reservationService = reservationService;
         }
 
         public async Task<RestaurantMainInformationModel> GetMainInformation(int id)
@@ -67,11 +66,11 @@ namespace RBS.Application.Services.Restaurants
 
 
             //ამოვიღოთ ისეთი რომლებიც არ არის დაჯავშნილი - TODO
-            var result = restaurants.Select(x => new RestaruantSearchModel(x)).ToList();
-            foreach (var restaurantSearchModel in result)
-            {
-                var reservation = await _reservationService.GetRestaurantReservationsByDay(restaurantSearchModel.Id, query.Date ?? DateTime.Now);
-            }
+            //var result = restaurants.Select(x => new RestaruantSearchModel(x)).ToList();
+            //foreach (var restaurantSearchModel in result)
+            //{
+            //    var reservation = await _reservationService.GetRestaurantReservationsByDay(restaurantSearchModel.Id, query.Date ?? DateTime.Now);
+            //}
             return restaurants.Select(x => new RestaruantSearchModel(x)).ToList();
         }
     }

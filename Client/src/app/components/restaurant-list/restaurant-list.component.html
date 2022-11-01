@@ -284,7 +284,7 @@
         data-test="restaurant-card">
         <div class="JXSNR8vhz8YnM7aW2K4S" style="min-height: 72px;">
           <a routerLink="/restaurant/{{restaurant.id}}" tabindex="-1" target="_blank">
-            <img src="{{restaurant.imgSrc}}" alt="{{restaurant.imgAlt}}"
+            <img src="{{restaurant.imgSrc}}" fragment="photoes" alt="{{restaurant.imgAlt}}"
               class="agaI0OkMymUpPfHatMJV VK_NMQTrLcupWxvayIap">
           </a>
         </div>
@@ -293,11 +293,25 @@
             <div class="rj77IvI83cyWF7lgKIEx">
               <a routerLink="/restaurant/{{restaurant.id}}">
                 <h6 class="tfljo0SQq0JS3FOxpvxL">{{restaurant.name}}</h6>
-                <span *ngIf="restaurant.isNew" class="kiPBcAunCUn3mtA50wJE">new</span>
+                <div class="statusDiv">
+                  <span *ngIf="restaurant.isOpen" class="kiPBcAunCUn3mtA50wJE"
+                    style="background-color: #22c55e">Open</span>
+                  <span *ngIf="!restaurant.isOpen" class="kiPBcAunCUn3mtA50wJE"
+                    style="background-color: #ef4444">Close</span>
+                  <span *ngIf="restaurant.isNew" class="kiPBcAunCUn3mtA50wJE"
+                    style="background-color: #3b82f6">new</span>
+                </div>
               </a>
             </div>
             <div class="gz158FobH6p_cwkncQRg">
-              <p-rating [ngModel]="restaurant.averageRate" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+              <a routerLink="/restaurant/{{restaurant.id}}" fragment="review">
+                <p-rating [ngModel]="restaurant.averageRate" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+              </a>
+            </div>
+            <div class="gz158FobH6p_cwkncQRg">
+              <a routerLink="/restaurant/{{restaurant.id}}" fragment="menu">
+                <img src="../../../assets/img/icons/common/menu.png" width="30px">
+              </a>
             </div>
             <div class="FQj7BYaqEUKoncCXv7pY"
               *ngIf="restaurant.address.country != null || restaurant.address.city != null">
@@ -311,8 +325,9 @@
             </div>
           </div>
           <ul class="Ew8hMXpyzJ0X9tuAwzcG" data-test="time-slots">
-            <li *ngFor="let free of restaurant.freeTime" class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-0"><a href=""
-                class="bETxFc0PTzBevlzc_TpO">{{GetTime(free)}}</a></li>
+            <li *ngFor="let free of restaurant.freeTime" class="rcyV5cZx6cPOnmm9n16p" data-test="time-slot-0">
+              <a href="" class="bETxFc0PTzBevlzc_TpO">{{GetTime(free)}}</a>
+            </li>
           </ul>
         </div>
       </div>

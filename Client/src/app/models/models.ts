@@ -108,6 +108,7 @@ export interface AdditionalInformationModel {
 export interface RestaurantSearchModel {
   id: number;
   isNew: boolean;
+  isOpen: boolean;
   name: string;
   address: Address;
   imgSrc: string;
@@ -116,5 +117,5 @@ export interface RestaurantSearchModel {
   mainType: string;
   reviewerCount: number;
   freeTime: string;
-  googleMapUrl:string;
+  googleMapUrl: string;
 }
