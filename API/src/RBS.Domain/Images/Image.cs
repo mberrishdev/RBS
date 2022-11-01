@@ -13,9 +13,9 @@ namespace RBS.Domain.Images
         [Required]
         [MaxLength(30)]
         public string Alt { get; private set; }
-        public bool? IsMain { get; private set; }
-        public bool? IsTop { get; private set; }
-        public ImageType? ImageType { get; private set; }
+        public bool IsMain { get; private set; }
+        public bool IsTop { get; private set; }
+        public ImageType ImageType { get; private set; }
         [DefaultValue("0")]
         public int OrderNumber { get; private set; }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaruantService } from 'src/app/services/restaurantServices/restaruant.service';
-import { Restaurant } from '../models/models';
+import { Restaurant } from '../../models/models';
 
 @Component({
   selector: 'app-top-restaurant-carculer',

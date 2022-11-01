@@ -1,5 +1,6 @@
 ﻿using RBS.Domain.AdditionalInformations;
 using RBS.Domain.Addresses;
+using RBS.Domain.Enums;
 using RBS.Domain.Images;
 using RBS.Domain.Menus;
 using RBS.Domain.Reservations;
@@ -21,9 +22,14 @@ namespace RBS.Domain.Restaurants
         [MaxLength(200)]
         public string Description { get; private set; }
         [DataType(DataType.Time)]
-        public DateTime OpentTime { get; set; }
+        public DateTime OpentTime { get; private set; }
         [DataType(DataType.Time)]
-        public DateTime CloseTime { get; set; }
+        public DateTime CloseTime { get; private set; }
+        [DataType(DataType.Time)]
+        public DateTime PublishDate { get; private set; }
+        public RestaurantStatus Status { get; private set; }
+        [MaxLength(500)]
+        public string GoogleMapUrl { get; private set; }
         public Address Address { get; private set; }
         public Menu Menus { get; private set; }
         public ICollection<AdditionalInformation> AdditionalInformations { get; private set; }

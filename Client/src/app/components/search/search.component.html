@@ -3,19 +3,17 @@
     <h2 class="msKqTVTyiZsPFMCcq6xB">Make a free reservation</h2><span class="ID0EKURx9p1AyRfRBS0K">
       <div class="CFqCKTFwM7VhmpXKh2AD" data-test="block-dtp">
         <div class="hkYkQl42VoWamVdkPGXR">
-          <div class="gJ_gxUjoKU5vQV1fZbjx">
-            <p-calendar  formControlName="date" [showIcon]="true" dateFormat="mm-dd-yy" placeholder="{{today}}"
+            <p-calendar formControlName="date" [showIcon]="true" dateFormat="mm-dd-yy" placeholder="{{today}}"
               inputId="dateformat" [minDate]="minDate"></p-calendar>
             <p-calendar formControlName="time" icon="pi pi-clock" [showIcon]="true" placeholder="{{timeNow}}"
               [timeOnly]="true" hourFormat="12" inputId="timeonly"></p-calendar>
-          </div>
+
           <p-inputNumber formControlName="personCount" mode="decimal" placeholder="Person Count" [showButtons]="true"
             inputId="minmax-buttons" [min]="0" [max]="500">
           </p-inputNumber>
-        </div>
-        <div class="SCy_3RJAYrQ6fPOgbFi8">
-            <input type="text" pInputText placeholder="Location/Restaurant" formControlName="location">
-          <button pButton pRipple type="button" type="submit" icon="pi pi-search" class="p-button-rounded p-button-info"></button>
+          <input type="text" pInputText placeholder="Location/Restaurant" formControlName="keyword">
+          <button pButton pRipple type="button" type="submit" icon="pi pi-search"
+            class="p-button-rounded p-button-info"></button>
         </div>
       </div>
     </span>

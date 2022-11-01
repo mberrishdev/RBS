@@ -16,6 +16,10 @@ namespace RBS.Domain.Addresses
         public string Street { get; private set; }
         [MaxLength(30)]
         public string Number { get; private set; }
+        [MaxLength(50)]
+        public string Latitude { get; private set; }
+        [MaxLength(50)]
+        public string Longitude { get; private set; }
 
         public int RestaurantId { get; private set; }
         public Restaurant Restaurant { get; private set; }

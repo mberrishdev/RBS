@@ -1,6 +1,8 @@
 ﻿using RBS.Application.Models.Languages;
+using RBS.Data;
 using RBS.Data.Repositories;
 using RBS.Domain.languages;
+using System.Linq.Expressions;
 
 namespace RBS.Application.Services.Languages
 {
@@ -15,8 +17,10 @@ namespace RBS.Application.Services.Languages
 
         public async Task<List<LanguageModel>> GetAllLanguages()
         {
-            var languages = await _repository.GetAllAsyncWithIP(x => x.Country);
-            return languages.Select(x => new LanguageModel(x)).OrderBy(x => !x.IsDefault).ToList();
+            var languages = await _repository.GetListAsync(includeProperties: new Expression<Func<Language, object>>[1] { x => x.Country },
+                orderBy: x => !x.IsDefault,
+                orderByType: OrderByType.ASC);
+            return languages.Select(x => new LanguageModel(x)).ToList();
         }
     }
 }

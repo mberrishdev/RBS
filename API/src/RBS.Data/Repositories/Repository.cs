@@ -23,24 +23,33 @@ namespace RBS.Data.Repositories
             return _dbSet.AsQueryable();
         }
 
-        public async Task<ICollection<T>> GetListAsync(Expression<Func<T, bool>> predicate = null)
+        public async Task<ICollection<T>> GetListAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            Expression<Func<T, object>>[]? includeProperties = null,
+            Expression<Func<T, object>>? orderBy = null,
+            OrderByType orderByType = OrderByType.None)
         {
-            if (predicate == null)
-                return await _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+            if (predicate != null)
+                query = query.Where(predicate);
 
-            return await _dbSet.Where(predicate).ToListAsync();
-        }
+            if (includeProperties != null)
+                query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
-        public async Task<IEnumerable<T>> GetAllAsyncWithIP(params Expression<Func<T, object>>[] includeProperties)
-        {
-            IQueryable<T> query = _context.Set<T>();
-            query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            if (orderBy != null && orderByType == OrderByType.ASC)
+                query = query.OrderBy(orderBy);
+
+            if (orderBy != null && orderByType == OrderByType.DESC)
+                query = query.OrderByDescending(orderBy);
+
             return await query.ToListAsync();
-
         }
 
-        public async Task<DomainPagedResult<T>> GetAllAsyncByPage(int page, Expression<Func<T, object>>[] includeProperties,
-            List<Expression<Func<T, bool>>>? expression = null, int resultsPerPage = 10)
+        public async Task<DomainPagedResult<T>> GetAllAsyncByPage(
+            int page,
+            Expression<Func<T, object>>[] includeProperties,
+            List<Expression<Func<T, bool>>>? expression = null,
+            int resultsPerPage = 10)
         {
             IQueryable<T> query = _context.Set<T>();
 
@@ -109,6 +118,11 @@ namespace RBS.Data.Repositories
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
         {
             return await _dbSet.AnyAsync(predicate);
+        }
+
+        public Task<ICollection<T>> GetListAsync(Expression<Func<T, bool>> predicate = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

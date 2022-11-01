@@ -1,5 +1,6 @@
 ﻿using RBS.Application.Exceptions;
 using RBS.Application.Models.QRModels;
+using RBS.Application.Models.ReservationModels;
 using RBS.Application.Services.PlatformNotifications;
 using RBS.Application.Services.QrCodeServices;
 using RBS.Application.Services.ReservationRemainders;
@@ -136,6 +137,12 @@ namespace RBS.Application.Services.Reservations
             {
                 QrCode = qrCode
             };
+        }
+
+        public async Task<List<ResravtionModel>> GetRestaurantReservationsByDay(int restaruantId, DateTime reseravtionDate)
+        {
+            var reservations = await _repository.GetListAsync(predicate: x => x.RestaurantId == restaruantId && x.DateTime.Date == reseravtionDate.Date);
+            return reservations.Select(x => new ResravtionModel(x)).ToList();
         }
     }
 }

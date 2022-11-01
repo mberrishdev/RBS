@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -15,13 +12,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from "primeng/divider";
 import { AccordionModule } from 'primeng/accordion';
-
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { CarouselModule } from 'primeng/carousel';
 import { TopRestaurantCarculerComponent } from './components/top-restaurant-carculer/top-restaurant-carculer.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { RestaurantImageSectionComponent } from './components/restaurant-image-section/restaurant-image-section.component';
@@ -56,6 +50,8 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
 import { SearchComponent } from './components/search/search.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
+import { HomeBodyComponent } from './components/home-body/home-body.component';
+import { SearchListComponent } from './components/search-list/search-list.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +61,6 @@ import { RestaurantListComponent } from './components/restaurant-list/restaurant
     AppComponent,
     LoginComponent,
     TopRestaurantCarculerComponent,
-    HomePageComponent,
     RestaurantComponent,
     SignupComponent,
     RestaurantImageSectionComponent,
@@ -80,6 +75,8 @@ import { RestaurantListComponent } from './components/restaurant-list/restaurant
     ErrorModalComponent,
     SearchComponent,
     RestaurantListComponent,
+    HomeBodyComponent,
+    SearchListComponent,
   ],
   imports: [
     InputNumberModule,

@@ -1,7 +1,7 @@
 import { Renderer2, Component, Inject, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
 import { DOCUMENT } from '@angular/common';
-import { Language } from 'src/app/components/models/models';
+import { Language } from 'src/app/models/models';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 

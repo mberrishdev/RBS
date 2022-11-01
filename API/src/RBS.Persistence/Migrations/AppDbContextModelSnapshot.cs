@@ -97,6 +97,16 @@ namespace RBS.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Latitude")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Longitude")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -188,13 +198,13 @@ namespace RBS.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ImageType")
+                    b.Property<int>("ImageType")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsMain")
+                    b.Property<bool>("IsMain")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsTop")
+                    b.Property<bool>("IsTop")
                         .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
@@ -637,6 +647,11 @@ namespace RBS.Persistence.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("GoogleMapUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -648,6 +663,12 @@ namespace RBS.Persistence.Migrations
 
                     b.Property<DateTime>("OpentTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");

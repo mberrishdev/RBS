@@ -103,3 +103,18 @@ export interface AdditionalInformationModel {
   icon: string;
   isUrl: boolean;
 }
+
+
+export interface RestaurantSearchModel {
+  id: number;
+  isNew: boolean;
+  name: string;
+  address: Address;
+  imgSrc: string;
+  imgAlt: string;
+  averageRate: number;
+  mainType: string;
+  reviewerCount: number;
+  freeTime: string;
+  googleMapUrl:string;
+}

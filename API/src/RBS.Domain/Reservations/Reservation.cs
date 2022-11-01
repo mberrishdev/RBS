@@ -8,13 +8,13 @@ namespace RBS.Domain.Reservations
 {
     public class Reservation : EntityBase
     {
-        public DateTime DateTime { get; set; }
-        public int PersonCount { get; set; }
-        public string? SpecialRequest { get; set; }
-        public string QrCode { get; set; }
+        public DateTime DateTime { get; private set; }
+        public int PersonCount { get; private set; }
+        public string? SpecialRequest { get; private set; }
+        public string QrCode { get; private set; }
 
-        public int? TableId { get; set; }
-        public Table? Table { get; set; }
+        public int? TableId { get; private set; }
+        public Table? Table { get; private set; }
 
         public int ApplicationUserId { get; private set; }
         public ApplicationUser ApplicationUser { get; private set; }

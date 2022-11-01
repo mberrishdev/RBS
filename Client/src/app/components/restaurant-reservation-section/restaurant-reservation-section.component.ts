@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Address, Restaurant } from '../models/models';
+import { Address, Restaurant } from '../../models/models';
 
 declare var google: any;
 

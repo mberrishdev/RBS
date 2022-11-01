@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuApiServiceService } from 'src/app/services/menuServices/menu-api-service.service';
-import { Menu, MenuType, SubMenu } from '../models/models';
+import { Menu, MenuType, SubMenu } from '../../models/models';
 
 @Component({
   selector: 'app-restaurant-menu-section',

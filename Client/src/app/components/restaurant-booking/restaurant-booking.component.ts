@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ImageApiServiceService } from 'src/app/services/imageServices/image-api-service.service';
-import { Image, Restaurant } from '../models/models';
+import { Image, Restaurant } from '../../models/models';
 import { ActivatedRoute } from '@angular/router';
 import { CountryApiService } from 'src/app/services/CountryService/country-api.service';
 import { ReservationApiServiceService } from 'src/app/services/reservationService/reservation-api-service.service';

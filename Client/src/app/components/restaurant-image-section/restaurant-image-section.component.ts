@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ImageApiServiceService } from 'src/app/services/imageServices/image-api-service.service';
-import { ImageType } from '../enums/enums';
-import { Image } from '../models/models';
+import { ImageType } from '../../enums/enums';
+import { Image } from '../../models/models';
 
 @Component({
   selector: 'app-restaurant-image-section',

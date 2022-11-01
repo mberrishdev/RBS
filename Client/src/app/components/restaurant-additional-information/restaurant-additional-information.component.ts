@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AdditionalInformationModel } from '../models/models';
+import { AdditionalInformationModel } from '../../models/models';
 import { AdditionalInformationApiServiceService } from '../../services/additionalInformationService/additional-information-api-service.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReviewApiServiceService } from 'src/app/services/reviewServices/review-api-service.service';
-import { ReviewFullModel } from '../models/models';
+import { ReviewFullModel } from '../../models/models';
 
 @Component({
   selector: 'app-restaurant-reviews-section',

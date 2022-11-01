@@ -9,6 +9,8 @@ namespace RBS.Application.Models
         public string City { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
 
         public AddressModel(Address address)
         {
@@ -17,6 +19,8 @@ namespace RBS.Application.Models
             City = address?.City;
             Street = address?.Street;
             Number = address?.Number;
+            Latitude = address?.Latitude;
+            Longitude = address?.Longitude;
         }
 
     }
