@@ -1,5 +1,4 @@
 [![.NET](https://github.com/mberrishdev/RBS/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/mberrishdev/RBS/actions/workflows/dotnet.yml)
-[![.NET - Admin](https://github.com/mberrishdev/RBS/actions/workflows/dotnet-admin.yml/badge.svg?branch=master)](https://github.com/mberrishdev/RBS/actions/workflows/dotnet-admin.yml)
 ![GitHub stars](https://img.shields.io/github/stars/mberrishdev/RBS)
 
 
@@ -47,33 +46,6 @@ RBS-Admin Admin WebApplication for manage RBS
 ```
 
 5. Navigate to the Client directory (./Client) and run the commands:
-
-```
-> npm install
-```
-
-```
-> npm run serve
-```
-
-6. Open a browser, navigate to http://localhost:4200 and you're all set! 
-
-## Deployment of RBS-Admin
-
-**To deploy this project:**
-
-1. Install .NET 6 SDK
-2. Install the latest NodeJS
-3. Install SQL Server
-4. Clone the [Repo](https://github.com/mberrishdev/RBS)
-5. Navigate to the API directory (./API) and run command:
-
-
-```
-> dotnet run --project ./src/RBS.Admin/API
-```
-
-5. Navigate to the Client directory (./AdminClient) and run the commands:
 
 ```
 > npm install
