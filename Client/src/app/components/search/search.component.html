@@ -1,28 +1,30 @@
-<header class="Oj76ErEFOVeUogX4APEA">
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="qepGmHr0hdEyB0yzzEJ9">
-    <h2 class="msKqTVTyiZsPFMCcq6xB">Make a free reservation</h2><span class="ID0EKURx9p1AyRfRBS0K">
-      <div class="CFqCKTFwM7VhmpXKh2AD" data-test="block-dtp">
-        <div class="hkYkQl42VoWamVdkPGXR">
+<div style="background-color: red;">
+  <header class="Oj76ErEFOVeUogX4APEA">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="qepGmHr0hdEyB0yzzEJ9">
+      <h2 class="msKqTVTyiZsPFMCcq6xB">Make a free reservation</h2><span class="ID0EKURx9p1AyRfRBS0K">
+        <div class="CFqCKTFwM7VhmpXKh2AD" data-test="block-dtp">
+          <div class="hkYkQl42VoWamVdkPGXR">
             <p-calendar formControlName="date" [showIcon]="true" dateFormat="mm-dd-yy" placeholder="{{today}}"
               inputId="dateformat" [minDate]="minDate"></p-calendar>
             <p-calendar formControlName="time" icon="pi pi-clock" [showIcon]="true" placeholder="{{timeNow}}"
               [timeOnly]="true" hourFormat="12" inputId="timeonly"></p-calendar>
-
-          <p-inputNumber formControlName="personCount" mode="decimal" placeholder="Person Count" [showButtons]="true"
-            inputId="minmax-buttons" [min]="0" [max]="500">
-          </p-inputNumber>
-          <input type="text" pInputText placeholder="Location/Restaurant" formControlName="keyword">
-          <button pButton pRipple type="button" type="submit" icon="pi pi-search"
-            class="p-button-rounded p-button-info"></button>
+            <p-inputNumber formControlName="personCount" mode="decimal" placeholder="Person Count" [showButtons]="true"
+              inputId="minmax-buttons" [min]="0" [max]="500">
+            </p-inputNumber>
+            <input type="text" pInputText placeholder="Location/Restaurant" formControlName="keyword">
+            <button pButton pRipple type="button" type="submit" icon="pi pi-search"
+              class="p-button-rounded p-button-info"></button>
+          </div>
         </div>
-      </div>
-    </span>
-  </form>
-  <div class="W6vHyceRJFazcg3yqAe6" data-test="location-landing-quick-link-container"><span
-      class="MXzf3SALo58QgaOER0fc">Quick Search: </span>
-    <div class="o8ipeatPe1D3IXeX60PH v5f1LbbwhOSPiQorc7vh" role="button" tabindex="0"
-      data-test="quick-link-experiences">Book an experience</div>
-    <div class="o8ipeatPe1D3IXeX60PH JcOfsqgSIdmvTOpG7skL" role="button" tabindex="0" data-test="quick-link-all">All
-      restaurants near me</div>
-  </div>
-</header>
+      </span>
+    </form>
+    <div class="W6vHyceRJFazcg3yqAe6" data-test="location-landing-quick-link-container"><span
+        class="MXzf3SALo58QgaOER0fc">Quick Search: </span>
+      <div class="o8ipeatPe1D3IXeX60PH v5f1LbbwhOSPiQorc7vh" role="button" tabindex="0"
+        data-test="quick-link-experiences">Book an experience</div>
+      <div class="o8ipeatPe1D3IXeX60PH JcOfsqgSIdmvTOpG7skL" role="button" tabindex="0" data-test="quick-link-all">All
+        restaurants near me</div>
+    </div>
+  </header>
+
+</div>

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl:"https://localhost:7262/api/v1/",
-  // baseUrl:"https://192.168.1.123:45456/api/",
+  // baseUrl:"https://192.168.1.123:45455/api/v1/",
 };
 
 /*
