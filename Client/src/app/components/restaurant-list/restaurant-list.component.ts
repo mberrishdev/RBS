@@ -25,7 +25,6 @@ export class RestaurantListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.sortOptions = [
       { "id": RestaurantOrderType.None, "sortType": RestaurantOrderType[RestaurantOrderType.None] },
       { "id": RestaurantOrderType.Newest, "sortType": RestaurantOrderType[RestaurantOrderType.Newest] },

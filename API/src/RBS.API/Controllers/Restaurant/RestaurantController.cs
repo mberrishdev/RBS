@@ -19,7 +19,7 @@ namespace RBS.API.Controllers.Restaurant
 
         [HttpGet("MainInformation/{id}")]
         [ProducesResponseType(typeof(List<RestaurantMainInformationModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<RestaurantMainInformationModel>> GetMainInformation([FromRoute] int id)
+        public async Task<ActionResult> GetMainInformation([FromRoute] int id)
         {
             var result = await _restaurantService.GetMainInformation(id);
             return Ok(result);

@@ -24,5 +24,14 @@ namespace RBS.Application.Services.Tables
 
             return new TableModel(table);
         }
+
+        public async Task<List<TableModel>> GetTableByRestaurantId(int restaurantId)
+        {
+            var table = await _repository.GetListAsync(predicate: x => x.RestaurantId == restaurantId);
+            if (table == null)
+                return null;
+
+            return table.Select(x => new TableModel(x)).ToList();
+        }
     }
 }

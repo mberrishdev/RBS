@@ -119,3 +119,20 @@ export interface RestaurantSearchModel {
   freeTime: string;
   googleMapUrl: string;
 }
+
+
+export interface TableModel {
+  id: number;
+  xCoordinate: number;
+  yCoordinate: number;
+  personCount: number;
+  restaurantId: number;
+  status: string;
+}
+
+export interface TableImageModel {
+  id: number;
+  src: string;
+  alt: string;
+  tableId: number;
+}

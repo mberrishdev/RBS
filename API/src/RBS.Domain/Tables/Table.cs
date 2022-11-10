@@ -6,6 +6,8 @@ namespace RBS.Domain.Tables
 {
     public class Table : EntityBase
     {
+        public decimal XCoordinage { get; private set; }
+        public decimal YCoordinage { get; private set; }
         public int PersonCount { get; private set; }
         public ICollection<TableImage> Images { get; private set; }
 

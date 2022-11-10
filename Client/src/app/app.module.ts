@@ -52,6 +52,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { HomeBodyComponent } from './components/home-body/home-body.component';
 import { SearchListComponent } from './components/search-list/search-list.component';
+import { RestaurantTablesComponent } from './components/restaurant-tables/restaurant-tables.component'
+import {ImageModule} from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -77,8 +79,10 @@ import { SearchListComponent } from './components/search-list/search-list.compon
     RestaurantListComponent,
     HomeBodyComponent,
     SearchListComponent,
+    RestaurantTablesComponent,
   ],
   imports: [
+    ImageModule,
     InputNumberModule,
     ChipModule,
     InputSwitchModule,

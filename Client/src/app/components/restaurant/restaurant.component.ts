@@ -19,6 +19,7 @@ export class RestaurantComponent implements OnInit {
   constructor(private router: Router ,private route: ActivatedRoute, private restaurantApiService: RestaruantService) {
 
   }
+
   scroll(el: HTMLElement) {
     this.router.navigate( [ ], { fragment: el.className } )
     el.scrollIntoView({ behavior: 'smooth' });

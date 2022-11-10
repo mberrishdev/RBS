@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using RBS.Application.Models.TableImages;
 using RBS.Application.Services.AdditionalInformations;
 using RBS.Application.Services.Auth;
 using RBS.Application.Services.Auth.Helper;
@@ -21,6 +22,7 @@ using RBS.Application.Services.RestaurantNotifications;
 using RBS.Application.Services.Restaurants;
 using RBS.Application.Services.Reviews;
 using RBS.Application.Services.Settings.AuthSettings;
+using RBS.Application.Services.TableImages;
 using RBS.Application.Services.Tables;
 using RBS.Application.Services.TermsAndConditions;
 using RBS.Application.Services.UserServices;
@@ -61,6 +63,7 @@ namespace RBS.Application
             services.AddScoped<IPlatformNotificationService, PlatformNotificationService>();
             services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<ITableService, TableService>();
+            services.AddScoped<ITableImageService, TableImageService>();
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IAdditionalInformationService, AdditionalInformationService>();
             services.AddScoped<IMenuService, MenuService>();

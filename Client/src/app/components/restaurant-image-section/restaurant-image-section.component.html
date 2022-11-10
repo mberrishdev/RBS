@@ -49,7 +49,7 @@
         <div class="qu89xJJz9OOoHWqpGHyg">
           <button *ngFor="let item of imageWhichIsShowList last as isLast" type="button"
             class="HYk6owxTOkbNdJ2ceukN m_b2Wnj4pHFOVObBMBuM">
-            <img src="{{item.src}}" alt="{{item.alt}}">
+            <p-image src="{{item.src}}" alt="{{item.alt}}" width="250" [preview]="true"></p-image>
             <div *ngIf="isLast && isCountGreatherThan5" class="rGVGrRyvcN_qm88blf4P">
 
               <a href="" class="wTKOIa6eU31MUX0259EH YQ2SmR3lcmrtTcxuktZA">+{{modeLoadedCount}} More</a>
