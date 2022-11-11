@@ -1,0 +1,23 @@
+ <app-three-sixty-image *ngIf="isTableHas360Image" [imageSrc]="imageSrc"></app-three-sixty-image>
+<!--
+<p-galleria *ngIf="!isTableHas360Image && displayImages" [value]="images" [containerStyle]="{'max-width': '50%'}"
+  [numVisible]="9" [circular]="true" [fullScreen]="false" [showItemNavigators]="true" [baseZIndex]="100000">
+  <ng-template pTemplate="item" let-item>
+    <img [src]="item.src" [alt]="item.alt" style="width: 100%; display: block;" />
+  </ng-template>
+</p-galleria> -->
+
+<div class="images">
+<p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" [circular]="true"
+        [autoPlay]="true" [transitionInterval]="4000">
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.src" style="width: 100%; display: block;" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.src" width="60px" style="display: block;" />
+            </div>
+        </ng-template>
+</p-galleria>
+
+</div>

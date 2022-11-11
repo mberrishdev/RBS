@@ -34,5 +34,15 @@ namespace RBS.API.Controllers.Table
             var result = await _tableImageService.GetTableImages(tableId);
             return Ok(result);
         }
+
+        [HttpGet("GetTable360Images/{tableId}")]
+        [ProducesResponseType(typeof(List<TableImageModel>), StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetTable360Images([FromRoute] int tableId)
+        {
+            var result = await _tableImageService.GetTable360Images(tableId);
+            if (result == null)
+                return Ok("360 image does not exist");
+            return Ok(result);
+        }
     }
 }

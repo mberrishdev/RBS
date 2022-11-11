@@ -7,6 +7,7 @@ namespace RBS.Application.Models.TableImages
         public int Id { get; set; }
         public string? Src { get; set; }
         public string? Alt { get; set; }
+        public bool Is360 { get; set; }
         public int TableId { get; set; }
 
         public TableImageModel(TableImage tableImage)
@@ -15,6 +16,7 @@ namespace RBS.Application.Models.TableImages
             Src = tableImage.Src;
             Alt = tableImage.Alt;
             TableId = tableImage.TableId;
+            Is360 = tableImage.Is360;
         }
     }
 }
