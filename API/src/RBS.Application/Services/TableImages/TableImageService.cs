@@ -16,9 +16,19 @@ namespace RBS.Application.Services.TableImages
             _repository = _unitOfWork.Repository;
         }
 
+        public async Task<TableImageModel> GetTable360Images(int tableId)
+        {
+            var result = await _repository.GetAsync(predicate: x => x.TableId == tableId && x.Is360 == true);
+
+            if (result == null)
+                return null;
+
+            return new TableImageModel(result);
+        }
+
         public async Task<List<TableImageModel>> GetTableImages(int tableId)
         {
-            var result = await _repository.GetListAsync(predicate: x => x.TableId == tableId);
+            var result = await _repository.GetListAsync(predicate: x => x.TableId == tableId && x.Is360 == false);
 
             return result.Select(x => new TableImageModel(x)).ToList();
         }

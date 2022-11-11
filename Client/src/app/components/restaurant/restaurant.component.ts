@@ -27,7 +27,7 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.restaurant = { name: "HB", restaurantRate: 4.3, reviewCount: 123, averagePrice: "$40 and over", restaurantMainType: "Qartulia bicho", description: "SAfasf", address: 'Tbilisi,Georgia' }
-    var id = this.route.snapshot.paramMap.get("id");
+    var id = this.route.snapshot.paramMap.get("restaurantId");
     if (id != null) {
       this.restaurantId = parseInt(id);
     }

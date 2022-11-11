@@ -18,4 +18,8 @@ export class TableService {
   GetTableImages(tableId: number): Observable<TableImageModel[]> {
     return this.http.get<TableImageModel[]>(environment.baseUrl + 'Table/GetTableImages/' + tableId)
   }
+
+  GetTable360Image(tableId: number): Observable<TableImageModel> {
+    return this.http.get<TableImageModel>(environment.baseUrl + 'Table/GetTable360Images/' + tableId)
+  }
 }
