@@ -567,8 +567,9 @@
     <ng-container *ngFor="let table of tables;let j=index">
       <g [style.cursor]="table.status!='booked'?'pointer':'default'" *ngIf="table.xCoordinate"
         (click)="click2(table.id)">
-        <rect [ngClass]="table.status" [attr.x]="table.xCoordinate" [attr.y]="table.yCoordinate-22" width="20"
-          height="20" rx="2" ry="2" />
+        <image href="https://cdn.iconscout.com/icon/premium/png-256-thumb/restaurant-table-7-627847.png"
+          [ngClass]="table.status" [attr.x]="table.xCoordinate" [attr.y]="table.yCoordinate-22" width="20" height="20"
+          rx="2" ry="2" />
       </g>
     </ng-container>
   </svg>

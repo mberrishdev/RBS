@@ -75,30 +75,10 @@ export class RestaurantTablesComponent implements OnInit {
   }
 
   click2(id: any) {
-    const index = this.tables.findIndex((el) => el.id === 2)
-    // this.tables[index].status = 'booked';
-    // var first = this.tables.find((obj) => {
-    //   return obj.id === id;
-    // });
-    // first?.status ='free';
-    // console.log(first);
-    this.loadTableImages(id)
-    this.selectedTableId = 1;
-  }
-  // click(fila: any, column: any) {
-  //   if (this.status[fila][column] == 'free' && this.count() < 9)
-  //     this.status[fila][column] = 'selected';
-  //   else {
-  //     if (this.status[fila][column] == 'selected')
-  //       this.status[fila][column] = 'free';
-  //   }
-  //   this.selected = this.seats();
-  // }
-  count() {
-    return this.status
-      .map((x) => x.filter((s) => s == 'selected').length)
-      .reduce((a, b) => a + b);
-  }
+    this.selectedTableId = id;
+    this.router.navigate(
+      ['restaurant/' + this.restaurantId + '/tables/' + this.selectedTableId + '/image'],
+    );
 
   seats() {
     const seats: any = [];
