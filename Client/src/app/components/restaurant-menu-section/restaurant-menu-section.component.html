@@ -1,3 +1,39 @@
+<p-dialog [(visible)]="displayBasket">
+  <h2> Your <i class="pi pi-shopping-bag"></i> is empty</h2>
+  <p-table *ngIf="selectedSubMenuItems.length>0" [value]="selectedSubMenuItems" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td><img src="{{item.src}}" alt="{{item.alt}}" width="70px"></td>
+        <td>{{item.name}}</td>
+        <td>
+          <button pButton (click)="minusQuantity(item.id)" icon="pi pi pi-minus"
+            class="p-button-rounded p-button-text"></button>
+          {{item.quantity}}
+          <button pButton (click)="plusQuantity(item.id)" icon="pi pi pi-plus"
+            class="p-button-rounded p-button-text"></button>
+        </td>
+        <td>{{item.quantity * item.price}} {{item.currencyIcon}}</td>
+        <td> <button (click)="removeFromBasket(item.id)" pButton pRipple type="button" icon="pi pi-times"
+            class="p-button-rounded p-button-outlined"></button></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Total : {{getFullPrice()}} $.
+      </div>
+    </ng-template>
+  </p-table>
+</p-dialog>
+
 <div *ngIf="!isLoaded; else menuBlock">
   <div class="RFGzLM0dYfPknxoHIVaq">
     <h2 class="n3VjEYZ90eGAL7bL007A SnUm_1TfMxXpCYasofoO">Menu</h2>
@@ -32,25 +68,51 @@
     </nav>
     <article role="tabpanel" id="restProfileMenuContent" tabindex="0" aria-labelledby="menu-tab-button-main-menu"
       data-test="menu-content">
+
       <p class="Z5hZnDc095KpyPVTYvil">Our Kitchen is Open Seven Days a Week from 12pm till 11.45pm (last order). All
         our main courses include a combined side dish, can be considered as full meal</p>
       <div class="Wi5aAeHmced2sk4zN1RR">
         <!-- <button type="button" class="TgNcVhiEQjFPDjJW2Yp_ YQ2SmR3lcmrtTcxuktZA" aria-expanded="true"
           data-test="expansion-button">View full menu</button> -->
         <div class="rgtSylyDltiJrgoZncEO ap_fh_2o0KdY_e7T6DLJ" data-test="inner-expandable-container">
+          <div class="basketDiv">
+            <button (click)="showBasket()" pButton pRipple type="button" icon="pi pi-shopping-bag"
+              class="p-button-rounded p-button-outlined"></button>
+          </div>
           <article *ngFor="let subMenu of menu.subMenus" class="TVLmvxP1ahj9Atd6nSbc" data-test="menu-section">
-            <h3 class="fLVQ4B9zDTLxnFMWiezN TmrbsoKTQg9UWXLSXbm0">{{subMenu.subMenuType}}</h3>
-            <ul class="_rhoq72Ysdh4AYEXvjW2">
+            <p-carousel [value]="subMenu.items" [numVisible]="3" [numScroll]="3" [circular]="false"
+              [responsiveOptions]="responsiveOptions">
+              <ng-template pTemplate="header">
+                <h3 class="fLVQ4B9zDTLxnFMWiezN TmrbsoKTQg9UWXLSXbm0">{{subMenu.subMenuType}}</h3>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <img class="menuImage" src="{{item.src}}" alt="{{item.alt}}" width="275px" style="object-fit: cover;">
+                <div class="item-header">
+                  <span data-test="item-title">{{item.name}}</span>
+                  <span data-test="item-price" class="item-header_price">{{item.currencyIcon}}{{item.price}}</span>
+                </div>
+                <p class="ym_tnHBGf5RIXQhE6gPI description">{{item.description}}</p>
+                <div class="field-checkbox">
+                  <label for="binary">Add in basket</label>
+                  <p-checkbox [value]="item.id" [(ngModel)]="selectedItems" inputId="binary"></p-checkbox>
+                </div>
+              </ng-template>
+            </p-carousel>
+            <!-- <ul class="_rhoq72Ysdh4AYEXvjW2">
               <li *ngFor="let item of subMenu.items" class="lGz7pThh1ty_7SknZIgt">
                 <img class="menuImage" src="{{item.src}}" alt="{{item.alt}}">
-                <h4 class="Jr5zcSvpfOOuC4zJng4o">
+                <div class="item-header">
                   <span data-test="item-title">{{item.name}}</span>
-                  <span data-test="item-price">{{item.currencyIcon}}{{item.price}}</span>
-                </h4>
-                <p class="ym_tnHBGf5RIXQhE6gPI">item.description</p>
+                  <span data-test="item-price" class="item-header_price">{{item.currencyIcon}}{{item.price}}</span>
+                </div>
+                <p class="ym_tnHBGf5RIXQhE6gPI description">{{item.description}}</p>
+                <div class="field-checkbox">
+                  <label for="binary">Add in basket</label>
+                  <p-checkbox [value]="item.id" [(ngModel)]="selectedItems" inputId="binary"></p-checkbox>
+                </div>
                 <ul></ul>
               </li>
-            </ul>
+            </ul> -->
           </article>
         </div>
       </div>

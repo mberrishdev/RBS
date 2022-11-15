@@ -4,6 +4,8 @@ import {
   QueryList,
   ViewChildren,
   Renderer2,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TableImageModel, TableModel } from 'src/app/models/models';
@@ -17,6 +19,7 @@ import { TableService } from 'src/app/services/tableServices/table.service';
   styleUrls: ['./restaurant-tables.component.scss']
 })
 export class RestaurantTablesComponent implements OnInit {
+  @Output() tableChoosed = new EventEmitter<number>();
   tables: TableModel[] = [];
   restaurantId: number = 0;
   selectedTableId: number = 0;
@@ -29,6 +32,7 @@ export class RestaurantTablesComponent implements OnInit {
   }
 
   click2(id: any) {
+    this.tableChoosed.emit(id);
     this.selectedTableId = id;
     this.router.navigate(
       ['restaurant/' + this.restaurantId + '/tables/' + this.selectedTableId + '/image'],
