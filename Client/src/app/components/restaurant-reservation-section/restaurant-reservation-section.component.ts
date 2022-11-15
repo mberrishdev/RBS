@@ -45,8 +45,8 @@ export class RestaurantReservationSectionComponent implements OnInit {
 
   book() {
     this.router.navigate(
-      ['/booking'],
-      { queryParams: { restaurantId: this.restaurantId, restaurantName: this.restaurantName } }
+      ['/restaurant/' + this.restaurantId + '/booking'],
+      { queryParams: {restaurantName: this.restaurantName } }
     );
   }
 }

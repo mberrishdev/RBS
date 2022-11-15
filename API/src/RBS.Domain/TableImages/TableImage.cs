@@ -1,4 +1,6 @@
-﻿namespace RBS.Domain.TableImages
+﻿using RBS.Domain.Tables;
+
+namespace RBS.Domain.TableImages
 {
     public class TableImage : EntityBase
     {

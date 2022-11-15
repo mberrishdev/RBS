@@ -59,6 +59,8 @@ import { ThreeSixtyImageComponent } from './components/three-sixty-image/three-s
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TableImagesComponent } from './components/table-images/table-images.component';
 import { ConfirmPopupModule } from "primeng/confirmpopup";
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { ConfirmPopupModule } from "primeng/confirmpopup";
     TableImagesComponent,
   ],
   imports: [
+    TableModule,
     ConfirmPopupModule,
+    OverlayPanelModule,
     DynamicDialogModule,
     ThreeSixtyModule,
     ImageModule,

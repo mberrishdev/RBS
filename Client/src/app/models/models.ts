@@ -57,6 +57,38 @@ export interface Review {
   reviewedDate: Date,
 }
 
+export interface ResrvationCommand {
+  restaurantId: number,
+  date: Date,
+  timeId: number,
+  personCount: number,
+  occasionId: number,
+  specialRequest: string,
+  isUserLogIn: boolean,
+  guestUser: GuestUserRestrationCommand | null,
+  sendNewsOfRestaurant: boolean,
+  sendNewsOfPlatform: boolean,
+  sendReservationReminders: boolean,
+  addBookingToCallendar: boolean,
+}
+
+export interface GuestUserRestrationCommand {
+  firstName: string,
+  lastName: string,
+  email: string,
+  countryId: number,
+  phoneNumber: string,
+}
+
+export interface ReservationResponse {
+  qrCode: QrModel;
+}
+
+export interface QrModel {
+  qrImage: string;
+  fileName: string;
+}
+
 
 export interface ReviewFullModel {
   reviews: Review[];
@@ -95,6 +127,7 @@ export interface SubMenuItem {
   currencyIcon: string;
   src: string;
   alt: string;
+  quantity: number;
 }
 
 export interface AdditionalInformationModel {

@@ -38,11 +38,11 @@ const routes: Routes = [
               { path: ':tableId/image', component: TableImagesComponent },
             ]
           },
+          { path: 'booking', component: RestaurantBookingComponent },
         ]
       },
     ]
   },
-  { path: 'booking', component: RestaurantBookingComponent },
   {
     path: 'auth',
     children: [
