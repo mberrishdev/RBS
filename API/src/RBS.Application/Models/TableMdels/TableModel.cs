@@ -18,7 +18,8 @@ namespace RBS.Application.Models.TableMdels
             RestaurantId = table.RestaurantId;
             XCoordinate = table.XCoordinage;
             YCoordinate = table.YCoordinage;
-            Status = "free";
+            Random rand = new Random();
+            Status = rand.Next(0, 2) == 0 ? "Free" : "booked";
         }
     }
 }

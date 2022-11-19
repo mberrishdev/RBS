@@ -70,6 +70,10 @@
     margin-top: 5px;
     margin-right: 4px;
   }
+  :hover {
+    cursor: pointer;
+    color: brown;
+  }
 }
 
 .description {
@@ -84,16 +88,17 @@
   justify-content: flex-end;
 }
 
-// <li *ngFor="let item of subMenu.items" class="lGz7pThh1ty_7SknZIgt">
-//                 <img class="menuImage" src="{{item.src}}" alt="{{item.alt}}">
-//                 <div class="item-header">
-//                   <span data-test="item-title">{{item.name}}</span>
-//                   <span data-test="item-price" class="item-header_price">{{item.currencyIcon}}{{item.price}}</span>
-//                 </div>
-//                 <p class="ym_tnHBGf5RIXQhE6gPI description">{{item.description}}</p>
-//                 <div class="field-checkbox">
-//                   <label for="binary">Add in basket</label>
-//                   <p-checkbox [value]="item.id" [(ngModel)]="selectedItems" inputId="binary"></p-checkbox>
-//                 </div>
-//                 <ul></ul>
-//               </li>
+.product-item {
+  .product-item-content {
+    border: 0px solid var(--surface-d);
+    border-radius: 3px;
+    margin: 0.3rem;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .product-image {
+    width: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+}

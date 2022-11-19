@@ -10,7 +10,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   //Auth
-
   isAuthenticated(): boolean {
     try {
       const result = localStorage.getItem('token') !== null;

@@ -12,12 +12,12 @@
     <div class="y__isdaGDaNBwmqkVi64">
       <div class="bTBbrPKOKYKCWre1S7MI">
         <section class="rdenXhHVEvAdzD_ETpVe">
-          <h2 class="ipv4TXoOgsxp4yybN5sD">You’re almost done!</h2>
+          <h2 class="ipv4TXoOgsxp4yybN5sD">{{'booking.you.are.almost.done' | translate }}</h2>
           <div id="countdown-timer">
             <div class="QHPmro6xQXWRYurFYAsf" data-test="countdown-timer" aria-hidden="true">
-              <p class="DBWGCCHqJo4CQT4rCd3N">We’re holding this table for you for <span
+              <p class="DBWGCCHqJo4CQT4rCd3N"> {{'booking.we.are.holding' | translate }} <span
                   class="_FCjiwCsCYUa74qZduzD">4:46
-                  minutes</span></p>
+                  {{'booking.for.minute' | translate }}</span></p>
             </div>
           </div>
           <div class="J722GEyEBV877AlSBIdw">
@@ -25,8 +25,7 @@
               <!-- <img class="JZlGUG1LJ9cdISp50fAG" src="{{image.src}}" alt="{{image.alt}}"> -->
             </div>
             <div class="SGAjAi0UiRbrorCIEywx">
-              <a class="UUoCAUL0Mqi7hJSG8Wy7" routerLink="restaurant/{{restaurantId}}" target="_blank"
-                rel="noopener noreferrer">
+              <a *ngIf="restaurantName" class="UUoCAUL0Mqi7hJSG8Wy7" routerLink="../" rel="noopener noreferrer">
                 <h2 data-test="restaurantName" class="i4QPbbN2sH064gWbmQyf">{{restaurantName}}</h2>
               </a>
               <div class="aZfErLEmW7ax6Cy5dhNj">
@@ -93,25 +92,40 @@
               <app-restaurant-tables (tableChoosed)="onTableChoosed($event)"></app-restaurant-tables>
             </p-accordionTab>
             <p-accordionTab header="Menu">
-              <app-restaurant-menu-section [restaurantId]="restaurantId"></app-restaurant-menu-section>
+              <app-restaurant-menu-section (menuChoosed)="onMenuChoosed($event)" [restaurantId]="restaurantId"
+                [showAddInBasket]=true>
+              </app-restaurant-menu-section>
             </p-accordionTab>
           </p-accordion>
-          <h2 class="gzGFMaxE0KfdfWi3JMvX">Diner details</h2>
-          <div data-test="user-conversion-cta" class="cJmlTeHPKR2wXzI2FPv6"><button type="button"
+          <div *ngIf="!loadUserIsAuthenticated()" data-test="user-conversion-cta" class="cJmlTeHPKR2wXzI2FPv6">
+            <button type="button" (click)="moveToSignInPage()"
               class="eyj9ppU14WkdeXeKZ8gF eRPr527YvJ5DDdKO5fLi g0lWgM8ntTk6h0qNZTgw NZCtw9t9gpwHL1Aw2HNX Ti64w3n01MDTYZb59n6Q"
-              data-test="login-diner-button">Sign in</button> to collect points for this reservation</div>
+              data-test="login-diner-button">
+              {{'booking.sign.in' | translate }}
+            </button>
+            {{'booking.to.collect.points' | translate }}
+          </div>
+          <div *ngIf="loadUserIsAuthenticated()" data-test="user-conversion-cta" class="cJmlTeHPKR2wXzI2FPv6">
+            {{'booking.login.as' | translate }} {{userName}} {{surName}},
+            <button type="button" (click)="moveToSignInPage()"
+              class="eyj9ppU14WkdeXeKZ8gF eRPr527YvJ5DDdKO5fLi g0lWgM8ntTk6h0qNZTgw NZCtw9t9gpwHL1Aw2HNX Ti64w3n01MDTYZb59n6Q"
+              data-test="login-diner-button">
+              {{'booking.sign.in' | translate }}
+            </button>
+            {{'booking.with.different.acc' | translate }}
+          </div>
           <div>
-            <div class="zhyaN4aKAnKs4xgYyM14">
+            <div *ngIf="!loadUserIsAuthenticated()" class="zhyaN4aKAnKs4xgYyM14">
               <div class="nRvV9WFTz32svCwUrOVd">
-                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="First Name" type="text" pInputText
+                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="{{'name' | translate }}" type="text" pInputText
                   [(ngModel)]="firstName">
               </div>
               <div class="nRvV9WFTz32svCwUrOVd">
-                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="Last Name" type="text" pInputText
+                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="{{'surname' | translate }}" type="text" pInputText
                   [(ngModel)]="lastName">
               </div>
             </div>
-            <div class="zhyaN4aKAnKs4xgYyM14">
+            <div *ngIf="!loadUserIsAuthenticated()" class="zhyaN4aKAnKs4xgYyM14">
               <div class="nRvV9WFTz32svCwUrOVd">
                 <div class="AR10DMKfeFTJO8rv1dVQ">
                   <div class="FKlH9qC7UDMtKI5HPb45">
@@ -130,12 +144,12 @@
                         </div>
                       </ng-template>
                     </p-dropdown>
-                  </div><input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="Phone Number" type="text" pInputText
+                  </div><input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="{{'phone.number' | translate }}" type="text" pInputText
                     [(ngModel)]="phoneNumber">
                 </div>
               </div>
               <div class="nRvV9WFTz32svCwUrOVd">
-                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="Email" type="text" pInputText [(ngModel)]="email">
+                <input class="WMRhIqpXMa5PfIzQ0ZZM" placeholder="{{'email' | translate }}" type="text" pInputText [(ngModel)]="email">
               </div>
             </div>
             <div class="zhyaN4aKAnKs4xgYyM14">
@@ -144,38 +158,34 @@
                   placeholder="Select an occasion (optional)" optionLabel="name"></p-dropdown>
               </div>
               <div class="nRvV9WFTz32svCwUrOVd">
-                <textarea class="WMRhIqpXMa5PfIzQ0ZZM" pInputTextarea [autoResize]="false"
+                <textarea class="WMRhIqpXMa5PfIzQ0ZZM" [(ngModel)]="specialRequest" pInputTextarea [autoResize]="false"
                   placeholder="Add a special request (optional)"></textarea>
               </div>
             </div>
-            <div class="field-checkbox">
-              <p-checkbox [(ngModel)]="diningOffers" [binary]="true" inputId="binary"></p-checkbox>
-              <label for="binary">Sign me up to receive dining offers and news from
-                this restaurant by email.</label>
-            </div>
-            <div class="field-checkbox">
+            <div *ngIf="!loadUserIsAuthenticated()" class="field-checkbox">
               <p-checkbox [(ngModel)]="singMeUp" [binary]="true" inputId="binary"></p-checkbox>
-              <label for="binary">Sign me up to receive dining offers and news from
-                OpenTable by email.</label>
+              <label for="binary">{{'booking.sign.me.up.offer' | translate }}</label>
             </div>
             <div class="field-checkbox">
               <p-checkbox [(ngModel)]="getRemainder" [binary]="true" inputId="binary"></p-checkbox>
-              <label for="binary">Yes, I want to get text updates and reminders about my reservations.</label>
+              <label for="binary"> {{'booking.i.want.to.get' | translate }}</label>
+            </div>
+            <div class="field-checkbox">
+              <p-checkbox [(ngModel)]="addInCallendar" [binary]="true" inputId="binary"></p-checkbox>
+              <label for="binary"> {{'booking.add.in.callendar' | translate }}</label>
             </div>
 
             <button (click)="Book()"
-              class="oj_Zftq0Z_Ts7usxdiLc bv4HGV5KDR1rqXGmy5Em WkATSvkvJnLhgjlINRzg SFn4xAeJ2JUpqEJ_gGjI n0GonOKcEH4mc03kM4Jz pREW2ZkuYncjapZLLnc3">Complete
-              reservation</button>
+              class="oj_Zftq0Z_Ts7usxdiLc bv4HGV5KDR1rqXGmy5Em WkATSvkvJnLhgjlINRzg SFn4xAeJ2JUpqEJ_gGjI n0GonOKcEH4mc03kM4Jz pREW2ZkuYncjapZLLnc3">
+              {{'booking.complete.reservation' | translate }}</button>
           </div>
-          <div class="xyDVfOCgro9yLtlNGsBu" data-test="legal-text-details-page">By clicking “Complete reservation” you
-            agree to the
+          <div class="xyDVfOCgro9yLtlNGsBu" data-test="legal-text-details-page">{{'booking.by.complete' | translate }}
             <a class="oWp44A5vBiqLJg6wsqzA dsnvlgfrQbt5qYIw6zEn" routerLink="/terms-and-conditions" target="_blank">
-              Terms of Use
-            </a> and
+              {{'booking.terms.of.use' | translate }}
+            </a>{{'booking.and' | translate }}
             <a class="oWp44A5vBiqLJg6wsqzA dsnvlgfrQbt5qYIw6zEn" routerLink="/privacy-policy" target="_blank">
-              PrivacyPolicy
-            </a>. Standard text message rates may apply. You
-            may opt out of receiving text messages at any time.
+              {{'booking.privacy.policy' | translate }}
+            </a>. {{'booking.may.send.text' | translate }}
           </div>
         </section>
       </div>

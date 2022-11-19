@@ -20,10 +20,11 @@ export class I18nModule {
   constructor(translate: TranslateService) {
     translate.addLangs(['en', 'ka']);
     const browserLang = translate.getBrowserLang();
-    const lang = browserLang?.match(/en|ka/) ? browserLang : 'en';
+    // const lang = browserLang?.match(/en|ka/) ? browserLang : 'en';
+    const lang = 'ka';
     translate.use(lang);
-    translate.reloadLang(lang);
     translate.setDefaultLang(lang)
+    translate.reloadLang(lang);
   }
 }
 

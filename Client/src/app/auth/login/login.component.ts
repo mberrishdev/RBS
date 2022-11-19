@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomvalidationService } from '../../services/customvalidation.service'
 import { AuthService } from '../services/auth.service';
 
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private customValidator: CustomvalidationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -47,5 +50,20 @@ export class LoginComponent implements OnInit {
       // alert('Form Submitted succesfully!!!\n Check the values in browser console.');
       // console.table(this.loginForm.value);
     }
+
+    this._loadAndRedirectToRedirectUri();
+  }
+
+  private _loadAndRedirectToRedirectUri() {
+
+    this.route.queryParams
+      .subscribe(params => {
+        var redirectUri = params.redirectUri;
+        if (redirectUri != null) {
+          this.router.navigate(
+            ['/restaurant/2/booking'],
+          );
+        }
+      });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MenuApiServiceService } from 'src/app/services/menuServices/menu-api-service.service';
 import { Menu, MenuType, SubMenu, SubMenuItem } from '../../models/models';
 
@@ -8,17 +8,20 @@ import { Menu, MenuType, SubMenu, SubMenuItem } from '../../models/models';
   styleUrls: ['./restaurant-menu-section.component.scss']
 })
 export class RestaurantMenuSectionComponent implements OnInit {
+  @Output() menuChoosed = new EventEmitter<SubMenuItem[]>();
   @Input() restaurantId: number = 0;
+  @Input() showAddInBasket: Boolean = false;
 
   isLoaded: Boolean = false;
   isMenuTypesLoaded: Boolean = false;
   loadedSubMenuId: number = -1;
   menuTypes: MenuType[] | any = [];
   menu: Menu;
-  selectedSubMenuItems: SubMenuItem[] = [];
+  basketItems: SubMenuItem[] = [];
   displayBasket: boolean = false;
-  selectedItems: number[] = [];
   responsiveOptions;
+  fullPrice: number = 0;
+
 
   constructor(private menuApiService: MenuApiServiceService) {
     this.responsiveOptions = [
@@ -66,63 +69,73 @@ export class RestaurantMenuSectionComponent implements OnInit {
   }
 
   showBasket() {
-    this.filterSelectedItems();
     this.displayBasket = true;
+    this.calculateFullPrice();
   }
 
-
-  removeFromBasket(itemId: number) {
-    this.selectedItems
-
-    const index = this.selectedItems.indexOf(itemId);
-    if (index > -1) {
-      this.selectedItems.splice(index, 1);
-    }
-
-    this.filterSelectedItems();
-  }
-
-  minusQuantity(itemId: number) {
-    this.selectedSubMenuItems;
-    for (let i = 0; i < this.selectedSubMenuItems.length; i++) {
-      if (this.selectedSubMenuItems[i].id == itemId) {
-        this.selectedSubMenuItems[i].quantity -= 1;
-        if (this.selectedSubMenuItems[i].quantity == 0) {
-          this.removeFromBasket(this.selectedSubMenuItems[i].id);
-        };
-      }
-    }
-  }
-
-  plusQuantity(itemId: number) {
-    this.selectedSubMenuItems;
-    for (let i = 0; i < this.selectedSubMenuItems.length; i++) {
-      if (this.selectedSubMenuItems[i].id == itemId)
-        this.selectedSubMenuItems[i].quantity += 1;
-    }
-  }
-
-  private filterSelectedItems() {
-    this.selectedSubMenuItems = [];
+  AddInBasket(itemId: number) {
     this.menu.subMenus.forEach(m => {
       m.items.forEach(k => {
-        if (this.selectedItems.some(t => t == k.id)) {
-          console.log(k.quantity);
-
-          if (k.quantity == undefined)
+        if (k.id == itemId) {
+          if (k.quantity == undefined) {
             k.quantity = 1;
-          this.selectedSubMenuItems.push(k);
+            this.basketItems.push(k);
+          }
+          else {
+            this.plusQuantity(itemId);
+          }
         }
       })
     })
+
+    this.calculateFullPrice();
+    this.menuChoosed.emit(this.basketItems);
   }
 
-  getFullPrice() {
+  removeFromBasket(itemId: number) {
+    let itemIndex = -1;
+    for (let i = 0; i < this.basketItems.length; i++) {
+      if (this.basketItems[i].id == itemId)
+        itemIndex = i;
+    }
+    if (itemIndex > -1) {
+      this.basketItems.splice(itemIndex, 1);
+    }
+
+    this.calculateFullPrice();
+    this.menuChoosed.emit(this.basketItems);
+  }
+
+  minusQuantity(itemId: number) {
+    for (let i = 0; i < this.basketItems.length; i++) {
+      if (this.basketItems[i].id == itemId) {
+        this.basketItems[i].quantity -= 1;
+        if (this.basketItems[i].quantity == 0) {
+          this.removeFromBasket(this.basketItems[i].id);
+        };
+      }
+    }
+    this.calculateFullPrice();
+    this.menuChoosed.emit(this.basketItems);
+  }
+
+  plusQuantity(itemId: number) {
+    for (let i = 0; i < this.basketItems.length; i++) {
+      if (this.basketItems[i].id == itemId)
+        this.basketItems[i].quantity += 1;
+    }
+
+    this.calculateFullPrice();
+    this.menuChoosed.emit(this.basketItems);
+  }
+
+  calculateFullPrice() {
     let price = 0;
-    this.selectedSubMenuItems.forEach(x => {
-      price += x.price;
+    this.basketItems.forEach(x => {
+      price += x.price * x.quantity;
     })
-    return price;
+
+    this.fullPrice = price;
   }
 
   GetDate(dateTime: Date) {

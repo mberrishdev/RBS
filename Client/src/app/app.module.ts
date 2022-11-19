@@ -54,7 +54,6 @@ import { HomeBodyComponent } from './components/home-body/home-body.component';
 import { SearchListComponent } from './components/search-list/search-list.component';
 import { RestaurantTablesComponent } from './components/restaurant-tables/restaurant-tables.component'
 import { ImageModule } from 'primeng/image';
-import { ThreeSixtyModule } from '@mediaman/angular-three-sixty';
 import { ThreeSixtyImageComponent } from './components/three-sixty-image/three-sixty-image.component';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TableImagesComponent } from './components/table-images/table-images.component';
@@ -95,7 +94,6 @@ import { TableModule } from 'primeng/table';
     ConfirmPopupModule,
     OverlayPanelModule,
     DynamicDialogModule,
-    ThreeSixtyModule,
     ImageModule,
     InputNumberModule,
     ChipModule,

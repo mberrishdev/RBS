@@ -17,6 +17,7 @@ import { TableImagesComponent } from './components/table-images/table-images.com
 const routes: Routes = [
   {
     path: '',
+    title: 'RBS',
     component: SearchListComponent,
     children: [
       { path: '', component: HomeBodyComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'review/:id', component: RestaurantReviewsSectionComponent },
   {
     path: 'restaurant',
+    title: 'Restaurant',
     children: [
       {
         path: ':restaurantId',
@@ -46,12 +48,12 @@ const routes: Routes = [
   {
     path: 'auth',
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
+      { path: 'login', title: 'login', component: LoginComponent },
+      { path: 'signup', title: 'Sing up',  component: SignupComponent },
     ]
   },
-  { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
-  { path: 'privacy-policy', component: PrivacyPolicyComponent }
+  { path: 'terms-and-conditions', title: 'Terms and conditions', component: TermsAndConditionsComponent },
+  { path: 'privacy-policy', title: 'Privacy policy', component: PrivacyPolicyComponent }
 ];
 
 @NgModule({
