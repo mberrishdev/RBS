@@ -31,19 +31,10 @@ namespace RBS.Application.Services.Menus
             return menu.SubMenus.Select(x => new SubMenuModel(x)).ToList();
         }
 
-        public async Task<MenuModel> GetMenuFullData(int restaurantId, int subMenuId)
+        public async Task<MenuModel> GetMenuByRestaurantId(int restaurantId)
         {
-            Menu menu = null;
-            if (subMenuId == 0)
-            {
-                menu = await _repository.GetList().Where(x => x.RestaurantId == restaurantId)
+            Menu menu = await _repository.GetList().Where(x => x.RestaurantId == restaurantId)
                     .Include(x => x.SubMenus).ThenInclude(x => x.Items).FirstOrDefaultAsync();
-            }
-            else
-            {
-                menu = await _repository.GetList().Where(x => x.RestaurantId == restaurantId)
-                    .Include(x => x.SubMenus.Where(x => x.Id == subMenuId)).ThenInclude(x => x.Items).FirstOrDefaultAsync();
-            }
 
             return new MenuModel(menu);
         }

@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 export class ReservationApiServiceService {
 
   constructor(private http: HttpClient) { }
-
   Reservation(dt: any) {
     return this.http.post(environment.baseUrl + "Reservation", dt);
   }

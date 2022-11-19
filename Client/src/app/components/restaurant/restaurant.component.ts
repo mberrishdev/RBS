@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CaptionService } from 'src/app/services/captionServices/caption.service';
+import { ReservationApiServiceService } from 'src/app/services/reservationService/reservation-api-service.service';
 import { RestaruantService } from 'src/app/services/restaurantServices/restaruant.service';
 import { Restaurant } from '../../models/models';
 
@@ -16,12 +18,12 @@ export class RestaurantComponent implements OnInit {
 
   restaurant: Restaurant | any;
 
-  constructor(private router: Router ,private route: ActivatedRoute, private restaurantApiService: RestaruantService) {
+  constructor(private router: Router, private route: ActivatedRoute, private restaurantApiService: RestaruantService, public captionService: CaptionService) {
 
   }
 
   scroll(el: HTMLElement) {
-    this.router.navigate( [ ], { fragment: el.className } )
+    this.router.navigate([], { fragment: el.className })
     el.scrollIntoView({ behavior: 'smooth' });
   }
 

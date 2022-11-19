@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Language } from './models/models';
+import { CaptionService } from './services/captionServices/caption.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ export class AppComponent implements OnInit {
   imageAddress: string | any;
   languages: Language[] | any;
 
-  constructor() { }
+  constructor(private captionSerice: CaptionService, private _translate: TranslateService) {
+    this.loadCaptions();
+  }
   ngOnInit() {
     this.loadUserInfo();
   }
@@ -31,5 +35,13 @@ export class AppComponent implements OnInit {
     const getSurName = localStorage.getItem('surName');
     this.surName = getSurName ? getSurName : '';
     this.imageAddress = "https://i.ibb.co/jJYm14r/1648196784996.jpg";
+  }
+
+  loadCaptions() {
+    //todo change language
+    const lang = this._translate.getDefaultLang();
+    var langId = localStorage.getItem(lang);
+    if (langId)
+      this.captionSerice.LoadCaptions(langId);
   }
 }

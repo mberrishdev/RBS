@@ -16,7 +16,7 @@
       </nav>
     </section>
     <section>
-      <h1 class="eM9Li2wbkQvvjxZB11sV vPFUfeHOataYlYsp0m6G">{{restaurant.name}}</h1>
+      <h1 class="eM9Li2wbkQvvjxZB11sV vPFUfeHOataYlYsp0m6G">{{captionService.GetCaptionByKey(restaurant.name)}}</h1>
       <div class="wP05FC6Kn5yIYpS1MOVU" data-test="restaurant-overview-header">
         <div class="Wg4GP9WuawdlKFwoOyPc" id="ratingInfo">
           <p-rating [ngModel]="restaurant.averageRate" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
@@ -50,7 +50,7 @@
             </svg></span><span>{{restaurant.mainType}}</span></div>
       </div>
       <div class="NgVF8DtD8W1Mp0BEt6JI" data-test="restaurant-description"><span
-          class="t9JcvSL3Bsj1lxMSi3pz v6aCvsQLwgDMIHQfP1MK Ti64w3n01MDTYZb59n6Q #2d333f"><span>{{restaurant.description}}</span></span>
+          class="t9JcvSL3Bsj1lxMSi3pz v6aCvsQLwgDMIHQfP1MK Ti64w3n01MDTYZb59n6Q #2d333f"><span> {{captionService.GetCaptionByKey(restaurant.description)}}</span></span>
       </div>
     </section>
     <section #photoes class="photoes">

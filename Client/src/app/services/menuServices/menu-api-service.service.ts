@@ -11,8 +11,8 @@ export class MenuApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  GetMenuTypes(restaurantId: number) {
-    return this.http.get(environment.baseUrl + 'menu/GetMenuTypes/' + restaurantId);
+  GetMenuByRestaurantId(restaurantId: number): Observable<Menu> {
+    return this.http.get<Menu>(environment.baseUrl + 'menu/GetMenuByRestaurantId/' + restaurantId);
   }
 
   GetMenuFullData(restaurantId: number, subMenuId: number): Observable<Menu> {

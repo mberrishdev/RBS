@@ -106,7 +106,7 @@ export interface MenuType {
 
 export interface Menu {
   id: number;
-  subMenuType: string;
+  description: string;
   subMenus: SubMenu[];
   updateDate: Date;
 }

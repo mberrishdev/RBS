@@ -32,11 +32,11 @@ namespace RBS.API.Controllers.Menu
             return Ok(result);
         }
 
-        [HttpGet("GetMenuFullData/{restaurantId}/{subMenuId}")]
+        [HttpGet("GetMenuByRestaurantId/{restaurantId}")]
         [ProducesResponseType(typeof(MenuModel), StatusCodes.Status200OK)]
-        public async Task<ActionResult<MenuModel>> GetMenuFullData([FromRoute] int restaurantId, [FromRoute] int subMenuId)
+        public async Task<ActionResult<MenuModel>> GetMenuByRestaurantId([FromRoute] int restaurantId)
         {
-            var result = await _menuService.GetMenuFullData(restaurantId, subMenuId);
+            var result = await _menuService.GetMenuByRestaurantId(restaurantId);
             return Ok(result);
         }
 

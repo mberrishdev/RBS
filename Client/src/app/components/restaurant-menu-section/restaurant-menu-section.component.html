@@ -59,8 +59,7 @@
     </header>
     <article role="tabpanel" id="restProfileMenuContent" tabindex="0" aria-labelledby="menu-tab-button-main-menu"
       data-test="menu-content">
-      <p class="Z5hZnDc095KpyPVTYvil">Our Kitchen is Open Seven Days a Week from 12pm till 11.45pm (last order). All
-        our main courses include a combined side dish, can be considered as full meal</p>
+      <p class="Z5hZnDc095KpyPVTYvil">{{captionService.GetCaptionByKey(menu.description)}}</p>
       <div class="Wi5aAeHmced2sk4zN1RR">
         <!-- <button type="button" class="TgNcVhiEQjFPDjJW2Yp_ YQ2SmR3lcmrtTcxuktZA" aria-expanded="true"
           data-test="expansion-button">View full menu</button> -->
@@ -98,7 +97,7 @@
       </div>
     </article>
     <footer class="fnB2tvVXV9s4o0kFpPy2" data-test="menu-footer">
-      <p class="T4eUR7RR2P1HKsnEQ8Vq">Last updated: {{GetDate(menu.updateDate)}}</p>
+      <p class="T4eUR7RR2P1HKsnEQ8Vq">{{'menu.last.updated' | translate }}: {{GetDate(menu.updateDate)}}</p>
     </footer>
   </section>
 </ng-template>

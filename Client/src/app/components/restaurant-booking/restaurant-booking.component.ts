@@ -8,6 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ReservationResponse } from '../../models/models';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { CaptionService } from 'src/app/services/captionServices/caption.service';
 
 @Component({
   selector: 'app-restaurant-booking',
@@ -60,7 +61,6 @@ export class RestaurantBookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.loadRestaurantId();
     this.loadRestaurantName();
     this.loadDataFromQuery();

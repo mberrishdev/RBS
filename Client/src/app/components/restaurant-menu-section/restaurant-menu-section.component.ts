@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CaptionService } from 'src/app/services/captionServices/caption.service';
 import { MenuApiServiceService } from 'src/app/services/menuServices/menu-api-service.service';
 import { Menu, MenuType, SubMenu, SubMenuItem } from '../../models/models';
 
@@ -13,17 +14,13 @@ export class RestaurantMenuSectionComponent implements OnInit {
   @Input() showAddInBasket: Boolean = false;
 
   isLoaded: Boolean = false;
-  isMenuTypesLoaded: Boolean = false;
-  loadedSubMenuId: number = -1;
-  menuTypes: MenuType[] | any = [];
   menu: Menu;
   basketItems: SubMenuItem[] = [];
   displayBasket: boolean = false;
   responsiveOptions;
   fullPrice: number = 0;
 
-
-  constructor(private menuApiService: MenuApiServiceService) {
+  constructor(private menuApiService: MenuApiServiceService, public captionService: CaptionService) {
     this.responsiveOptions = [
       {
         breakpoint: '1024px',
@@ -45,24 +42,13 @@ export class RestaurantMenuSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadMenuTypes();
+    this.loadMenu();
   }
 
-  loadMenuTypes() {
-    if (!this.isMenuTypesLoaded) {
-      this.menuApiService.GetMenuTypes(this.restaurantId).subscribe(t => {
-        this.menuTypes = this.menuTypes.concat(t);
-        this.isMenuTypesLoaded = true;
-        this.loadMenu(0);
-      })
-    }
-  }
-
-  loadMenu(subMenuId: number) {
-    if ((!this.isLoaded || this.loadedSubMenuId !== subMenuId) && this.isMenuTypesLoaded) {
-      this.menuApiService.GetMenuFullData(this.restaurantId, subMenuId).subscribe(m => {
-        this.loadedSubMenuId = subMenuId;
-        this.menu = m;
+  loadMenu() {
+    if (!this.isLoaded) {
+      this.menuApiService.GetMenuByRestaurantId(this.restaurantId).subscribe(t => {
+        this.menu = t
         this.isLoaded = true;
       })
     }

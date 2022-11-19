@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { Language } from 'src/app/models/models';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CaptionService } from 'src/app/services/captionServices/caption.service';
 
 @Component({
   selector: 'app-navbar',
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit {
     private translateService: TranslateService,
     public authService: AuthService,
     private _renderer2: Renderer2,
+    private _captionSerice: CaptionService,
     @Inject(DOCUMENT) private _document: Document
   ) { }
 
@@ -83,6 +85,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ChangeLang(lang: string) {
+
+    var langId = localStorage.getItem(lang);
+    this._captionSerice.LoadCaptions(langId);
     this.translateService.use(lang);
     this.translateService.setDefaultLang(lang)
     this.translateService.reloadLang(lang);

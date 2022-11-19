@@ -18,10 +18,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 })
 export class I18nModule {
   constructor(translate: TranslateService) {
+    localStorage.setItem('ka', '1');
+    localStorage.setItem('en', '2');
+    
     translate.addLangs(['en', 'ka']);
     const browserLang = translate.getBrowserLang();
-    // const lang = browserLang?.match(/en|ka/) ? browserLang : 'en';
-    const lang = 'ka';
+    let lang = browserLang?.match(/en|ka/) ? browserLang : 'en';
+    lang = 'ka';
     translate.use(lang);
     translate.setDefaultLang(lang)
     translate.reloadLang(lang);
