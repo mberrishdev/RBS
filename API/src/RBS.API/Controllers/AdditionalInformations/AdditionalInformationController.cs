@@ -18,9 +18,9 @@ namespace RBS.API.Controllers.AdditionalInformations
 
         [HttpGet("GetAdditionalInformation/{restaurantId}")]
         [ProducesResponseType(typeof(List<AdditionalInformationModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<AdditionalInformationModel>>> GetRestaurantImages([FromRoute] int restaurantId)
+        public async Task<ActionResult<List<AdditionalInformationModel>>> GetRestaurantImages([FromRoute] int restaurantId, CancellationToken cancellationToken)
         {
-            var result = await _additionalInformationService.GetAdditionalInformation(restaurantId);
+            var result = await _additionalInformationService.GetAdditionalInformation(restaurantId, cancellationToken);
             return Ok(result);
         }
     }

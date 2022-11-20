@@ -1,5 +1,4 @@
-﻿using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
+﻿using Common.Repository.Repository;
 using RBS.Domain.ReservationReminders;
 using RBS.Domain.ReservationReminders.Commands;
 
@@ -7,20 +6,17 @@ namespace RBS.Application.Services.ReservationRemainders
 {
     public class ReservationRemainderService : IReservationRemainderService
     {
-        private readonly IUnitOfWork<ReservationRemainder> _unitOfWork;
         private readonly IRepository<ReservationRemainder> _repository;
 
-        public ReservationRemainderService(IUnitOfWork<ReservationRemainder> unitOfWork)
+        public ReservationRemainderService(IRepository<ReservationRemainder> repository)
         {
-            _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository;
+            _repository = repository;
         }
 
-        public async Task CreateReservationRemainder(CreateReservationRemainderCommand command)
+        public async Task CreateReservationRemainder(CreateReservationRemainderCommand command, CancellationToken cancellationToken)
         {
             var reservationRemainder = new ReservationRemainder(command);
-            await _repository.CreateAsync(reservationRemainder);
-            await _unitOfWork.CommitAsync();
+            await _repository.InsertAsync(reservationRemainder, cancellationToken);
         }
     }
 }

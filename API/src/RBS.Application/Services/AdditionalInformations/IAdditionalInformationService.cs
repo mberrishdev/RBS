@@ -4,6 +4,6 @@ namespace RBS.Application.Services.AdditionalInformations
 {
     public interface IAdditionalInformationService
     {
-        Task<List<AdditionalInformationModel>> GetAdditionalInformation(int restaurantId);
+        Task<List<AdditionalInformationModel>> GetAdditionalInformation(int restaurantId, CancellationToken cancellationToken);
     }
 }

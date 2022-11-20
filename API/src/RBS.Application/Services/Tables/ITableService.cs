@@ -4,7 +4,7 @@ namespace RBS.Application.Services.Tables
 {
     public interface ITableService
     {
-        Task<TableModel> GetById(int tableId);
-        Task<List<TableModel>> GetTableByRestaurantId(int restaurantId);
+        Task<TableModel> GetById(int tableId, CancellationToken cancellationToken);
+        Task<List<TableModel>> GetTableByRestaurantId(int restaurantId, CancellationToken cancellationToken);
     }
 }

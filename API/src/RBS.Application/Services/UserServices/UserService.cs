@@ -1,6 +1,5 @@
-﻿using RBS.Application.Services.HashService;
-using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
+﻿using Common.Repository.Repository;
+using RBS.Application.Services.HashService;
 using RBS.Domain.Enums;
 using RBS.Domain.UsersAndRoles;
 using RBS.Domain.UsersAndRoles.Commands;
@@ -10,13 +9,14 @@ namespace RBS.Application.Services.UserServices
     public class UserService : IUserService
     {
         private readonly IRepository<ApplicationUser> _repository;
-        private readonly IUnitOfWork<ApplicationUser> _unitOfWork;
+        private readonly IQueryRepository<ApplicationUser> _queryRepository;
         private readonly IHashService _hashSercice;
 
-        public UserService(IUnitOfWork<ApplicationUser> unitOfWork, IHashService hashSercice)
+        public UserService(IRepository<ApplicationUser> repository, IQueryRepository<ApplicationUser> queryRepository,
+            IHashService hashSercice)
         {
-            _unitOfWork = unitOfWork;
-            _repository = unitOfWork.Repository;
+            _repository = repository;
+            _queryRepository = queryRepository;
             _hashSercice = hashSercice;
         }
 
@@ -25,35 +25,31 @@ namespace RBS.Application.Services.UserServices
             return user.PasswordHash.Equals(_hashSercice.Hash(password));
         }
 
-        public async Task<int> CreateAsync(RegisterCommand command)
+        public async Task<int> CreateAsync(RegisterCommand command, CancellationToken cancellationToken)
         {
             command.Password = _hashSercice.Hash(command.Password);
             command.UserType = UserType.ApplicationUser;
             var user = new ApplicationUser(command);
-            await _repository.CreateAsync(user);
-            await _unitOfWork.CommitAsync();
 
+            await _repository.InsertAsync(user, cancellationToken);
             return user.Id;
         }
 
-        public async Task<int> RegisterGuestUser(GuestUserRegitrationCommand command)
+        public async Task<int> RegisterGuestUser(GuestUserRegitrationCommand command, CancellationToken cancellationToken)
         {
             var user = new ApplicationUser(command);
-            await _repository.CreateAsync(user);
-            await _unitOfWork.CommitAsync();
+            await _repository.InsertAsync(user, cancellationToken);
             return user.Id;
         }
 
-        public async Task<ApplicationUser> FindByName(string username)
+        public async Task<ApplicationUser> FindByName(string username, CancellationToken cancellationToken)
         {
-            return await _repository.GetAsync(predicate: x => x.UserName.Equals(username));
+            return await _queryRepository.GetAsync(predicate: x => x.UserName.Equals(username), cancellationToken: cancellationToken);
         }
 
-
-        public async Task UpdateUser(ApplicationUser user)
+        public async Task UpdateUser(ApplicationUser user, CancellationToken cancellationToken)
         {
-            _repository.Update(user);
-            _unitOfWork.CommitAsync();
+            await _repository.UpdateAsync(user, cancellationToken);
         }
     }
 }

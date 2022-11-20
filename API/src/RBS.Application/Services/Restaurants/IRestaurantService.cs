@@ -5,8 +5,8 @@ namespace RBS.Application.Services.Restaurants
 {
     public interface IRestaurantService
     {
-        Task<RestaurantMainInformationModel> GetMainInformation(int id);
-        Task<RestaruantModel> GetById(int id);
-        Task<List<RestaruantSearchModel>> Search(RestaurantSearchQuery query);
+        Task<RestaurantMainInformationModel> GetMainInformation(int id, CancellationToken cancellationToken);
+        Task<RestaruantModel> GetById(int id, CancellationToken cancellationToken);
+        Task<List<RestaruantSearchModel>> Search(RestaurantSearchQuery query, CancellationToken cancellationToken);
     }
 }

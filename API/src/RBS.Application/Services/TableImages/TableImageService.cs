@@ -1,24 +1,21 @@
-﻿using RBS.Application.Models.TableImages;
-using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models.TableImages;
 using RBS.Domain.TableImages;
 
 namespace RBS.Application.Services.TableImages
 {
     internal class TableImageService : ITableImageService
     {
-        private readonly IUnitOfWork<TableImage> _unitOfWork;
-        private readonly IRepository<TableImage> _repository;
+        private readonly IQueryRepository<TableImage> _queryRepository;
 
-        public TableImageService(IUnitOfWork<TableImage> unitOfWork)
+        public TableImageService(IQueryRepository<TableImage> queryRepository)
         {
-            _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<TableImageModel> GetTable360Images(int tableId)
+        public async Task<TableImageModel> GetTable360Images(int tableId, CancellationToken cancellationToken)
         {
-            var result = await _repository.GetAsync(predicate: x => x.TableId == tableId && x.Is360 == true);
+            var result = await _queryRepository.GetAsync(predicate: x => x.TableId == tableId && x.Is360 == true, cancellationToken: cancellationToken);
 
             if (result == null)
                 return null;
@@ -26,9 +23,9 @@ namespace RBS.Application.Services.TableImages
             return new TableImageModel(result);
         }
 
-        public async Task<List<TableImageModel>> GetTableImages(int tableId)
+        public async Task<List<TableImageModel>> GetTableImages(int tableId, CancellationToken cancellationToken)
         {
-            var result = await _repository.GetListAsync(predicate: x => x.TableId == tableId && x.Is360 == false);
+            var result = await _queryRepository.GetListAsync(predicate: x => x.TableId == tableId && x.Is360 == false, cancellationToken: cancellationToken);
 
             return result.Select(x => new TableImageModel(x)).ToList();
         }

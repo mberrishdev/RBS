@@ -4,6 +4,6 @@ namespace RBS.Application.Services.PlatformNotifications
 {
     public interface IPlatformNotificationService
     {
-        Task CreatePlatformNotification(CreatePlatformNotificationCommand command);
+        Task CreatePlatformNotification(CreatePlatformNotificationCommand command, CancellationToken cancellationToken);
     }
 }

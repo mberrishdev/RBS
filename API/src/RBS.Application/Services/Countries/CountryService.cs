@@ -1,21 +1,21 @@
-﻿using RBS.Application.Models;
-using RBS.Data.Repositories;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models;
 using RBS.Domain.Countries;
 
 namespace RBS.Application.Services.Countries
 {
     public class CountryService : ICountryService
     {
-        private readonly IRepository<Country> _repository;
+        private readonly IQueryRepository<Country> _queryRepository;
 
-        public CountryService(IRepository<Country> repository)
+        public CountryService(IQueryRepository<Country> queryRepository)
         {
-            _repository = repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<List<CountryModel>> ListOfCountry()
+        public async Task<List<CountryModel>> ListOfCountry(CancellationToken cancellationToken)
         {
-            var countries = await _repository.GetListAsync();
+            var countries = await _queryRepository.GetListAsync(cancellationToken: cancellationToken);
 
             return countries.Select(x => new CountryModel(x)).ToList();
         }

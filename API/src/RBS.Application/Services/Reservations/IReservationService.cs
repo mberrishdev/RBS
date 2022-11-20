@@ -6,7 +6,7 @@ namespace RBS.Application.Services.Reservations
 {
     public interface IReservationService
     {
-        Task<ReservationResponse> ResevationCommandHandler(ReservationCommand command);
-        Task<List<ResravtionModel>> GetRestaurantReservationsByDay(int restaruantId, DateTime reseravtionDate);
+        Task<ReservationResponse> ResevationCommandHandler(ReservationCommand command, CancellationToken cancellationToken);
+        Task<List<ResravtionModel>> GetRestaurantReservationsByDay(int restaruantId, DateTime reseravtionDate, CancellationToken cancellationToken);
     }
 }

@@ -1,9 +1,8 @@
-﻿using RBS.Application.Helper;
+﻿using Common.Lists.Sorting;
+using Common.Repository.Repository;
+using RBS.Application.Helper;
 using RBS.Application.Models.RestaurantModels;
 using RBS.Application.Services.Restaurants.Queries;
-using RBS.Data;
-using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
 using RBS.Domain.Enums;
 using RBS.Domain.Restaurants;
 using System.Linq.Expressions;
@@ -12,21 +11,21 @@ namespace RBS.Application.Services.Restaurants
 {
     public class RestaurantService : IRestaurantService
     {
-        private readonly IUnitOfWork<Restaurant> _unitOfWork;
-        private readonly IRepository<Restaurant> _repository;
-        //private readonly IReservationService _reservationService;
-        //TODO:ADD CONTACT INFO
-        public RestaurantService(IUnitOfWork<Restaurant> unitOfWork)
+        private readonly IQueryRepository<Restaurant> _queryRepository;
+
+        public RestaurantService(IQueryRepository<Restaurant> queryRepository)
         {
-            _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository;
-            //_reservationService = reservationService;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<RestaurantMainInformationModel> GetMainInformation(int id)
+        //private readonly IReservationService _reservationService;
+        //TODO:ADD CONTACT INFO
+
+        public async Task<RestaurantMainInformationModel> GetMainInformation(int id, CancellationToken cancellationToken)
         {
-            var restaurant = await _repository.GetAsync(predicate: x => x.Id == id,
-                includeProperties: new Expression<Func<Restaurant, object>>[3] { x => x.Address, x => x.Reviews, x => x.RSTypes });
+            var restaurant = await _queryRepository.GetAsync(predicate: x => x.Id == id,
+                relatedProperties: new Expression<Func<Restaurant, object>>[3] { x => x.Address, x => x.Reviews, x => x.RSTypes },
+                cancellationToken: cancellationToken);
 
             var result = new RestaurantMainInformationModel(restaurant);
 
@@ -34,31 +33,34 @@ namespace RBS.Application.Services.Restaurants
             return result;
         }
 
-        public async Task<RestaruantModel> GetById(int id)
+        public async Task<RestaruantModel> GetById(int id, CancellationToken cancellationToken)
         {
-            var restaurant = await _repository.GetAsync(predicate: x => x.Id == id);
+            var restaurant = await _queryRepository.GetAsync(predicate: x => x.Id == id, cancellationToken: cancellationToken);
             if (restaurant == null)
                 return null;
 
             return new RestaruantModel(restaurant);
         }
 
-        public async Task<List<RestaruantSearchModel>> Search(RestaurantSearchQuery query)
+        public async Task<List<RestaruantSearchModel>> Search(RestaurantSearchQuery query, CancellationToken cancellationToken)
         {
-            (Expression<Func<Restaurant, object>>? Expression, OrderByType OrderType) orderBy = query.OrderBy switch
+            //TODO add feature and nearest
+            var sortingDetails = query.OrderBy switch
             {
-                RestaurantOrderType.None => (null, OrderByType.None),
-                RestaurantOrderType.Newest => (x => x.PublishDate, OrderByType.DESC),
-                RestaurantOrderType.Featured => (null, OrderByType.None),
-                RestaurantOrderType.Nearest => (null, OrderByType.None),
-                RestaurantOrderType.HigestRated => (x => x.Reviews.Average(x => x.OverallRate), OrderByType.DESC),
-                _ => (null, OrderByType.None),
+                RestaurantOrderType.None => new SortingDetails<Restaurant>(new SortItem<Restaurant>(x => x.Id, SortDirection.DESC)),
+                RestaurantOrderType.Newest => new SortingDetails<Restaurant>(new SortItem<Restaurant>(x => x.PublishDate, SortDirection.DESC)),
+                RestaurantOrderType.Featured => new SortingDetails<Restaurant>(new SortItem<Restaurant>(x => x.Id, SortDirection.DESC)),
+                RestaurantOrderType.Nearest => new SortingDetails<Restaurant>(new SortItem<Restaurant>(x => x.Id, SortDirection.DESC)),
+                RestaurantOrderType.HigestRated => new SortingDetails<Restaurant>(new SortItem<Restaurant>(x => x.Reviews.Average(x => x.OverallRate), SortDirection.DESC)),
+                _ => new SortingDetails<Restaurant>(new SortItem<Restaurant>(x => x.Id, SortDirection.DESC)),
             };
 
+            var relatedProperties = new Expression<Func<Restaurant, object>>[4] { x => x.Address, x => x.Reviews, x => x.Images, x => x.RSTypes };
 
-            var restaurants = await _repository.GetListAsync(
-                includeProperties: new Expression<Func<Restaurant, object>>[4] { x => x.Address, x => x.Reviews, x => x.Images, x => x.RSTypes },
-                orderBy: orderBy.Expression, orderByType: orderBy.OrderType);
+            var restaurants = await _queryRepository.GetListAsync(
+                relatedProperties: relatedProperties,
+                sortingDetails: sortingDetails,
+                cancellationToken: cancellationToken);
 
             if (query.OrderBy == RestaurantOrderType.Nearest)
                 restaurants = restaurants.OrderBy(x => DistanceHelper.DistanceTo(query.UserModel.IpInfo.Latitude, query.UserModel.IpInfo.Longitude,
@@ -71,6 +73,7 @@ namespace RBS.Application.Services.Restaurants
             //{
             //    var reservation = await _reservationService.GetRestaurantReservationsByDay(restaurantSearchModel.Id, query.Date ?? DateTime.Now);
             //}
+
             return restaurants.Select(x => new RestaruantSearchModel(x)).ToList();
         }
     }

@@ -1,21 +1,21 @@
-﻿using RBS.Application.Models;
-using RBS.Data.Repositories;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models;
 using RBS.Domain.AdditionalInformations;
 
 namespace RBS.Application.Services.AdditionalInformations
 {
     public class AdditionalInformationService : IAdditionalInformationService
     {
-        private readonly IRepository<AdditionalInformation> _repository;
+        private readonly IQueryRepository<AdditionalInformation> _queryRepository;
 
-        public AdditionalInformationService(IRepository<AdditionalInformation> repository)
+        public AdditionalInformationService(IQueryRepository<AdditionalInformation> queryRepository)
         {
-            _repository = repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<List<AdditionalInformationModel>> GetAdditionalInformation(int restaurantId)
+        public async Task<List<AdditionalInformationModel>> GetAdditionalInformation(int restaurantId, CancellationToken cancellationToken)
         {
-            var additionalInformation = await _repository.GetListAsync(predicate: x => x.RestaurantId == restaurantId);
+            var additionalInformation = await _queryRepository.GetListAsync(predicate: x => x.RestaurantId == restaurantId, cancellationToken: cancellationToken);
 
             return additionalInformation.Select(x => new AdditionalInformationModel(x)).ToList();
         }

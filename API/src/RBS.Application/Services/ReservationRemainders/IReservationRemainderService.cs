@@ -4,6 +4,6 @@ namespace RBS.Application.Services.ReservationRemainders
 {
     public interface IReservationRemainderService
     {
-        Task CreateReservationRemainder(CreateReservationRemainderCommand command);
+        Task CreateReservationRemainder(CreateReservationRemainderCommand command, CancellationToken cancellationToken);
     }
 }

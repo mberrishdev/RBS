@@ -21,25 +21,25 @@ namespace RBS.API.Controllers.Table
 
         [HttpGet("GetTableByRestaurantId/{restaurantId}")]
         [ProducesResponseType(typeof(List<TableModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetTableByRestaurantId([FromRoute] int restaurantId)
+        public async Task<ActionResult> GetTableByRestaurantId([FromRoute] int restaurantId, CancellationToken cancellationToken)
         {
-            var result = await _tableService.GetTableByRestaurantId(restaurantId);
+            var result = await _tableService.GetTableByRestaurantId(restaurantId, cancellationToken);
             return Ok(result);
         }
 
         [HttpGet("GetTableImages/{tableId}")]
         [ProducesResponseType(typeof(List<TableImageModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetTableImages([FromRoute] int tableId)
+        public async Task<ActionResult> GetTableImages([FromRoute] int tableId, CancellationToken cancellationToken)
         {
-            var result = await _tableImageService.GetTableImages(tableId);
+            var result = await _tableImageService.GetTableImages(tableId, cancellationToken);
             return Ok(result);
         }
 
         [HttpGet("GetTable360Images/{tableId}")]
         [ProducesResponseType(typeof(List<TableImageModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetTable360Images([FromRoute] int tableId)
+        public async Task<ActionResult> GetTable360Images([FromRoute] int tableId, CancellationToken cancellationToken)
         {
-            var result = await _tableImageService.GetTable360Images(tableId);
+            var result = await _tableImageService.GetTable360Images(tableId, cancellationToken);
             if (result == null)
                 return Ok("360 image does not exist");
             return Ok(result);

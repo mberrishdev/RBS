@@ -3,7 +3,6 @@ using Microsoft.OpenApi.Models;
 using RBS.API.Filters;
 using RBS.API.Infrastracture.Options;
 using RBS.Application;
-using RBS.Data;
 using RBS.Persistence;
 
 namespace RBS.API.Infrastracture.StartupConfiguration
@@ -18,7 +17,6 @@ namespace RBS.API.Infrastracture.StartupConfiguration
             // Add services to the container.
 
             services.AddPersistence(configuration);
-            services.AddRepository();
             services.AddApplication(configuration);
 
             services.AddControllers();

@@ -18,9 +18,9 @@ namespace RBS.API.Controllers.Languages
 
         [HttpGet]
         [ProducesResponseType(typeof(List<LanguageModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<LanguageModel>>> GetAllLanguages()
+        public async Task<ActionResult<List<LanguageModel>>> GetAllLanguages(CancellationToken cancellationToken)
         {
-            var result = await _languageService.GetAllLanguages();
+            var result = await _languageService.GetAllLanguages(cancellationToken);
             return Ok(result);
         }
     }

@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RBS.Application\RBS.Application.csproj" />
-    <ProjectReference Include="..\RBS.Data\RBS.Data.csproj" />
     <ProjectReference Include="..\RBS.Persistence\RBS.Persistence.csproj" />
   </ItemGroup>
 
