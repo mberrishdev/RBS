@@ -18,9 +18,9 @@ namespace RBS.API.Controllers.Review
 
         [HttpGet("GetRestaurantReviews/{restaurantId}")]
         [ProducesResponseType(typeof(ReviewFullModel), StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReviewFullModel>> GetRestaurantReviews([FromRoute] int restaurantId)
+        public async Task<ActionResult<ReviewFullModel>> GetRestaurantReviews([FromRoute] int restaurantId, CancellationToken cancellationToken)
         {
-            var result = await _reviewService.GetRestaurantReviews(restaurantId);
+            var result = await _reviewService.GetRestaurantReviews(restaurantId, cancellationToken);
             return Ok(result);
         }
     }

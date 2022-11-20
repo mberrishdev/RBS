@@ -17,9 +17,9 @@ namespace RBS.Application.Services.Auth
             _tokenService = tokenService;
         }
 
-        public async Task<AuthResponse> Login(LoginCommand command)
+        public async Task<AuthResponse> Login(LoginCommand command, CancellationToken cancellationToken)
         {
-            var user = await _userService.FindByName(command.Username);
+            var user = await _userService.FindByName(command.Username, cancellationToken);
             if (user != null && _userService.CheckPassword(user, command.Password))
             {
                 //var userRoles = await _userService.GetRolesAsync(user.Id.ToString());
@@ -35,18 +35,18 @@ namespace RBS.Application.Services.Auth
                     UserName = user.UserName,
                 };
 
-                return await _tokenService.GenerateToken(userInfoModel);
+                return await _tokenService.GenerateToken(userInfoModel, cancellationToken);
             }
             return null;
         }
 
-        public async Task<int> Register(RegisterCommand command)
+        public async Task<int> Register(RegisterCommand command, CancellationToken cancellationToken)
         {
-            var userExists = await _userService.FindByName(command.Username);
+            var userExists = await _userService.FindByName(command.Username, cancellationToken);
             if (userExists != null)
                 throw new AuthException("User already exists!");
 
-            var id = await _userService.CreateAsync(command);
+            var id = await _userService.CreateAsync(command, cancellationToken);
 
             if (id <= 0)
                 throw new AuthException("User creation failed! Please check user details and try again.");
@@ -54,9 +54,9 @@ namespace RBS.Application.Services.Auth
             return id;
         }
 
-        public async Task<AuthResponse> RefreshToken(TokenRequest tokenRequest)
+        public async Task<AuthResponse> RefreshToken(TokenRequest tokenRequest, CancellationToken cancellationToken)
         {
-            return await _tokenService.RefreshToken(tokenRequest);
+            return await _tokenService.RefreshToken(tokenRequest, cancellationToken);
         }
     }
 }

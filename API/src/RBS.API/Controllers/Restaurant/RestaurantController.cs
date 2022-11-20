@@ -19,15 +19,18 @@ namespace RBS.API.Controllers.Restaurant
 
         [HttpGet("MainInformation/{id}")]
         [ProducesResponseType(typeof(List<RestaurantMainInformationModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult> GetMainInformation([FromRoute] int id)
+        public async Task<ActionResult> GetMainInformation([FromRoute] int id, CancellationToken cancellationToken)
         {
-            var result = await _restaurantService.GetMainInformation(id);
+            var result = await _restaurantService.GetMainInformation(id, cancellationToken);
             return Ok(result);
         }
 
         [HttpGet("Search")]
         [ProducesResponseType(typeof(List<RestaruantSearchModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<RestaruantSearchModel>>> Search([FromQuery] DateTime date, [FromQuery] DateTime time, [FromQuery] int personCount, [FromQuery] string restaurant, [FromQuery] int orderById)
+        public async Task<ActionResult<List<RestaruantSearchModel>>> Search([FromQuery] DateTime date,
+            [FromQuery] DateTime time, [FromQuery] int personCount,
+            [FromQuery] string restaurant, [FromQuery] int orderById,
+            CancellationToken cancellationToken)
         {
             var query = new RestaurantSearchQuery()
             {
@@ -35,7 +38,7 @@ namespace RBS.API.Controllers.Restaurant
                 UserModel = UserModel,
             };
 
-            var result = await _restaurantService.Search(query);
+            var result = await _restaurantService.Search(query, cancellationToken);
             return Ok(result);
         }
     }

@@ -1,22 +1,21 @@
-﻿using RBS.Application.Models;
-using RBS.Data.Repositories;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models;
 using RBS.Domain.Reviews;
 
 namespace RBS.Application.Services.Reviews
 {
     public class ReviewService : IReviewService
     {
-        private readonly IRepository<Review> _repository;
+        private readonly IQueryRepository<Review> _queryRepository;
 
-        public ReviewService(IRepository<Review> repository)
+        public ReviewService(IQueryRepository<Review> queryRepository)
         {
-            _repository = repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<ReviewFullModel> GetRestaurantReviews(int restaurantId)
+        public async Task<ReviewFullModel> GetRestaurantReviews(int restaurantId, CancellationToken cancellationToken)
         {
-            var reviews = await _repository.GetListAsync(predicate: x => x.RestaurantId == restaurantId);
-
+            var reviews = await _queryRepository.GetListAsync(predicate: x => x.RestaurantId == restaurantId, cancellationToken: cancellationToken);
             return new ReviewFullModel(reviews);
         }
     }

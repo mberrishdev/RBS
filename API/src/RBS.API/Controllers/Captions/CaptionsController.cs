@@ -18,9 +18,9 @@ namespace RBS.API.Controllers.Captions
 
         [HttpGet("{languageId}")]
         [ProducesResponseType(typeof(List<CaptionModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<CaptionModel>>> Captions(int languageId)
+        public async Task<ActionResult<List<CaptionModel>>> Captions(int languageId, CancellationToken cancellationToken)
         {
-            var result = await _captionService.GetCaptions(languageId);
+            var result = await _captionService.GetCaptions(languageId, cancellationToken);
             return Ok(result);
         }
     }

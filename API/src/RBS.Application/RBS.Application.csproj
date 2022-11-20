@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RBS.Data\RBS.Data.csproj" />
+    <ProjectReference Include="..\Common\Common.Repository\Common.Repository.csproj" />
     <ProjectReference Include="..\RBS.Domain\RBS.Domain.csproj" />
   </ItemGroup>
 

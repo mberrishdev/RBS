@@ -1,9 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Common.Repository.Repository;
+using Microsoft.IdentityModel.Tokens;
 using RBS.Application.Exceptions;
 using RBS.Application.Services.Auth.Helper;
 using RBS.Application.Services.Auth.Models;
 using RBS.Application.Services.Settings.AuthSettings;
-using RBS.Data.UnitOfWorks;
 using RBS.Domain.RefreshTokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,16 +16,19 @@ namespace RBS.Application.Services.Auth.TokenService
     {
         private readonly ITokenHelper _tokenHelper;
         private readonly IAuthSettings _authSettings;
-        private readonly IUnitOfWork<RefreshToken> _unitOfWork;
+        private readonly IRepository<RefreshToken> _repository;
+        private readonly IQueryRepository<RefreshToken> _queryRepository;
 
-        public TokenService(ITokenHelper tokenHelper, IAuthSettings authSettings, IUnitOfWork<RefreshToken> unitOfWork)
+        public TokenService(ITokenHelper tokenHelper, IAuthSettings authSettings,
+            IRepository<RefreshToken> repository, IQueryRepository<RefreshToken> queryRepository)
         {
             _tokenHelper = tokenHelper;
             _authSettings = authSettings;
-            _unitOfWork = unitOfWork;
+            _repository = repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<AuthResponse> GenerateToken(UserInfoModel userInfo)
+        public async Task<AuthResponse> GenerateToken(UserInfoModel userInfo, CancellationToken cancellationToken)
         {
             var claims = _tokenHelper.GetClaims(userInfo);
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authSettings.SecretKey));
@@ -52,8 +55,7 @@ namespace RBS.Application.Services.Auth.TokenService
                 refreshToken.ExpiryDate = DateTime.Now.AddMinutes(_authSettings.RefreshTokenExpirationMinutes);
             }
 
-            await _unitOfWork.Repository.CreateAsync(refreshToken);
-            await _unitOfWork.CommitAsync();
+            await _repository.InsertAsync(refreshToken, cancellationToken);
 
             return new AuthResponse
             {
@@ -66,7 +68,7 @@ namespace RBS.Application.Services.Auth.TokenService
             };
         }
 
-        public async Task<AuthResponse> RefreshToken(TokenRequest tokenRequest)
+        public async Task<AuthResponse> RefreshToken(TokenRequest tokenRequest, CancellationToken cancellationToken)
         {
             var validatedToken = _tokenHelper.GetPrincipalFromToken(tokenRequest.Token);
 
@@ -75,7 +77,7 @@ namespace RBS.Application.Services.Auth.TokenService
                 throw new InvalidTokenException(tokenRequest.Token);
             }
 
-            var storedRefreshToken = await _unitOfWork.Repository.GetAsync(predicate: x => x.Token == tokenRequest.RefreshToken);
+            var storedRefreshToken = await _queryRepository.GetAsync(predicate: x => x.Token == tokenRequest.RefreshToken, cancellationToken: cancellationToken);
 
             if (storedRefreshToken == null)
             {
@@ -100,8 +102,7 @@ namespace RBS.Application.Services.Auth.TokenService
             }
 
             storedRefreshToken.Used = true;
-            _unitOfWork.Repository.Update(storedRefreshToken);
-            await _unitOfWork.CommitAsync();
+            await _repository.UpdateAsync(storedRefreshToken, cancellationToken);
 
             var userName = validatedToken.Claims.Single(x => x.Type == ClaimTypes.Name).Value;
             var userId = validatedToken.Claims.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
@@ -115,7 +116,7 @@ namespace RBS.Application.Services.Auth.TokenService
                 //UserRoles = userRoles
             };
 
-            return await GenerateToken(userInfo);
+            return await GenerateToken(userInfo, cancellationToken);
         }
     }
 }

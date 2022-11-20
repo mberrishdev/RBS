@@ -19,7 +19,7 @@ namespace RBS.API.Controllers.Reservation
 
         [HttpPost]
         //[ProducesResponseType(ActionResult<ReservationResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReservationResponse>> RestaurantReservation([FromBody] ReservationCommand command)
+        public async Task<ActionResult<ReservationResponse>> RestaurantReservation([FromBody] ReservationCommand command, CancellationToken cancellationToken)
         {
             if (command.IsUserLogIn && UserModel == null)
                 return Unauthorized();
@@ -27,7 +27,7 @@ namespace RBS.API.Controllers.Reservation
             if (command.IsUserLogIn)
                 command.UserModel = UserModel;
 
-            var response = await _reservationService.ResevationCommandHandler(command);
+            var response = await _reservationService.ResevationCommandHandler(command, cancellationToken);
             return Ok(response);
         }
 

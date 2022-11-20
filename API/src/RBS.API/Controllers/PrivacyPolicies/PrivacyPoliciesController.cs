@@ -17,9 +17,9 @@ namespace RBS.API.Controllers.PrivacyPolicies
         }
 
         [HttpGet("{lang}")]
-        public async Task<ActionResult<PrivacyPolicyModel>> ListPrivacyPolicyByLanguage([FromRoute] string lang)
+        public async Task<ActionResult<PrivacyPolicyModel>> ListPrivacyPolicyByLanguage([FromRoute] string lang, CancellationToken cancellationToken)
         {
-            var response = await _privacyPolicyService.ListPrivacyPolicyByLanguage(lang);
+            var response = await _privacyPolicyService.ListPrivacyPolicyByLanguage(lang, cancellationToken);
             return Ok(response);
         }
     }

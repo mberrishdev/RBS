@@ -18,25 +18,26 @@ namespace RBS.API.Controllers.Menu
 
         [HttpGet("GetMenuTypes/{restaurantId}")]
         [ProducesResponseType(typeof(List<SubMenuTypeModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<SubMenuTypeModel>>> GetMenuTypes([FromRoute] int restaurantId)
+        public async Task<ActionResult<List<SubMenuTypeModel>>> GetMenuTypes([FromRoute] int restaurantId, CancellationToken cancellationToken)
         {
-            var result = await _menuService.GetRestaurantSubMenyTypes(restaurantId);
+            var result = await _menuService.GetRestaurantSubMenyTypes(restaurantId, cancellationToken);
             return Ok(result);
         }
 
         [HttpGet("GetMenuItemsBySubMenuId/{restaurantId}/{subMenuId}")]
         [ProducesResponseType(typeof(List<SubMenuModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<SubMenuModel>>> GetMenuItemsBySubMenuId([FromRoute] int restaurantId, [FromRoute] int subMenuId)
+        public async Task<ActionResult<List<SubMenuModel>>> GetMenuItemsBySubMenuId([FromRoute] int restaurantId, [FromRoute] int subMenuId,
+            CancellationToken cancellationToken)
         {
-            var result = await _menuService.GetMenuItemsBySubMenuId(restaurantId, subMenuId);
+            var result = await _menuService.GetMenuItemsBySubMenuId(restaurantId, subMenuId, cancellationToken);
             return Ok(result);
         }
 
         [HttpGet("GetMenuByRestaurantId/{restaurantId}")]
         [ProducesResponseType(typeof(MenuModel), StatusCodes.Status200OK)]
-        public async Task<ActionResult<MenuModel>> GetMenuByRestaurantId([FromRoute] int restaurantId)
+        public async Task<ActionResult<MenuModel>> GetMenuByRestaurantId([FromRoute] int restaurantId, CancellationToken cancellationToken)
         {
-            var result = await _menuService.GetMenuByRestaurantId(restaurantId);
+            var result = await _menuService.GetMenuByRestaurantId(restaurantId, cancellationToken);
             return Ok(result);
         }
 

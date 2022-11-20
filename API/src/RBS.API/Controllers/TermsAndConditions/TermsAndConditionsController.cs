@@ -17,9 +17,9 @@ namespace RBS.API.Controllers.TermsAndConditions
         }
 
         [HttpGet("{lang}")]
-        public async Task<ActionResult<TermAndConditionModel>> ListTermAndConditionByLanguage([FromRoute] string lang)
+        public async Task<ActionResult<TermAndConditionModel>> ListTermAndConditionByLanguage([FromRoute] string lang, CancellationToken cancellationToken)
         {
-            var response = await _termAndConditionService.ListTermAndConditionByLanguag(lang);
+            var response = await _termAndConditionService.ListTermAndConditionByLanguag(lang, cancellationToken);
             return Ok(response);
         }
     }
