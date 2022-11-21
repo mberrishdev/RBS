@@ -6,7 +6,6 @@ namespace RBS.Domain.PlatformNotifications
 {
     public class PlatformNotification : EntityBase
     {
-
         public NotificationType NotificationType { get; private set; }
         public int ApplicationUserId { get; private set; }
         public ApplicationUser ApplicationUser { get; private set; }

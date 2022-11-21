@@ -1,19 +1,14 @@
-﻿using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
-using RBS.Domain.PlatformNotifications;
-using RBS.Domain.PlatformNotifications.Commands;
-
-namespace RBS.Application.Services.PlatformNotifications
+﻿namespace RBS.Application.Services.PlatformNotifications
 {
     public class PlatformNotificationService : IPlatformNotificationService
     {
         private readonly IUnitOfWork<PlatformNotification> _unitOfWork;
         private readonly IRepository<PlatformNotification> _repository;
+        private readonly IQueryRepository<PlatformNotification> _queryRepository;
 
-        public PlatformNotificationService(IUnitOfWork<PlatformNotification> unitOfWork)
+        public PlatformNotificationService(IRepository<PlatformNotification> repository)
         {
-            _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository;
+            _repository = repository;
         }
 
         public async Task CreatePlatformNotification(CreatePlatformNotificationCommand command)
@@ -21,6 +16,12 @@ namespace RBS.Application.Services.PlatformNotifications
             var platformNotificaton = new PlatformNotification(command);
             await _repository.CreateAsync(platformNotificaton);
             await _unitOfWork.CommitAsync();
+        }
+
+        public async Task<List<PlatformNotificationModel>> GetUserNotifications(int userId, CancellationToken cancellationToken)
+        {
+            var notifications = await _queryRepository.GetListAsync(predicate: x => x.ApplicationUserId == userId, cancellationToken: cancellationToken);
+            return notifications.Select(x => new PlatformNotificationModel(x)).ToList();
         }
     }
 }

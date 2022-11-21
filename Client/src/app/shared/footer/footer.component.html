@@ -1,28 +1,80 @@
-<footer class="footer" >
-  <div class="container">
-    <div class="row align-items-center justify-content-md-between">
-      <div class="col-md-6">
-        <div class="copyright">
-          &copy; {{test | date: 'yyyy'}}
-          <a href="https://github.com/mberrishdev" target="_blank"> &#169; mberrishdev</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <ul class="nav nav-footer justify-content-end">
-          <li class="nav-item">
-            <a href="" class="nav-link" target="_blank">Creative Tim</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link" target="_blank">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link" target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link" target="_blank">MIT License</a>
-          </li>
-        </ul>
-      </div>
+<footer class="footer">
+  <div class="footer__addr">
+    <address>
+      <a class="address" href="https://goo.gl/maps/AgFLdVuo52Cifcds9" target="_blank">1 Paata Saakadze St, Tbilisi, Georgia</a>
+    </address>
+  </div>
+
+  <ul class="footer__nav">
+    <li class="nav__item">
+      <h2 class="nav__title">Media</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Online</a>
+        </li>
+
+        <li>
+          <a href="#">Print</a>
+        </li>
+
+        <li>
+          <a href="#">Alternative Ads</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav__item nav__item--extra">
+      <h2 class="nav__title">Technology</h2>
+
+      <ul class="nav__ul nav__ul--extra">
+        <li>
+          <a href="#">Hardware Design</a>
+        </li>
+
+        <li>
+          <a href="#">Software Design</a>
+        </li>
+
+        <li>
+          <a href="#">Digital Signage</a>
+        </li>
+
+        <li>
+          <a href="#">Automation</a>
+        </li>
+
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+
+        <li>
+          <a href="#">IoT</a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav__item">
+      <h2 class="nav__title">Legal</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a routerLink="/privacy-policy">Privacy Policy</a>
+        </li>
+        <li>
+          <a routerLink="/terms-and-conditions">Terms of Condition</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="legal">
+    <div class="copyright">
+      &copy; {{test | date: 'yyyy'}}
+      <a href="https://github.com/mberrishdev" target="_blank"> &#169; mberrishdev</a>. All rights reserved.
+    </div>
+    <div class="legal__links">
+      <p>Made with <span class="heart">♥</span> from <img width="30px" src="../../../assets/images/georgia.png"></p>
     </div>
   </div>
 </footer>
