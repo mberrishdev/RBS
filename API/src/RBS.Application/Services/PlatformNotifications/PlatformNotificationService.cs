@@ -1,4 +1,9 @@
-﻿namespace RBS.Application.Services.PlatformNotifications
+﻿using Common.Repository.Repository;
+using RBS.Application.Services.PlatformNotifications.Models;
+using RBS.Domain.PlatformNotifications;
+using RBS.Domain.PlatformNotifications.Commands;
+
+namespace RBS.Application.Services.PlatformNotifications
 {
     public class PlatformNotificationService : IPlatformNotificationService
     {
