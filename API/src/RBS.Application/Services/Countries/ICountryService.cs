@@ -4,6 +4,6 @@ namespace RBS.Application.Services.Countries
 {
     public interface ICountryService
     {
-        Task<List<CountryModel>> ListOfCountry();
+        Task<List<CountryModel>> ListOfCountry(CancellationToken cancellationToken);
     }
 }

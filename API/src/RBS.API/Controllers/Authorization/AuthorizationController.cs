@@ -19,25 +19,25 @@ namespace RBS.API.Controllers.Authorization
 
         [HttpPost("Login")]
         [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginCommand command)
+        public async Task<ActionResult<AuthResponse>> Login([FromBody] LoginCommand command, CancellationToken cancellationToken)
         {
-            var result = await _authService.Login(command);
+            var result = await _authService.Login(command, cancellationToken);
             return Ok(result);
         }
 
         [HttpPost("Register")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-        public async Task<ActionResult<int>> Register([FromBody] RegisterCommand command)
+        public async Task<ActionResult<int>> Register([FromBody] RegisterCommand command, CancellationToken cancellationToken)
         {
-            var id = await _authService.Register(command);
+            var id = await _authService.Register(command, cancellationToken);
             return Ok(id);
         }
 
         [HttpPost("RefreshToken")]
         [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        public async Task<ActionResult<AuthResponse>> RefreshToken([FromBody] TokenRequest request)
+        public async Task<ActionResult<AuthResponse>> RefreshToken([FromBody] TokenRequest request, CancellationToken cancellationToken)
         {
-            var result = await _authService.RefreshToken(request);
+            var result = await _authService.RefreshToken(request, cancellationToken);
             return Ok(result);
         }
     }

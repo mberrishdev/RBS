@@ -18,9 +18,9 @@ namespace RBS.API.Controllers.Countries
 
         [HttpGet("ListOfCountry")]
         [ProducesResponseType(typeof(List<CountryModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<CountryModel>>> ListOfCountry()
+        public async Task<ActionResult<List<CountryModel>>> ListOfCountry(CancellationToken cancellationToken)
         {
-            var result = await _countryService.ListOfCountry();
+            var result = await _countryService.ListOfCountry(cancellationToken);
             return Ok(result);
         }
     }

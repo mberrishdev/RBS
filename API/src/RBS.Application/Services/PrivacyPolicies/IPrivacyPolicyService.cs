@@ -4,6 +4,6 @@ namespace RBS.Application.Services.PrivacyPolicies
 {
     public interface IPrivacyPolicyService
     {
-        Task<List<PrivacyPolicyModel>> ListPrivacyPolicyByLanguage(string lang);
+        Task<List<PrivacyPolicyModel>> ListPrivacyPolicyByLanguage(string lang, CancellationToken cancellationToken);
     }
 }

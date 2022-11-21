@@ -1,21 +1,21 @@
-﻿using RBS.Application.Models.Captions;
-using RBS.Data.Repositories;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models.Captions;
 using RBS.Domain.TextContents;
 
 namespace RBS.Application.Services.Captions
 {
     public class CaptionService : ICaptionService
     {
-        private readonly IRepository<Caption> _repository;
+        private readonly IQueryRepository<Caption> _queryRepository;
 
-        public CaptionService(IRepository<Caption> repository)
+        public CaptionService(IQueryRepository<Caption> queryRepository)
         {
-            _repository = repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<List<CaptionModel>> GetCaptions(int languageId)
+        public async Task<List<CaptionModel>> GetCaptions(int languageId, CancellationToken cancellationToken)
         {
-            var captions = await _repository.GetListAsync(x => x.LanguageId == languageId);
+            var captions = await _queryRepository.GetListAsync(predicate: x => x.LanguageId == languageId, cancellationToken: cancellationToken);
             return captions.Select(x => new CaptionModel(x)).ToList();
         }
     }

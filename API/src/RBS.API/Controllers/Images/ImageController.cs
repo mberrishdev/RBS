@@ -24,15 +24,16 @@ namespace RBS.API.Controllers.Images
 
         [HttpGet("GetRestaurantImages/{id}/{typeId}")]
         [ProducesResponseType(typeof(List<ImageModel>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<ImageModel>>> GetRestaurantImages([FromRoute] int id, [FromRoute] int typeId)
+        public async Task<ActionResult<List<ImageModel>>> GetRestaurantImages([FromRoute] int id, [FromRoute] int typeId,
+            CancellationToken cancellationToken)
         {
-            var result = await _imageService.GetRestaurantImages(id, typeId);
+            var result = await _imageService.GetRestaurantImages(id, typeId, cancellationToken);
             return Ok(result);
         }
 
         [HttpGet("GetRestaurantTopImage/{restaurantId}")]
         [ProducesResponseType(typeof(ImageModel), StatusCodes.Status200OK)]
-        public async Task<ActionResult<ImageModel>> GetRestaurantTopImage([FromRoute] int restaurantId)
+        public async Task<ActionResult<ImageModel>> GetRestaurantTopImage([FromRoute] int restaurantId, CancellationToken cancellationToken)
         {
 
             var url = "https://medium.com/@marcosvinicios_net";
@@ -40,7 +41,7 @@ namespace RBS.API.Controllers.Images
             var image = QrCodeGenerator.GenerateByteArray(url);
             return File(image, "image/jpeg");
 
-            //var result = await _imageService.GetRestaurantTopImage(restaurantId);
+            //var result = await _imageService.GetRestaurantTopImage(restaurantId,cancellationToken);
             //return Ok(result);
         }
     }

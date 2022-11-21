@@ -2,7 +2,6 @@
 {
     public class PlatformNotificationService : IPlatformNotificationService
     {
-        private readonly IUnitOfWork<PlatformNotification> _unitOfWork;
         private readonly IRepository<PlatformNotification> _repository;
         private readonly IQueryRepository<PlatformNotification> _queryRepository;
 
@@ -11,11 +10,10 @@
             _repository = repository;
         }
 
-        public async Task CreatePlatformNotification(CreatePlatformNotificationCommand command)
+        public async Task CreatePlatformNotification(CreatePlatformNotificationCommand command, CancellationToken cancellationToken)
         {
             var platformNotificaton = new PlatformNotification(command);
-            await _repository.CreateAsync(platformNotificaton);
-            await _unitOfWork.CommitAsync();
+            await _repository.InsertAsync(platformNotificaton, cancellationToken);
         }
 
         public async Task<List<PlatformNotificationModel>> GetUserNotifications(int userId, CancellationToken cancellationToken)

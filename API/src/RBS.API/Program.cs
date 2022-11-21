@@ -18,6 +18,8 @@ try
     builder.ConfigureService();
 
     var app = builder.Build();
+    app.UseMiddleware<ErrorHandlerMiddleware>();
+    app.UseMiddleware<CancellationMiddleware>();
 
     using (var scope = app.Services.CreateScope())
     {
@@ -49,8 +51,6 @@ try
 
     });
     app.UseHttpsRedirection();
-
-    app.UseMiddleware<ErrorHandlerMiddleware>();
 
 
     app.UseAuthorization();

@@ -1,4 +1,6 @@
-﻿using RBS.Application.Exceptions;
+﻿using Common.Repository.Repository;
+using Common.Repository.UnitOfWork;
+using RBS.Application.Exceptions;
 using RBS.Application.Models.QRModels;
 using RBS.Application.Models.ReservationModels;
 using RBS.Application.Services.PlatformNotifications;
@@ -9,8 +11,6 @@ using RBS.Application.Services.RestaurantNotifications;
 using RBS.Application.Services.Restaurants;
 using RBS.Application.Services.Tables;
 using RBS.Application.Services.UserServices;
-using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
 using RBS.Domain.Enums;
 using RBS.Domain.PlatformNotifications.Commands;
 using RBS.Domain.ReservationReminders.Commands;
@@ -29,10 +29,12 @@ namespace RBS.Application.Services.Reservations
         private readonly IRestaurantNotificationService _restaurantNotificationService;
         private readonly IPlatformNotificationService _platformNotificationService;
         private readonly IReservationRemainderService _reservationRemainderService;
-        private readonly IUnitOfWork<Reservation> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Reservation> _repository;
+        private readonly IQueryRepository<Reservation> _queryRepository;
 
-        public ReservationService(IUnitOfWork<Reservation> unitOfWork,
+        public ReservationService(IUnitOfWork unitOfWork, IRepository<Reservation> repository,
+            IQueryRepository<Reservation> queryRepository,
             IRestaurantService restaurantService, IQrCodeService qrCodeService,
             ITableService tableService, IUserService userService,
             IRestaurantNotificationService restaurantNotificationService,
@@ -40,7 +42,8 @@ namespace RBS.Application.Services.Reservations
             IReservationRemainderService reservationRemainderService)
         {
             _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository;
+            _repository = repository;
+            _queryRepository = queryRepository;
             _restaurantService = restaurantService;
             _qrCodeService = qrCodeService;
             _tableService = tableService;
@@ -48,16 +51,17 @@ namespace RBS.Application.Services.Reservations
             _restaurantNotificationService = restaurantNotificationService;
             _platformNotificationService = platformNotificationService;
             _reservationRemainderService = reservationRemainderService;
+            _repository = repository;
         }
 
-        public async Task<ReservationResponse> ResevationCommandHandler(ReservationCommand command)
+        public async Task<ReservationResponse> ResevationCommandHandler(ReservationCommand command, CancellationToken cancellationToken)
         {
             //Todo:check person count
-            var restaurant = await _restaurantService.GetById(command.RestaurantId);
+            var restaurant = await _restaurantService.GetById(command.RestaurantId, cancellationToken);
             if (restaurant == null)
                 throw new CommandValidationException("Restaurant does not exist");
 
-            var table = await _tableService.GetById(command.TableId);
+            var table = await _tableService.GetById(command.TableId, cancellationToken);
             if (table == null)
                 throw new CommandValidationException("Table does not exist");
 
@@ -68,70 +72,66 @@ namespace RBS.Application.Services.Reservations
 
             if (!command.IsUserLogIn)
             {
-                int userId = await _userService.RegisterGuestUser(command.GuestUser);
+                int userId = await _userService.RegisterGuestUser(command.GuestUser, cancellationToken);
                 command.UserModel = new()
                 {
                     UserId = userId,
                 };
             }
 
-            var reservation = new Reservation(command);
-            await _repository.CreateAsync(reservation);
-
-            var frontBaseUrl = "";
-            var qrCodeUrl = $"{frontBaseUrl}?ReservationId={reservation.Id}&";
-            try
+            using (var scope = await _unitOfWork.CreateScopeAsync(cancellationToken))
             {
+                var reservation = new Reservation(command);
+                await _repository.InsertAsync(reservation, cancellationToken);
+
+                var frontBaseUrl = "";
+                var qrCodeUrl = $"{frontBaseUrl}?ReservationId={reservation.Id}&";
+
                 qrCode = _qrCodeService.GenerateByteArrayQrCode(qrCodeUrl);
-            }
-            catch (Exception)
-            {
-                await _unitOfWork.RollbackAsync();
-                throw;
-            }
 
-            reservation.AddQrCode(qrCode.Data);
+                reservation.AddQrCode(qrCode.Data);
 
-            if (command.SendNewsOfRestaurant)
-            {
-                CreateRestaurantNotificationCommand createRestaurantNotificatCommand = new()
+                if (command.SendNewsOfRestaurant)
                 {
-                    RestaruantId = command.RestaurantId,
-                    UserId = command.UserModel.UserId,
-                    NotificationType = NotificationType.NotificationEmail,
-                };
+                    CreateRestaurantNotificationCommand createRestaurantNotificatCommand = new()
+                    {
+                        RestaruantId = command.RestaurantId,
+                        UserId = command.UserModel.UserId,
+                        NotificationType = NotificationType.NotificationEmail,
+                    };
 
-                await _restaurantNotificationService.CreateRestaurantNotification(createRestaurantNotificatCommand);
-            }
+                    await _restaurantNotificationService.CreateRestaurantNotification(createRestaurantNotificatCommand, cancellationToken);
+                }
 
-            if (command.SendNewsOfPlatform)
-            {
-                CreatePlatformNotificationCommand createPlatformNotificatCommand = new()
+                if (command.SendNewsOfPlatform)
                 {
-                    UserId = command.UserModel.UserId,
-                    NotificationType = NotificationType.NotificationEmail,
-                };
+                    CreatePlatformNotificationCommand createPlatformNotificatCommand = new()
+                    {
+                        UserId = command.UserModel.UserId,
+                        NotificationType = NotificationType.NotificationEmail,
+                    };
 
-                await _platformNotificationService.CreatePlatformNotification(createPlatformNotificatCommand);
-            }
+                    await _platformNotificationService.CreatePlatformNotification(createPlatformNotificatCommand, cancellationToken);
+                }
 
-            if (command.SendReservationReminders)
-            {
-                CreateReservationRemainderCommand createReservationRemainder = new()
+                if (command.SendReservationReminders)
                 {
-                    Type = NotificationType.EmailPhone,
-                    ToBeSentDate = reservation.DateTime.Subtract(TimeSpan.FromMinutes(30)),
-                    ReservationId = reservation.Id,
-                };
+                    CreateReservationRemainderCommand createReservationRemainder = new()
+                    {
+                        Type = NotificationType.EmailPhone,
+                        ToBeSentDate = reservation.DateTime.Subtract(TimeSpan.FromMinutes(30)),
+                        ReservationId = reservation.Id,
+                    };
 
-                await _reservationRemainderService.CreateReservationRemainder(createReservationRemainder);
+                    await _reservationRemainderService.CreateReservationRemainder(createReservationRemainder, cancellationToken);
+                }
+
+                if (command.AddBookingToCallendar)
+                {
+                }
+
+                await scope.CompletAsync(cancellationToken);
             }
-
-            if (command.AddBookingToCallendar)
-            {
-            }
-
-            await _unitOfWork.CommitAsync();
 
             return new()
             {
@@ -139,9 +139,10 @@ namespace RBS.Application.Services.Reservations
             };
         }
 
-        public async Task<List<ResravtionModel>> GetRestaurantReservationsByDay(int restaruantId, DateTime reseravtionDate)
+        public async Task<List<ResravtionModel>> GetRestaurantReservationsByDay(int restaruantId, DateTime reseravtionDate, CancellationToken cancellationToken)
         {
-            var reservations = await _repository.GetListAsync(predicate: x => x.RestaurantId == restaruantId && x.DateTime.Date == reseravtionDate.Date);
+            var reservations = await _queryRepository.GetListAsync(predicate: x => x.RestaurantId == restaruantId && x.DateTime.Date == reseravtionDate.Date,
+                cancellationToken: cancellationToken);
             return reservations.Select(x => new ResravtionModel(x)).ToList();
         }
     }

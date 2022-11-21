@@ -4,6 +4,6 @@ namespace RBS.Application.Services.RestaurantNotifications
 {
     public interface IRestaurantNotificationService
     {
-        Task CreateRestaurantNotification(CreateRestaurantNotificationCommand command);
+        Task CreateRestaurantNotification(CreateRestaurantNotificationCommand command, CancellationToken cancellationToken);
     }
 }

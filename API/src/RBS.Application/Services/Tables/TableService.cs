@@ -1,33 +1,30 @@
-﻿using RBS.Application.Models.TableMdels;
-using RBS.Data.Repositories;
-using RBS.Data.UnitOfWorks;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models.TableMdels;
 using RBS.Domain.Tables;
 
 namespace RBS.Application.Services.Tables
 {
     public class TableService : ITableService
     {
-        private readonly IUnitOfWork<Table> _unitOfWork;
-        private readonly IRepository<Table> _repository;
+        private readonly IQueryRepository<Table> _queryRepository;
         //TODO:ADD CONTACT INFO
-        public TableService(IUnitOfWork<Table> unitOfWork)
+        public TableService(IQueryRepository<Table> queryRepository)
         {
-            _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.Repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<TableModel> GetById(int id)
+        public async Task<TableModel> GetById(int id, CancellationToken cancellationToken)
         {
-            var table = await _repository.GetAsync(predicate: x => x.Id == id);
+            var table = await _queryRepository.GetAsync(predicate: x => x.Id == id, cancellationToken: cancellationToken);
             if (table == null)
                 return null;
 
             return new TableModel(table);
         }
 
-        public async Task<List<TableModel>> GetTableByRestaurantId(int restaurantId)
+        public async Task<List<TableModel>> GetTableByRestaurantId(int restaurantId, CancellationToken cancellationToken)
         {
-            var table = await _repository.GetListAsync(predicate: x => x.RestaurantId == restaurantId);
+            var table = await _queryRepository.GetListAsync(predicate: x => x.RestaurantId == restaurantId, cancellationToken: cancellationToken);
             if (table == null)
                 return null;
 

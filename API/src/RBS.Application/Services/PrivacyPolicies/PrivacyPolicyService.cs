@@ -1,21 +1,21 @@
-﻿using RBS.Application.Models.PrivacyPolicies;
-using RBS.Data.Repositories;
+﻿using Common.Repository.Repository;
+using RBS.Application.Models.PrivacyPolicies;
 using RBS.Domain.PrivacyPolicies;
 
 namespace RBS.Application.Services.PrivacyPolicies
 {
     public class PrivacyPolicyService : IPrivacyPolicyService
     {
-        private readonly IRepository<PrivacyPolicy> _repository;
+        private readonly IQueryRepository<PrivacyPolicy> _queryRepository;
 
-        public PrivacyPolicyService(IRepository<PrivacyPolicy> repository)
+        public PrivacyPolicyService(IQueryRepository<PrivacyPolicy> queryRepository)
         {
-            _repository = repository;
+            _queryRepository = queryRepository;
         }
 
-        public async Task<List<PrivacyPolicyModel>> ListPrivacyPolicyByLanguage(string lang)
+        public async Task<List<PrivacyPolicyModel>> ListPrivacyPolicyByLanguage(string lang, CancellationToken cancellationToken)
         {
-            var privacyPolicies = await _repository.GetListAsync(x => x.Language.Key.Equals(lang));
+            var privacyPolicies = await _queryRepository.GetListAsync(predicate: x => x.Language.Key.Equals(lang), cancellationToken: cancellationToken);
             return privacyPolicies.Select(x => new PrivacyPolicyModel(x)).ToList();
         }
     }

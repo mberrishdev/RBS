@@ -5,8 +5,8 @@ namespace RBS.Application.Services.Auth
 {
     public interface IAuthService
     {
-        Task<AuthResponse> Login(LoginCommand command);
-        Task<int> Register(RegisterCommand command);
-        Task<AuthResponse> RefreshToken(TokenRequest command);
+        Task<AuthResponse> Login(LoginCommand command, CancellationToken cancellationToken);
+        Task<int> Register(RegisterCommand command, CancellationToken cancellationToken);
+        Task<AuthResponse> RefreshToken(TokenRequest command, CancellationToken cancellationToken);
     }
 }
